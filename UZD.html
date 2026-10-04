@@ -1973,6 +1973,7 @@ dom.doctorName.addEventListener('keydown', (e) => {
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const supported = !!SR;
 let recognition = null, isRecording = false, lastCommandAt = 0, restartTimer = null, wakeLock = null;
+let committedFinalText = '';
 
 if (supported) {
     recognition = new SR();
@@ -1980,6 +1981,9 @@ if (supported) {
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.maxAlternatives = 1;
+    // При старте новой сессии сбрасываем счётчик — иначе после автоперезапуска
+    // первое слово пропадёт
+    recognition.onstart = () => { committedFinalText = ''; };
     recognition.onresult = onRecognitionResult;
     recognition.onerror = onRecognitionError;
     recognition.onend = onRecognitionEnd;
@@ -2067,16 +2071,25 @@ function processTranscript(finalText) {
     return { action:'ADD' };
 }
 function onRecognitionResult(event) {
-    let interim = '', final = '';
-    for (let i = event.resultIndex; i < event.results.length; i++) {
+    // Собираем ПОЛНЫЙ финальный текст из всей истории события.
+    // Safari на iOS присылает весь массив заново при каждом новом результате —
+    // поэтому нельзя просто перебирать event.results и всё дописывать.
+    let fullFinal = '';
+    let interim = '';
+    for (let i = 0; i < event.results.length; i++) {
         const res = event.results[i];
-        if (res.isFinal) final += res[0].transcript + ' ';
+        if (res.isFinal) fullFinal += res[0].transcript + ' ';
         else interim += res[0].transcript;
     }
-    if (final) {
-        const result = processTranscript(final);
-        if (result.action === 'ADD') appendText(final);
+
+    // Дописываем только то, что ещё не добавляли
+    if (fullFinal.length > committedFinalText.length) {
+        const newText = fullFinal.slice(committedFinalText.length);
+        committedFinalText = fullFinal;
+        const result = processTranscript(newText);
+        if (result.action === 'ADD') appendText(newText);
     }
+
     if (interim) dom.statusMessage.textContent = interim;
     else if (isRecording) dom.statusMessage.textContent = `Распознано символов: ${dom.rawText.value.length}`;
 }
