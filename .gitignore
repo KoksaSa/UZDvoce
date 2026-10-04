@@ -2,6 +2,9 @@
 keys/private.pem
 keys/*.private.*
 
+# Копии выданных ключей (содержат данные клиентов)
+keys/issued/
+
 # Зависимости сборки
 node_modules/
 

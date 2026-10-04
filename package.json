@@ -7,6 +7,7 @@
   "scripts": {
     "keys:init": "node tools/keygen.mjs init",
     "key": "node tools/keygen.mjs issue",
+    "key:wizard": "node tools/keygen.mjs wizard",
     "build": "node tools/build.mjs",
     "build:dev": "node tools/build.mjs --dev",
     "test": "node tools/verify.mjs",
