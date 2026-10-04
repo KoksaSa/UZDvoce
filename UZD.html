@@ -1973,7 +1973,7 @@ dom.doctorName.addEventListener('keydown', (e) => {
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const supported = !!SR;
 let recognition = null, isRecording = false, lastCommandAt = 0, restartTimer = null, wakeLock = null;
-let committedFinalText = '';
+let processedFinalCount = 0;
 
 if (supported) {
     recognition = new SR();
@@ -1981,9 +1981,7 @@ if (supported) {
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.maxAlternatives = 1;
-    // При старте новой сессии сбрасываем счётчик — иначе после автоперезапуска
-    // первое слово пропадёт
-    recognition.onstart = () => { committedFinalText = ''; };
+    recognition.onstart = () => { processedFinalCount = 0; };
     recognition.onresult = onRecognitionResult;
     recognition.onerror = onRecognitionError;
     recognition.onend = onRecognitionEnd;
@@ -2071,23 +2069,24 @@ function processTranscript(finalText) {
     return { action:'ADD' };
 }
 function onRecognitionResult(event) {
-    // Собираем ПОЛНЫЙ финальный текст из всей истории события.
-    // Safari на iOS присылает весь массив заново при каждом новом результате —
-    // поэтому нельзя просто перебирать event.results и всё дописывать.
-    let fullFinal = '';
     let interim = '';
-    for (let i = 0; i < event.results.length; i++) {
-        const res = event.results[i];
-        if (res.isFinal) fullFinal += res[0].transcript + ' ';
-        else interim += res[0].transcript;
+
+    // Если ASR перезапустился и массив стал короче — сбрасываем счётчик
+    if (event.results.length < processedFinalCount) {
+        processedFinalCount = 0;
     }
 
-    // Дописываем только то, что ещё не добавляли
-    if (fullFinal.length > committedFinalText.length) {
-        const newText = fullFinal.slice(committedFinalText.length);
-        committedFinalText = fullFinal;
-        const result = processTranscript(newText);
-        if (result.action === 'ADD') appendText(newText);
+    // Обрабатываем ТОЛЬКО новые финальные результаты — те, что после processedFinalCount
+    for (let i = processedFinalCount; i < event.results.length; i++) {
+        const res = event.results[i];
+        if (res.isFinal) {
+            const text = res[0].transcript.trim() + ' ';
+            const result = processTranscript(text);
+            if (result.action === 'ADD') appendText(text);
+            processedFinalCount = i + 1;
+        } else {
+            interim += res[0].transcript;
+        }
     }
 
     if (interim) dom.statusMessage.textContent = interim;
@@ -2125,6 +2124,7 @@ function startDictation() {
 }
 function pauseDictation() {
     isRecording = false;
+    processedFinalCount = 0; 
     try { recognition.stop(); } catch (_) {}
     setState('paused', 'Скажите «продолжить» или нажмите «Начать»');
     vibrate([10,40,10]);
@@ -2132,6 +2132,7 @@ function pauseDictation() {
 }
 function stopDictation(autoParse = false) {
     isRecording = false;
+    processedFinalCount = 0; 
     try { recognition.stop(); } catch (_) {}
     setState('stopped', 'Запись завершена');
     vibrate([15,60,15]);
