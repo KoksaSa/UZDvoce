@@ -56,11 +56,9 @@ body{margin:0;font-family:var(--font-sans);font-size:15px;line-height:1.55;color
 input,button,textarea,select{font-family:inherit;touch-action:manipulation}
 button{user-select:none;-webkit-user-select:none}
 
-/* LAYOUT */
 .app{max-width:1440px;margin:0 auto;padding:calc(20px + var(--safe-top)) calc(20px + var(--safe-right)) 20px calc(20px + var(--safe-left));
     display:grid;grid-template-columns:minmax(360px,440px) 1fr;gap:22px;align-items:start}
 
-/* TOPBAR */
 .topbar{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 18px;
     border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);
     position:sticky;top:calc(8px + var(--safe-top));z-index:40;
@@ -111,11 +109,9 @@ button{user-select:none;-webkit-user-select:none}
 .icon-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--danger);color:#fff;font-size:.6rem;font-weight:700;
     min-width:16px;height:16px;padding:0 4px;border-radius:8px;display:grid;place-items:center;border:2px solid var(--surface)}
 
-/* PANELS */
 .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
 .panel-body{padding:16px 18px}
 
-/* CONTROL PANEL */
 .control-panel{position:sticky;top:calc(72px + var(--safe-top));display:flex;flex-direction:column;gap:14px}
 .status-card{position:relative;padding:16px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);
     box-shadow:var(--shadow-sm);overflow:hidden;transition:all var(--transition)}
@@ -178,7 +174,6 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
     border:1px solid var(--border);border-bottom-width:2px;color:var(--brand-1);font-weight:700}
 .hint-shortcuts{display:none}
 
-/* REPORT */
 .report{display:flex;flex-direction:column;gap:14px}
 .report-head{padding:22px 20px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);
     text-align:center;position:relative;overflow:hidden}
@@ -221,7 +216,7 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
 .field input::placeholder,.field textarea::placeholder{color:var(--text-faint)}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brand-1);background:var(--surface);box-shadow:var(--shadow-glow)}
 .field textarea{resize:vertical;min-height:76px;line-height:1.55}
-.field input.auto-filled,.field textarea.auto-filled{background:linear-gradient(180deg,rgba(245,158,11,.12),rgba(245,158,11,.05));
+.field input.auto-filled,.field textarea.auto-filled,.field select.auto-filled{background:linear-gradient(180deg,rgba(245,158,11,.12),rgba(245,158,11,.05));
     border-color:var(--warning);animation:flashFill .6s ease-out}
 @keyframes flashFill{0%{background:rgba(245,158,11,.35)}100%{background:rgba(245,158,11,.08)}}
 .field input.field-warn,.field input.field-error{border-color:var(--danger);background:rgba(239,68,68,.06)}
@@ -236,7 +231,6 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
 .gest-info .item span{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
 .gest-info.empty{display:none}
 
-/* ANATOMY interactive */
 .anatomy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
 .anatomy-item{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:9px;background:var(--surface-2);
     border:1.5px solid var(--border);cursor:pointer;transition:all var(--transition);font-size:.84rem;min-height:42px}
@@ -253,7 +247,6 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
 .anatomy-label{flex:1}
 .anatomy-cycles{font-size:.68rem;color:var(--text-faint);margin-left:auto;white-space:nowrap}
 
-/* ANATOMY printed grid */
 .anatomy-print-wrap{margin-top:16px;display:none}
 .anatomy-print-wrap.visible{display:block}
 .anatomy-toggle{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
@@ -269,21 +262,24 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
 .anatomy-print-table td.cell-status .box.marked.not-assessed::after{background:#f59e0b}
 .anatomy-print-table tr:hover td{background:#fafafa}
 
-/* template chips */
 .template-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
 .tchip{font-size:.74rem;padding:6px 10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);
     color:var(--text-muted);cursor:pointer;transition:all var(--transition);font-weight:600;white-space:nowrap;
     overflow:hidden;text-overflow:ellipsis;max-width:100%}
 @media(hover:hover){.tchip:hover{color:var(--brand-1);border-color:var(--brand-1);background:rgba(99,102,241,.06)}}
 .tchip:active{transform:scale(.96)}
+.tchip.user{border-color:var(--brand-2);color:var(--brand-2)}
+@media(hover:hover){.tchip.user:hover{background:rgba(139,92,246,.08)}}
 
 .signatures{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:20px;background:var(--surface);
     border:1px solid var(--border);border-radius:var(--radius-lg);font-size:.86rem;color:var(--text-muted);flex-wrap:wrap}
 .sign-line{flex:1;min-width:160px;display:flex;flex-direction:column;gap:4px}
 .sign-line .line{border-bottom:1px solid var(--border-strong);height:18px}
 .sign-line strong{color:var(--text);font-weight:700}
+.sign-line strong[contenteditable="true"]{outline:none;padding:2px 6px;border-radius:6px;border:1px dashed transparent;transition:all var(--transition);cursor:text}
+.sign-line strong[contenteditable="true"]:hover{border-color:var(--border-strong)}
+.sign-line strong[contenteditable="true"]:focus{border-color:var(--brand-1);background:var(--surface-2);box-shadow:var(--shadow-glow)}
 
-/* TOASTS */
 .toast-wrap{position:fixed;top:calc(20px + var(--safe-top));right:calc(20px + var(--safe-right));z-index:9999;
     display:flex;flex-direction:column;gap:10px;pointer-events:none;max-width:340px}
 .toast{pointer-events:auto;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
@@ -304,7 +300,6 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
 .toast-text{color:var(--text-muted);font-size:.82rem}
 @keyframes toastIn{from{opacity:0;transform:translateX(30px) scale(.95)}to{opacity:1;transform:translateX(0) scale(1)}}
 
-/* MODALS */
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
     display:none;align-items:center;justify-content:center;z-index:9000;padding:20px;animation:fadeIn .18s ease}
 .modal.active{display:flex}
@@ -335,6 +330,20 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
 .tpl-item .tpl-icon svg{width:12px;height:12px}
 .tpl-item .tpl-text{flex:1;line-height:1.45}
 .tpl-item .tpl-insert{font-size:.72rem;color:var(--brand-1);font-weight:700;flex-shrink:0;margin-top:2px}
+.tpl-del{width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:var(--surface);
+    color:var(--text-muted);cursor:pointer;display:grid;place-items:center;padding:0;flex-shrink:0;transition:all var(--transition)}
+.tpl-del svg{width:13px;height:13px}
+@media(hover:hover){.tpl-del:hover{color:var(--danger);border-color:var(--danger)}}
+
+.tpl-editor-field{margin-bottom:14px}
+.tpl-editor-field label{display:block;font-size:.74rem;font-weight:600;color:var(--text-muted);margin-bottom:6px;letter-spacing:.01em}
+.tpl-editor-field input,.tpl-editor-field textarea{width:100%;font-family:inherit;font-size:15px;color:var(--text);background:var(--surface-2);
+    border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;transition:all var(--transition);outline:none;min-height:42px}
+.tpl-editor-field textarea{min-height:110px;resize:vertical;line-height:1.5}
+.tpl-editor-field input:focus,.tpl-editor-field textarea:focus{border-color:var(--brand-1);background:var(--surface);box-shadow:var(--shadow-glow)}
+.tpl-prof-checks{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.tpl-prof-checks label{display:flex;align-items:center;gap:6px;font-size:.84rem;color:var(--text);cursor:pointer;font-weight:500}
+.tpl-prof-checks input{width:16px;height:16px;accent-color:var(--brand-1);cursor:pointer}
 
 .hist-search{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface-2);
     color:var(--text);font-size:14px;margin-bottom:14px;outline:none}
@@ -373,7 +382,6 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
 .loading-title{font-weight:700;font-size:1rem}
 .loading-text{font-size:.85rem;color:var(--text-muted)}
 
-/* RESPONSIVE */
 @media(max-width:1024px){
     .app{grid-template-columns:1fr;padding:calc(14px + var(--safe-top)) calc(14px + var(--safe-right)) 14px calc(14px + var(--safe-left));gap:14px}
     .control-panel{position:static}
@@ -433,7 +441,6 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
     .brand-title span{font-size:.88rem}
 }
 
-/* PRINT */
 @media print{
     @page{size:A4;margin:12mm}
     body{background:#fff!important;color:#000!important;padding:0!important;margin:0;font-size:10pt}
@@ -459,7 +466,6 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
     .field input.auto-filled,.field textarea.auto-filled{background:transparent!important;border-bottom:1px dotted #999!important;animation:none}
     .field textarea{min-height:40px;height:auto}
     .field .ref-hint{display:none}
-    /* Скрыть интерактивную сетку, показать печатную */
     .anatomy-grid{display:none!important}
     .anatomy-print-wrap{display:block!important}
     .anatomy-print-table{font-size:9pt}
@@ -474,13 +480,11 @@ kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4
     .gest-info{display:none}
 }
 
-/* PROFILE VISIBILITY */
 .profile-1,.profile-2,.profile-3{display:none}
 body[data-profile="p1"] .profile-1{display:block}
 body[data-profile="p2"] .profile-2{display:block}
 body[data-profile="p3"] .profile-3{display:block}
 
-/* PDF export clone */
 .pdf-export-mode{background:#fff!important;color:#000!important;padding:0!important;font-size:10pt;max-width:210mm;width:210mm}
 .pdf-export-mode .topbar,.pdf-export-mode .control-panel,.pdf-export-mode .toast-wrap,.pdf-export-mode .no-print,
 .pdf-export-mode .primary-actions,.pdf-export-mode .modal,.pdf-export-mode .template-chips,.pdf-export-mode .gest-info,
@@ -693,7 +697,6 @@ body[data-profile="p3"] .profile-3{display:block}
             <p class="legal">к приказу Министерства здравоохранения Российской Федерации от 20 октября 2020 г. № 1130н</p>
         </div>
 
-        <!-- PATIENT -->
         <section class="section" data-section>
             <header class="section-head" data-toggle>
                 <div class="section-icon ic-patient"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
@@ -704,11 +707,11 @@ body[data-profile="p3"] .profile-3{display:block}
                 <div class="grid">
                     <div class="field"><label>Номер исследования</label><input type="text" id="examNumber" placeholder="Автоматически"></div>
                     <div class="field"><label>Дата исследования</label><input type="date" id="examDate" required></div>
-                    <div class="field"><label>Ф.И.О. беременной</label><input type="text" id="patientName" placeholder="Иванова Мария Петровна" autocomplete="name" required></div>
+                    <div class="field"><label>Ф.И.О. беременной</label><input type="text" id="patientName" placeholder="Иванова Мария Петровна" autocomplete="off" required></div>
                     <div class="field"><label>Возраст беременной</label><input type="number" inputmode="numeric" id="patientAge" placeholder="32" min="14" max="60"></div>
                     <div class="field"><label>Первый день последней менструации</label><input type="date" id="lastMenstruation"></div>
                     <div class="field"><label>Срок беременности</label><input type="text" id="gestAge" placeholder="20 нед 3 дня" class="auto-target" data-keywords="срок беременности, срок гестации" required></div>
-                    <div class="field"><label>Срок по УЗИ в I триместре</label><input type="text" id="gestAgeFirstTrim" placeholder="12 нед 2 дня (если есть)"></div>
+                    <div class="field"><label>Срок по УЗИ в I триместре</label><input type="text" id="gestAgeFirstTrim" class="auto-target" data-keywords="срок по узи в первом триместре, срок в первом триместре, срок по узи в 1 триместре" placeholder="12 нед 2 дня (если есть)"></div>
                     <div class="field"><label>Вид исследования</label>
                         <select id="examType">
                             <option value="">— выберите —</option>
@@ -716,13 +719,12 @@ body[data-profile="p3"] .profile-3{display:block}
                             <option value="Трансвагинальный">Трансвагинальный</option>
                         </select>
                     </div>
-                    <div class="field"><label>Количество плодов</label><input type="number" inputmode="numeric" id="fetusCount" placeholder="1" min="1" max="4" value="1"></div>
+                    <div class="field"><label>Количество плодов</label><input type="number" inputmode="numeric" id="fetusCount" class="auto-target" data-keywords="количество плодов, число плодов, плодов" placeholder="1" min="1" max="4" value="1"></div>
                     <div class="gest-info empty" id="gestInfo"></div>
                 </div>
             </div>
         </section>
 
-        <!-- FETOMETRY -->
         <section class="section" data-section>
             <header class="section-head" data-toggle>
                 <div class="section-icon ic-feto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8c2-3 6-4 10-3l3 1c2 1 3 3 3 5s-1 4-3 5l-4 2c-3 1-6 0-8-2s-3-5-1-8z"/></svg></div>
@@ -738,7 +740,7 @@ body[data-profile="p3"] .profile-3{display:block}
                     <div class="field"><label>Длина бедра (ДБ), мм</label><input type="number" inputmode="decimal" step="0.1" id="fl" class="auto-target" data-keywords="дб, длина бедра, бедро"><div class="ref-hint" id="flRef"></div></div>
                 </div>
                 <div class="grid" style="margin-top:12px">
-                    <div class="field"><label>Длина других костей</label><input type="text" id="otherBones" placeholder="Голень, плечо, предплечье"></div>
+                    <div class="field"><label>Длина других костей</label><input type="text" id="otherBones" class="auto-target" data-keywords="другие кости, длина костей, голень, плечо, предплечье" placeholder="Голень, плечо, предплечье"></div>
                     <div class="field"><label>Размеры плода соответствуют сроку</label>
                         <select id="sizeMatch">
                             <option value="да">да</option>
@@ -747,12 +749,11 @@ body[data-profile="p3"] .profile-3{display:block}
                         </select>
                     </div>
                     <div class="field"><label>Предполагаемая масса плода, г</label><input type="number" inputmode="numeric" id="efw" class="auto-target" data-keywords="масса плода, вес плода, предполагаемая масса"><div class="ref-hint" id="efwRef"></div></div>
-                    <div class="field"><label>Процентиль массы</label><input type="text" id="efwPercentile" placeholder="Например, 45"></div>
+                    <div class="field"><label>Процентиль массы</label><input type="text" id="efwPercentile" class="auto-target" data-keywords="процентиль массы, процентиль" placeholder="Например, 45"></div>
                 </div>
             </div>
         </section>
 
-        <!-- PROFILE 1 -->
         <div class="profile-1">
             <section class="section" data-section>
                 <header class="section-head" data-toggle>
@@ -776,7 +777,7 @@ body[data-profile="p3"] .profile-3{display:block}
                             <div class="field"><label>Трикуспидальная регургитация</label>
                                 <select id="tricuspid"><option>нет</option><option>да</option></select>
                             </div>
-                            <div class="field"><label>ПИ в венозном протоке</label><input type="text" id="ductusVenosus" placeholder="Например, 1.05"></div>
+                            <div class="field"><label>ПИ в венозном протоке</label><input type="text" id="ductusVenosus" class="auto-target" data-keywords="пи в венозном протоке, венозный проток" placeholder="Например, 1.05"></div>
                             <div class="field"><label>Комментарии</label><input type="text" id="markersComment" placeholder="Свободный текст"></div>
                         </div>
                     </div>
@@ -791,7 +792,7 @@ body[data-profile="p3"] .profile-3{display:block}
                 <div class="section-body">
                     <div class="grid">
                         <div class="field"><label>Хорион (плацента) — локализация</label><input type="text" id="chorionLocation" class="auto-target" data-keywords="хорион, плацента расположена, локализация плаценты, плацента"></div>
-                        <div class="field"><label>Пуповина — сосуды</label><input type="text" id="umbilicalVessels" placeholder="2 / 3"></div>
+                        <div class="field"><label>Пуповина — сосуды</label><input type="text" id="umbilicalVessels" class="auto-target" data-keywords="пуповина сосуды, сосуды пуповины" placeholder="2 / 3"></div>
                         <div class="field"><label>Место прикрепления</label>
                             <select id="cordInsertion"><option>центральное</option><option>краевое</option><option>оболочечное</option><option>не удалось осмотреть</option></select>
                         </div>
@@ -803,7 +804,6 @@ body[data-profile="p3"] .profile-3{display:block}
             </section>
         </div>
 
-        <!-- PROFILE 2 -->
         <div class="profile-2">
             <section class="section" data-section>
                 <header class="section-head" data-toggle>
@@ -823,7 +823,6 @@ body[data-profile="p3"] .profile-3{display:block}
                         </button>
                     </div>
 
-                    <!-- ПЕЧАТНАЯ СЕТКА (показывается по кнопке, в PDF/печать — всегда) -->
                     <div class="anatomy-print-wrap" id="anatomyPrintWrap">
                         <div style="font-size:.78rem;font-weight:700;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">Сетка анатомических структур — печатный вид</div>
                         <table class="anatomy-print-table" id="anatomyPrintTable">
@@ -854,12 +853,12 @@ body[data-profile="p3"] .profile-3{display:block}
                         <div class="field"><label>Степень зрелости</label>
                             <select id="placentaGrade2"><option value="0">0</option><option value="I">I</option><option value="II">II</option><option value="III">III</option></select>
                         </div>
-                        <div class="field"><label>Нижний край</label><input type="text" id="placentaEdge" placeholder="60 мм от в/зева"></div>
+                        <div class="field"><label>Нижний край</label><input type="text" id="placentaEdge" class="auto-target" data-keywords="нижний край, нижний край плаценты" placeholder="60 мм от в/зева"></div>
                         <div class="field"><label>Околоплодные воды</label>
                             <select id="amnioticFluid2"><option value="норма">норма</option><option value="маловодие">маловодие</option><option value="многоводие">многоводие</option></select>
                         </div>
                         <div class="field"><label>ИАЖ, мм</label><input type="number" inputmode="decimal" step="0.1" id="afIndex2" class="auto-target" data-keywords="иаж, индекс амниотической жидкости"></div>
-                        <div class="field"><label>Пуповина — сосуды</label><input type="text" id="umbilicalVessels2" placeholder="3"></div>
+                        <div class="field"><label>Пуповина — сосуды</label><input type="text" id="umbilicalVessels2" class="auto-target" data-keywords="пуповина сосуды, сосуды пуповины" placeholder="3"></div>
                         <div class="field"><label>Место прикрепления</label>
                             <select id="cordInsertion2"><option>центральное</option><option>краевое</option><option>оболочечное</option><option>не удалось осмотреть</option></select>
                         </div>
@@ -876,14 +875,13 @@ body[data-profile="p3"] .profile-3{display:block}
                 <div class="section-body">
                     <div class="grid">
                         <div class="field"><label>Цервикометрия, мм</label><input type="number" inputmode="decimal" step="0.1" id="cervix" class="auto-target" data-keywords="шейка матки, цервикометрия, длина шейки"></div>
-                        <div class="field"><label>ПИ в маточных артериях (слева)</label><input type="text" id="piLeft" placeholder="1.45"></div>
-                        <div class="field"><label>ПИ в маточных артериях (справа)</label><input type="text" id="piRight" placeholder="1.52"></div>
+                        <div class="field"><label>ПИ в маточных артериях (слева)</label><input type="text" id="piLeft" class="auto-target" data-keywords="пи слева, слева, пи в маточных артериях слева" placeholder="1.45"></div>
+                        <div class="field"><label>ПИ в маточных артериях (справа)</label><input type="text" id="piRight" class="auto-target" data-keywords="пи справа, справа, пи в маточных артериях справа" placeholder="1.52"></div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- PROFILE 3 -->
         <div class="profile-3">
             <section class="section" data-section>
                 <header class="section-head" data-toggle>
@@ -894,7 +892,7 @@ body[data-profile="p3"] .profile-3{display:block}
                 <div class="section-body">
                     <div class="grid">
                         <div class="field"><label>Масса плода, г</label><input type="number" inputmode="numeric" id="efw3" class="auto-target" data-keywords="масса плода, вес плода"><div class="ref-hint" id="efw3Ref"></div></div>
-                        <div class="field"><label>Процентиль массы</label><input type="text" id="efwPercentile3" placeholder="45"></div>
+                        <div class="field"><label>Процентиль массы</label><input type="text" id="efwPercentile3" class="auto-target" data-keywords="процентиль массы, процентиль" placeholder="45"></div>
                         <div class="field"><label>Предлежание</label>
                             <select id="presentation3"><option>головное</option><option>тазовое</option><option>поперечное</option></select>
                         </div>
@@ -930,7 +928,7 @@ body[data-profile="p3"] .profile-3{display:block}
                 </header>
                 <div class="section-body">
                     <div class="grid">
-                        <div class="field"><label>Цервикометрия</label><input type="text" id="cervix3" placeholder="Длина сомкнутой части, мм"></div>
+                        <div class="field"><label>Цервикометрия</label><input type="text" id="cervix3" class="auto-target" data-keywords="узи цервикометрия, цервикометрия" placeholder="Длина сомкнутой части, мм"></div>
                         <div class="field"><label>Внутренний зев</label>
                             <select id="internalOs3"><option>закрыт</option><option>открыт</option></select>
                         </div>
@@ -943,7 +941,6 @@ body[data-profile="p3"] .profile-3{display:block}
             </section>
         </div>
 
-        <!-- ВПР -->
         <section class="section" data-section>
             <header class="section-head" data-toggle>
                 <div class="section-icon ic-anatomy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
@@ -961,7 +958,6 @@ body[data-profile="p3"] .profile-3{display:block}
             </div>
         </section>
 
-        <!-- Визуализация -->
         <section class="section" data-section>
             <header class="section-head" data-toggle>
                 <div class="section-icon ic-desc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
@@ -978,7 +974,6 @@ body[data-profile="p3"] .profile-3{display:block}
             </div>
         </section>
 
-        <!-- Заключение -->
         <section class="section" data-section>
             <header class="section-head" data-toggle>
                 <div class="section-icon ic-conclusion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
@@ -997,7 +992,6 @@ body[data-profile="p3"] .profile-3{display:block}
             </div>
         </section>
 
-        <!-- Подробное описание -->
         <section class="section" data-section>
             <header class="section-head" data-toggle>
                 <div class="section-icon ic-desc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
@@ -1010,22 +1004,55 @@ body[data-profile="p3"] .profile-3{display:block}
         </section>
 
         <div class="signatures">
-            <div class="sign-line"><span>Врач ультразвуковой диагностики:</span><div class="line"></div><strong id="doctorName">Петров П.П.</strong></div>
+            <div class="sign-line"><span>Врач ультразвуковой диагностики:</span><div class="line"></div><strong id="doctorName" contenteditable="true" spellcheck="false" title="Кликните, чтобы изменить">Петров П.П.</strong></div>
             <div class="sign-line" style="max-width:220px"><span>Дата выдачи:</span><div class="line"></div><strong id="printDate">—</strong></div>
         </div>
     </main>
 </div>
 
-<!-- MODALS -->
 <div class="modal" id="templatesModal">
     <div class="modal-card">
         <div class="modal-head">
             <h3>Шаблоны заключений</h3>
+            <button class="icon-btn" id="tplNewBtn" title="Создать свой шаблон" style="width:34px;height:34px;min-width:34px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
             <button class="modal-close" data-close="templatesModal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
         </div>
         <div class="modal-body">
             <div class="tpl-tabs" id="tplTabs"></div>
             <div class="tpl-list" id="tplList"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="templateEditorModal">
+    <div class="modal-card" style="max-width:560px">
+        <div class="modal-head">
+            <h3 id="tplEditorTitle">Новый шаблон</h3>
+            <button class="modal-close" data-close="templateEditorModal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <div class="modal-body">
+            <div class="tpl-editor-field">
+                <label>Название шаблона</label>
+                <input type="text" id="tplEditorName" placeholder="Например, Норма II триместр" maxlength="80">
+            </div>
+            <div class="tpl-editor-field">
+                <label>Текст заключения</label>
+                <textarea id="tplEditorText" placeholder="Беременность ..." spellcheck="false"></textarea>
+            </div>
+            <div class="tpl-editor-field" style="margin-bottom:0">
+                <label>Применять к триместрам</label>
+                <div class="tpl-prof-checks">
+                    <label><input type="checkbox" id="tplProf1" value="p1"> I триместр</label>
+                    <label><input type="checkbox" id="tplProf2" value="p2" checked> II триместр</label>
+                    <label><input type="checkbox" id="tplProf3" value="p3"> III триместр</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-foot">
+            <button class="btn btn-ghost" data-close="templateEditorModal">Отмена</button>
+            <button class="btn btn-primary" id="tplEditorSave">Сохранить</button>
         </div>
     </div>
 </div>
@@ -1078,9 +1105,6 @@ body[data-profile="p3"] .profile-3{display:block}
 (() => {
 'use strict';
 
-/* ============================================================
-   ENV
-   ============================================================ */
 const UA = navigator.userAgent;
 const ENV = {
     isIOS: /iPad|iPhone|iPod/.test(UA) && !window.MSStream,
@@ -1109,9 +1133,26 @@ const CONFIG = {
     }
 };
 
-/* ============================================================
-   DOM
-   ============================================================ */
+const DOCTOR_KEY = 'uzi-doctor-1130n';
+function getDoctorName() {
+    try { return localStorage.getItem(DOCTOR_KEY) || CONFIG.doctor; } catch (_) { return CONFIG.doctor; }
+}
+function setDoctorName(name) {
+    try { localStorage.setItem(DOCTOR_KEY, name); } catch (_) {}
+}
+
+const USER_TPL_KEY = 'uzi-user-templates-1130n';
+function loadUserTemplates() {
+    try {
+        const arr = JSON.parse(localStorage.getItem(USER_TPL_KEY) || '[]');
+        return Array.isArray(arr) ? arr : [];
+    } catch (_) { return []; }
+}
+function saveUserTemplates(arr) {
+    try { localStorage.setItem(USER_TPL_KEY, JSON.stringify(arr)); } catch (_) {}
+}
+let userTemplates = loadUserTemplates();
+
 const $ = (id) => document.getElementById(id);
 const dom = {
     body: document.body,
@@ -1141,15 +1182,15 @@ const dom = {
     lastMenstruation: $('lastMenstruation'),
     templateChips: $('templateChips'),
     openTemplatesBtn: $('openTemplatesBtn'),
-    templatesModal: $('templatesModal'), tplTabs: $('tplTabs'), tplList: $('tplList'),
+    templatesModal: $('templatesModal'), tplTabs: $('tplTabs'), tplList: $('tplList'), tplNewBtn: $('tplNewBtn'),
+    templateEditorModal: $('templateEditorModal'), tplEditorTitle: $('tplEditorTitle'),
+    tplEditorName: $('tplEditorName'), tplEditorText: $('tplEditorText'),
+    tplProf1: $('tplProf1'), tplProf2: $('tplProf2'), tplProf3: $('tplProf3'), tplEditorSave: $('tplEditorSave'),
     historyModal: $('historyModal'), histSearch: $('histSearch'), histList: $('histList'),
     histExport: $('histExport'), histImport: $('histImport'), histImportFile: $('histImportFile'),
     validationModal: $('validationModal'), valList: $('valList'), valContinue: $('valContinue')
 };
 
-/* ============================================================
-   PROFILES
-   ============================================================ */
 const PROFILES = {
     p1: { title:'Протокол скринингового ультразвукового исследования', subtitle:'Женщины в 11–14 недель беременности · Приложение № 7' },
     p2: { title:'Протокол скринингового ультразвукового исследования', subtitle:'Женщины в 19–21 неделю беременности · Приложение № 9' },
@@ -1172,9 +1213,6 @@ function setProfile(profileId) {
 }
 dom.screenSwitcher.forEach(b => b.addEventListener('click', () => { setProfile(b.dataset.profile); vibrate(8); }));
 
-/* ============================================================
-   ANATOMY
-   ============================================================ */
 const ANATOMY_STRUCTURES = [
     { id:'skull', label:'Кости свода черепа', keywords:'кости свода черепа, свод черепа' },
     { id:'csp', label:'Полость прозрачной перегородки', keywords:'полость прозрачной перегородки, прозрачная перегородка' },
@@ -1209,7 +1247,6 @@ const ANATOMY_LABELS = { 'normal':'Норма','changed':'Изменения','n
 const anatomyState = {};
 
 function buildAnatomyGrid() {
-    // Интерактивная сетка
     dom.anatomyGrid.innerHTML = '';
     ANATOMY_STRUCTURES.forEach(s => {
         if (!anatomyState[s.id]) anatomyState[s.id] = 'normal';
@@ -1228,7 +1265,6 @@ function buildAnatomyGrid() {
 }
 
 function buildPrintGrid() {
-    // Печатная таблица
     dom.anatomyPrintBody.innerHTML = '';
     ANATOMY_STRUCTURES.forEach(s => {
         const st = anatomyState[s.id] || 'normal';
@@ -1264,7 +1300,6 @@ function getAnatomySummary() {
     return { changed, notAssessed };
 }
 
-// Кнопка "Показать печатный вид"
 dom.togglePrintGrid.addEventListener('click', () => {
     const on = dom.anatomyPrintWrap.classList.toggle('visible');
     dom.togglePrintGrid.innerHTML = on
@@ -1273,9 +1308,6 @@ dom.togglePrintGrid.addEventListener('click', () => {
     vibrate(6);
 });
 
-/* ============================================================
-   TEMPLATES
-   ============================================================ */
 const TEMPLATES = {
     norm: { label:'Норма', items:[
         { text:'Беременность прогрессирует, размеры плода соответствуют сроку гестации. Признаков ВПР не выявлено.', tags:['p2','p3'] },
@@ -1319,18 +1351,23 @@ const TEMPLATES = {
 function renderTemplateChips() {
     const profile = dom.body.dataset.profile || 'p2';
     const chips = [];
+    userTemplates.forEach(t => {
+        if ((t.profiles || []).includes(profile) && chips.length < 6) {
+            chips.push({ text: t.text, isUser: true });
+        }
+    });
     ['norm','dev'].forEach(catKey => {
         TEMPLATES[catKey].items.forEach(t => {
-            if (t.tags.includes(profile) && chips.length < 4) chips.push(t.text);
+            if (t.tags.includes(profile) && chips.length < 6) chips.push({ text: t.text, isUser: false });
         });
     });
     dom.templateChips.innerHTML = '';
-    chips.forEach(text => {
+    chips.forEach(item => {
         const btn = document.createElement('button');
-        btn.className = 'tchip';
-        btn.textContent = text.length > 45 ? text.slice(0, 45) + '…' : text;
-        btn.title = text;
-        btn.addEventListener('click', () => insertTemplate(text));
+        btn.className = 'tchip' + (item.isUser ? ' user' : '');
+        btn.textContent = item.text.length > 45 ? item.text.slice(0, 45) + '…' : item.text;
+        btn.title = item.text;
+        btn.addEventListener('click', () => insertTemplate(item.text));
         dom.templateChips.appendChild(btn);
     });
 }
@@ -1344,6 +1381,8 @@ function insertTemplate(text) {
     toast('success', 'Шаблон вставлен', text.slice(0, 60) + (text.length > 60 ? '…' : ''), 2500);
 }
 
+let editingTemplateIdx = -1;
+
 function openTemplatesPanel() { renderTemplatesModal('norm'); openModal('templatesModal'); }
 
 function renderTemplatesModal(activeKey) {
@@ -1355,27 +1394,142 @@ function renderTemplatesModal(activeKey) {
         b.addEventListener('click', () => renderTemplatesModal(key));
         dom.tplTabs.appendChild(b);
     });
+    const ub = document.createElement('button');
+    ub.textContent = `Мои (${userTemplates.length})`;
+    ub.className = activeKey === '_user' ? 'active' : '';
+    ub.addEventListener('click', () => renderTemplatesModal('_user'));
+    dom.tplTabs.appendChild(ub);
+
+    dom.tplList.innerHTML = '';
+
+    if (activeKey === '_user') {
+        renderUserTemplatesList();
+        return;
+    }
+
     const profile = dom.body.dataset.profile || 'p2';
     const list = TEMPLATES[activeKey].items.filter(t => t.tags.includes(profile) || t.tags.length === 3);
-    dom.tplList.innerHTML = '';
     if (!list.length) { dom.tplList.innerHTML = '<div class="hist-empty">Нет шаблонов для этого триместра</div>'; return; }
     list.forEach(t => {
         const item = document.createElement('div');
         item.className = 'tpl-item';
         item.innerHTML = `
             <div class="tpl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="tpl-text">${t.text}</div>
+            <div class="tpl-text">${esc(t.text)}</div>
             <div class="tpl-insert">Вставить</div>`;
         item.addEventListener('click', () => { insertTemplate(t.text); closeModal('templatesModal'); });
         dom.tplList.appendChild(item);
     });
 }
-dom.openTemplatesBtn.addEventListener('click', openTemplatesPanel);
-renderTemplateChips();
 
-/* ============================================================
-   CALCULATOR + REF
-   ============================================================ */
+function renderUserTemplatesList() {
+    if (!userTemplates.length) {
+        dom.tplList.innerHTML = '<div class="hist-empty">Своих шаблонов нет.<br>Нажмите «+» в шапке, чтобы создать.</div>';
+        return;
+    }
+    const profile = dom.body.dataset.profile || 'p2';
+    userTemplates.forEach((tpl, idx) => {
+        const applies = (tpl.profiles || []).includes(profile);
+        const item = document.createElement('div');
+        item.className = 'tpl-item';
+        item.style.opacity = applies ? '1' : '0.55';
+        const profLabels = (tpl.profiles || []).map(p => ({p1:'I',p2:'II',p3:'III'})[p]).join(', ');
+        item.innerHTML = `
+            <div class="tpl-icon" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tpl-text">
+                <div style="font-weight:700;font-size:.78rem;color:var(--brand-2);margin-bottom:3px">${esc(tpl.name || 'Без названия')} <span style="color:var(--text-faint);font-weight:500">· ${esc(profLabels)}</span></div>
+                ${esc(tpl.text)}
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;align-items:center">
+                <div class="tpl-insert" data-act="insert">Вставить</div>
+                <div style="display:flex;gap:4px">
+                    <button class="tpl-del" data-act="edit" title="Редактировать">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    </button>
+                    <button class="tpl-del" data-act="delete" title="Удалить">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+                    </button>
+                </div>
+            </div>`;
+        item.addEventListener('click', (e) => {
+            const act = e.target.closest('[data-act]');
+            if (act && act.dataset.act === 'insert') {
+                insertTemplate(tpl.text);
+                closeModal('templatesModal');
+            } else if (act && act.dataset.act === 'edit') {
+                e.stopPropagation();
+                openTemplateEditor(idx);
+            } else if (act && act.dataset.act === 'delete') {
+                e.stopPropagation();
+                if (confirm('Удалить шаблон «' + (tpl.name || 'Без названия') + '»?')) {
+                    userTemplates.splice(idx, 1);
+                    saveUserTemplates(userTemplates);
+                    renderTemplatesModal('_user');
+                    renderTemplateChips();
+                    toast('success', 'Шаблон удалён');
+                }
+            } else {
+                insertTemplate(tpl.text);
+                closeModal('templatesModal');
+            }
+        });
+        dom.tplList.appendChild(item);
+    });
+}
+
+function openTemplateEditor(idx) {
+    editingTemplateIdx = (typeof idx === 'number') ? idx : -1;
+    const isEdit = editingTemplateIdx >= 0;
+    dom.tplEditorTitle.textContent = isEdit ? 'Редактировать шаблон' : 'Новый шаблон';
+    if (isEdit) {
+        const t = userTemplates[editingTemplateIdx];
+        dom.tplEditorName.value = t.name || '';
+        dom.tplEditorText.value = t.text || '';
+        dom.tplProf1.checked = (t.profiles || []).includes('p1');
+        dom.tplProf2.checked = (t.profiles || []).includes('p2');
+        dom.tplProf3.checked = (t.profiles || []).includes('p3');
+    } else {
+        dom.tplEditorName.value = '';
+        dom.tplEditorText.value = dom.conclusion.value.trim() || '';
+        const cur = dom.body.dataset.profile || 'p2';
+        dom.tplProf1.checked = cur === 'p1';
+        dom.tplProf2.checked = cur === 'p2';
+        dom.tplProf3.checked = cur === 'p3';
+    }
+    openModal('templateEditorModal');
+    setTimeout(() => { try { dom.tplEditorName.focus(); } catch (_) {} }, 200);
+}
+
+function saveTemplateFromEditor() {
+    const name = dom.tplEditorName.value.trim();
+    const text = dom.tplEditorText.value.trim();
+    const profiles = [];
+    if (dom.tplProf1.checked) profiles.push('p1');
+    if (dom.tplProf2.checked) profiles.push('p2');
+    if (dom.tplProf3.checked) profiles.push('p3');
+
+    if (!name) { toast('warn', 'Укажите название'); dom.tplEditorName.focus(); return; }
+    if (!text) { toast('warn', 'Введите текст заключения'); dom.tplEditorText.focus(); return; }
+    if (!profiles.length) { toast('warn', 'Выберите хотя бы один триместр'); return; }
+
+    const tpl = { name, text, profiles };
+    if (editingTemplateIdx >= 0) {
+        userTemplates[editingTemplateIdx] = tpl;
+    } else {
+        userTemplates.push(tpl);
+    }
+    saveUserTemplates(userTemplates);
+    renderTemplateChips();
+    closeModal('templateEditorModal');
+    if (dom.templatesModal.classList.contains('active')) renderTemplatesModal('_user');
+    toast('success', editingTemplateIdx >= 0 ? 'Шаблон обновлён' : 'Шаблон создан', name);
+    editingTemplateIdx = -1;
+}
+
+dom.tplNewBtn.addEventListener('click', () => openTemplateEditor(-1));
+dom.tplEditorSave.addEventListener('click', saveTemplateFromEditor);
+dom.openTemplatesBtn.addEventListener('click', openTemplatesPanel);
+
 const REF_WEEKS = {
     11:{BPD:[14,20],HC:[55,75],AC:[40,60],FL:[6,11],EFW:[30,70]},
     12:{BPD:[17,23],HC:[65,85],AC:[50,70],FL:[8,13],EFW:[45,90]},
@@ -1475,9 +1629,6 @@ dom.lastMenstruation.addEventListener('input', calcGestAge);
 });
 $('gestAge').addEventListener('input', updateRefHints);
 
-/* ============================================================
-   HISTORY (IndexedDB)
-   ============================================================ */
 class HistoryStore {
     constructor() { this.db = null; this.ready = this.init(); }
     async init() {
@@ -1530,6 +1681,13 @@ class HistoryStore {
 }
 const historyStore = new HistoryStore();
 
+const EXTRA_IDS = ['examNumber','patientName','patientAge','lastMenstruation','gestAge','gestAgeFirstTrim',
+    'examType','fetusCount','sizeMatch','efwPercentile','efwPercentile3','otherBones','presentation3',
+    'heartRate3','piLeft','piRight','cervix3','doppler3','dopplerNotes3','internalOs3','visualizationReason',
+    'defectsDescription','fetalPeculiarities','placentaGrade2','placentaGrade3','amnioticFluid2','amnioticFluid3',
+    'cordInsertion','cordInsertion2','adnexa','nasalBone','tricuspid','ductusVenosus','markersComment',
+    'congenitalDefects','visualization','placentaEdge','umbilicalVessels2','umbilicalVessels'];
+
 function collectReport() {
     const data = {
         id: 'r_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
@@ -1546,13 +1704,7 @@ function collectReport() {
         fields: {}
     };
     dom.targets.forEach(el => { if (el.value) data.fields[el.id] = el.value; });
-    const extraIds = ['examNumber','patientName','patientAge','lastMenstruation','gestAge','gestAgeFirstTrim',
-        'examType','fetusCount','sizeMatch','efwPercentile','efwPercentile3','otherBones','presentation3',
-        'heartRate3','piLeft','piRight','cervix3','doppler3','dopplerNotes3','internalOs3','visualizationReason',
-        'defectsDescription','fetalPeculiarities','placentaGrade2','placentaGrade3','amnioticFluid2','amnioticFluid3',
-        'cordInsertion','cordInsertion2','adnexa','nasalBone','tricuspid','ductusVenosus','markersComment',
-        'congenitalDefects','visualization','placentaEdge','umbilicalVessels2'];
-    extraIds.forEach(id => { const el = $(id); if (el && el.value) data.fields[id] = el.value; });
+    EXTRA_IDS.forEach(id => { const el = $(id); if (el && el.value) data.fields[id] = el.value; });
     return data;
 }
 
@@ -1571,12 +1723,7 @@ function applyReport(data) {
         buildAnatomyGrid();
     }
     dom.targets.forEach(el => { el.value = ''; el.classList.remove('auto-filled','field-warn'); });
-    const extraIds = ['examType','fetusCount','sizeMatch','efwPercentile','efwPercentile3','otherBones','presentation3',
-        'heartRate3','piLeft','piRight','cervix3','doppler3','dopplerNotes3','internalOs3','visualizationReason',
-        'defectsDescription','fetalPeculiarities','placentaGrade2','placentaGrade3','amnioticFluid2','amnioticFluid3',
-        'cordInsertion','cordInsertion2','adnexa','nasalBone','tricuspid','ductusVenosus','markersComment',
-        'congenitalDefects','visualization','patientAge'];
-    extraIds.forEach(id => { const el = $(id); if (el) el.value = ''; });
+    EXTRA_IDS.forEach(id => { const el = $(id); if (el) el.value = ''; });
     if (data.fields) {
         Object.entries(data.fields).forEach(([id,val]) => {
             const el = $(id);
@@ -1695,9 +1842,6 @@ dom.histImportFile.addEventListener('change', async (e) => {
     e.target.value = '';
 });
 
-/* ============================================================
-   VALIDATION
-   ============================================================ */
 const REQUIRED_FIELDS = [
     { id:'patientName', label:'Ф.И.О. пациентки', section:'Данные пациентки' },
     { id:'examDate', label:'Дата исследования', section:'Данные пациентки' },
@@ -1758,9 +1902,6 @@ function withValidation(name, action) {
     });
 }
 
-/* ============================================================
-   TOASTS
-   ============================================================ */
 const ICONS = {
     success:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
     error:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
@@ -1791,9 +1932,6 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') document.querySelectorAll('.modal.active').forEach(m => closeModal(m.id));
 });
 
-/* ============================================================
-   THEME
-   ============================================================ */
 const THEME_KEY = 'uzi-theme-1130n';
 const sunIcon = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
 const moonIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
@@ -1814,19 +1952,24 @@ dom.themeToggle.addEventListener('click', () => {
     vibrate(8);
 });
 
-/* ============================================================
-   INIT
-   ============================================================ */
 const today = new Date();
 dom.examDate.value = today.toISOString().slice(0, 10);
 dom.printDate.textContent = today.toLocaleDateString('ru-RU');
-dom.doctorName.textContent = CONFIG.doctor;
+dom.doctorName.textContent = getDoctorName();
 $('examNumber').value = 'УЗИ-' + today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0') + '-' + Math.floor(Math.random() * 9000 + 1000);
 buildAnatomyGrid();
+renderTemplateChips();
 
-/* ============================================================
-   SPEECH RECOGNITION
-   ============================================================ */
+dom.doctorName.addEventListener('blur', () => {
+    const v = (dom.doctorName.textContent || '').trim() || CONFIG.doctor;
+    dom.doctorName.textContent = v;
+    setDoctorName(v);
+    saveState();
+});
+dom.doctorName.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); dom.doctorName.blur(); }
+});
+
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const supported = !!SR;
 let recognition = null, isRecording = false, lastCommandAt = 0, restartTimer = null, wakeLock = null;
@@ -2002,10 +2145,23 @@ function plural(n, one, few, many) {
 }
 function clearAll() {
     if (!confirm('Очистить весь текст и все поля формы?')) return;
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
     dom.rawText.value = '';
     dom.fullDescription.value = '';
     dom.conclusion.value = '';
     dom.targets.forEach(el => { el.value = ''; el.classList.remove('auto-filled','field-warn'); });
+    const extraClear = ['patientName','patientAge','lastMenstruation','gestAgeFirstTrim',
+        'examType','fetusCount','otherBones','efwPercentile','efwPercentile3','sizeMatch',
+        'umbilicalVessels','umbilicalVessels2','placentaEdge','piLeft','piRight','cervix3',
+        'dopplerNotes3','markersComment','defectsDescription','fetalPeculiarities',
+        'visualizationReason','ductusVenosus','afIndex2','afIndex3'];
+    extraClear.forEach(id => {
+        const el = $(id);
+        if (!el) return;
+        el.value = '';
+        el.setAttribute('value', '');
+        el.classList.remove('auto-filled', 'field-required-empty', 'field-warn');
+    });
     ANATOMY_STRUCTURES.forEach(s => { anatomyState[s.id] = 'normal'; });
     buildAnatomyGrid();
     updateCharCount();
@@ -2014,9 +2170,6 @@ function clearAll() {
     toast('info', 'Всё очищено');
 }
 
-/* ============================================================
-   PARSER
-   ============================================================ */
 function cleanText(text) {
     let out = text;
     [...CONFIG.commands.PAUSE, ...CONFIG.commands.RESUME, ...CONFIG.commands.FINISH].forEach(w => {
@@ -2053,6 +2206,238 @@ function extractContext(text, keywords, maxLen = 60) {
     }
     return null;
 }
+
+const FIO_STOP_WORDS = new Set([
+    'срок','беременности','беременность','дата','первый','первое','первого',
+    'последней','последняя','вид','количество','плодов','исследования',
+    'возраст','лет','года','год','узи','трансабдоминальный','трансвагинальный',
+    'шейка','шейки','плацента','цервикометрия','масса','вес'
+]);
+
+function parsePatientName(text) {
+    const el = $('patientName');
+    if (!el) return false;
+    if (el.value.trim()) return false;
+    const keywords = ['фио', 'пациентка', 'пациент', 'беременная'];
+    for (const kw of keywords) {
+        const re = new RegExp(`(?:^|[^а-яёa-z])${escapeRegex(kw)}\\s*[:\\-—]?\\s*`, 'i');
+        const m = re.exec(text);
+        if (!m) continue;
+        const rest = text.slice(m.index + m[0].length);
+        const tokens = rest.split(/\s+/).slice(0, 6);
+        const parts = [];
+        for (const t of tokens) {
+            const cleaned = t.replace(/[.,;:!?]+$/, '').toLowerCase();
+            if (!/^[а-яё][а-яё\-]+$/.test(cleaned)) break;
+            if (FIO_STOP_WORDS.has(cleaned)) break;
+            parts.push(cleaned);
+            if (parts.length >= 3) break;
+        }
+        if (parts.length >= 2) {
+            el.value = parts.map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            el.classList.add('auto-filled');
+            return true;
+        }
+    }
+    return false;
+}
+
+function parsePatientAge(text) {
+    const el = $('patientAge');
+    if (!el) return false;
+    if (el.value.trim()) return false;
+    const candidates = [];
+    let re = /(\d{1,2})\s*(?:год(?:а|ов)?|лет|г\.)/gi, m;
+    while ((m = re.exec(text)) !== null) candidates.push(parseInt(m[1], 10));
+    re = /возраст\s*[:\-—]?\s*(\d{1,2})/gi;
+    while ((m = re.exec(text)) !== null) candidates.push(parseInt(m[1], 10));
+    re = /(\d{1,2})\s*-?\s*летн/gi;
+    while ((m = re.exec(text)) !== null) candidates.push(parseInt(m[1], 10));
+    for (const n of candidates) {
+        if (n >= 14 && n <= 60) {
+            el.value = n;
+            el.classList.add('auto-filled');
+            return true;
+        }
+    }
+    return false;
+}
+
+const RU_MONTH_WORDS = [
+    ['января',1],['январь',1],['январе',1],
+    ['февраля',2],['февраль',2],['феврале',2],
+    ['марта',3],['март',3],['марте',3],
+    ['апреля',4],['апрель',4],['апреле',4],
+    ['мая',5],['май',5],['мае',5],
+    ['июня',6],['июнь',6],['июне',6],
+    ['июля',7],['июль',7],['июле',7],
+    ['августа',8],['август',8],['августе',8],
+    ['сентября',9],['сентябрь',9],['сентябре',9],
+    ['октября',10],['октябрь',10],['октябре',10],
+    ['ноября',11],['ноябрь',11],['ноябре',11],
+    ['декабря',12],['декабрь',12],['декабре',12]
+];
+const RU_ORDINAL_DAYS = {
+    'первое':1,'первого':1,'второе':2,'второго':2,'третье':3,'третьего':3,
+    'четвертое':4,'четвертого':4,'четвёртое':4,'четвёртого':4,'пятое':5,'пятого':5,
+    'шестое':6,'шестого':6,'седьмое':7,'седьмого':7,'восьмое':8,'восьмого':8,
+    'девятое':9,'девятого':9,'десятое':10,'десятого':10,
+    'одиннадцатое':11,'одиннадцатого':11,'двенадцатое':12,'двенадцатого':12,
+    'тринадцатое':13,'тринадцатого':13,'четырнадцатое':14,'четырнадцатого':14,
+    'пятнадцатое':15,'пятнадцатого':15,'шестнадцатое':16,'шестнадцатого':16,
+    'семнадцатое':17,'семнадцатого':17,'восемнадцатое':18,'восемнадцатого':18,
+    'девятнадцатое':19,'девятнадцатого':19,'двадцатое':20,'двадцатого':20
+};
+function parseOrdinalDay(before) {
+    const words = before.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    if (words.length >= 2) {
+        const last2 = words.slice(-2).join(' ');
+        const m = /^(двадцать|тридцать)\s+(первое|второе|третье|четвертое|пятое|шестое|седьмое|восьмое|девятое)$/.exec(last2);
+        if (m) {
+            const base = m[1] === 'двадцать' ? 20 : 30;
+            const sub = RU_ORDINAL_DAYS[m[2]] || 0;
+            if (sub >= 1 && sub <= 9) return base + sub;
+        }
+    }
+    for (let n = Math.min(2, words.length); n >= 1; n--) {
+        const phrase = words.slice(-n).join(' ');
+        if (RU_ORDINAL_DAYS[phrase]) return RU_ORDINAL_DAYS[phrase];
+    }
+    const m = /(\d{1,2})\s*$/.exec(before.trim());
+    if (m) return parseInt(m[1], 10);
+    return null;
+}
+function parseLMP(text) {
+    const el = $('lastMenstruation');
+    if (!el) return false;
+    if (el.value) return false;
+    const kwRe = /(последн[а-яё]+\s+менструац[а-яё]+|перв[а-яё]+\s+день\s+последн[а-яё]+\s+менструац[а-яё]+|перв[а-яё]+\s+день\s+цикла|последн[а-яё]+\s+месячн[а-яё]+)/i;
+    const kwMatch = kwRe.exec(text);
+    if (!kwMatch) return false;
+    const fromIdx = kwMatch.index + kwMatch[0].length;
+    const window = text.slice(fromIdx, fromIdx + 80);
+    let monthNum = null, monthPos = -1;
+    for (const [word, num] of RU_MONTH_WORDS) {
+        const re = new RegExp(`(?:^|[^а-яё])${word}(?:[^а-яё]|$)`, 'i');
+        const m = re.exec(window);
+        if (m) { monthNum = num; monthPos = m.index; break; }
+    }
+    if (!monthNum) return false;
+    const day = parseOrdinalDay(window.slice(0, monthPos));
+    if (!day || day < 1 || day > 31) return false;
+    const now = new Date();
+    const year = monthNum > (now.getMonth() + 1) ? now.getFullYear() - 1 : now.getFullYear();
+    const iso = `${year}-${String(monthNum).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const test = new Date(year, monthNum - 1, day);
+    if (test.getFullYear() !== year || test.getMonth() !== monthNum - 1 || test.getDate() !== day) return false;
+    el.value = iso;
+    el.classList.add('auto-filled');
+    return true;
+}
+
+function parseSelectFields(text) {
+    const lower = text.toLowerCase();
+    let count = 0;
+    if (/трансвагинальн/i.test(lower)) {
+        const el = $('examType'); if (el && el.value !== 'Трансвагинальный') { el.value = 'Трансвагинальный'; el.classList.add('auto-filled'); count++; }
+    } else if (/трансабдоминальн/i.test(lower)) {
+        const el = $('examType'); if (el && el.value !== 'Трансабдоминальный') { el.value = 'Трансабдоминальный'; el.classList.add('auto-filled'); count++; }
+    }
+    if (/не\s+соответству|отста[ею]т|опережа[ею]т/i.test(lower)) {
+        const el = $('sizeMatch'); if (el) { el.value = 'нет'; el.classList.add('auto-filled'); count++; }
+    } else if (/соответству[а-я]+\s+сроку/i.test(lower)) {
+        const el = $('sizeMatch'); if (el) { el.value = 'да'; el.classList.add('auto-filled'); count++; }
+    }
+    ['cordInsertion','cordInsertion2'].forEach(id => {
+        const el = $(id); if (!el) return;
+        if (/оболочечн/i.test(lower)) { el.value = 'оболочечное'; el.classList.add('auto-filled'); count++; }
+        else if (/краев[аоы]/i.test(lower) && /прикреп/i.test(lower)) { el.value = 'краевое'; el.classList.add('auto-filled'); count++; }
+        else if (/центральн/i.test(lower) && /прикреп/i.test(lower)) { el.value = 'центральное'; el.classList.add('auto-filled'); count++; }
+    });
+    if (/придатк/i.test(lower)) {
+        const el = $('adnexa');
+        if (el) {
+            if (/изменени|структурн|образован|кист/i.test(lower)) el.value = 'выявлены изменения';
+            else el.value = 'норма';
+            el.classList.add('auto-filled'); count++;
+        }
+    }
+    if (/носовая кость|носовая/i.test(lower)) {
+        const el = $('nasalBone');
+        if (el) {
+            if (/не визуализ|не удалось/i.test(lower)) el.value = 'не визуализируется';
+            else if (/визуализ|определяется/i.test(lower)) el.value = 'визуализируется';
+            else el.value = 'не удалось оценить';
+            el.classList.add('auto-filled'); count++;
+        }
+    }
+    if (/трикуспидальн|регургитац/i.test(lower)) {
+        const el = $('tricuspid');
+        if (el) {
+            if (/не\s+определя|отсутству|нет/i.test(lower)) el.value = 'нет';
+            else el.value = 'да';
+            el.classList.add('auto-filled'); count++;
+        }
+    }
+    ['placentaGrade2','placentaGrade3'].forEach(id => {
+        const el = $(id); if (!el) return;
+        const m = /степен[ья]\s+зрелости\s*[:\-—]?\s*(0|I{1,3}|1|2|3)/i.exec(text);
+        if (m) {
+            let v = m[1].toUpperCase();
+            if (v === '1') v = 'I'; else if (v === '2') v = 'II'; else if (v === '3') v = 'III';
+            el.value = v; el.classList.add('auto-filled'); count++;
+        }
+    });
+    ['amnioticFluid2','amnioticFluid3'].forEach(id => {
+        const el = $(id); if (!el) return;
+        if (/маловод/i.test(lower)) { el.value = 'маловодие'; el.classList.add('auto-filled'); count++; }
+        else if (/многовод/i.test(lower)) { el.value = 'многоводие'; el.classList.add('auto-filled'); count++; }
+        else if (/вод[ыа]\s+в\s+норм|околоплодные воды в норм/i.test(lower)) { el.value = 'норма'; el.classList.add('auto-filled'); count++; }
+    });
+    if (/\bвпр\b|порок/i.test(lower)) {
+        const el = $('congenitalDefects');
+        if (el) {
+            if (/не обнаруж|не выявлен|признаков.*не/i.test(lower)) el.value = 'не обнаружено';
+            else el.value = 'обнаружено';
+            el.classList.add('auto-filled'); count++;
+        }
+    }
+    if (/визуализац/i.test(lower)) {
+        const el = $('visualization');
+        if (el) {
+            if (/затрудн/i.test(lower)) el.value = 'затруднена';
+            else if (/удовлетвор/i.test(lower)) el.value = 'удовлетворительная';
+            el.classList.add('auto-filled'); count++;
+        }
+    }
+    if (/предлежан/i.test(lower)) {
+        const el = $('presentation3');
+        if (el) {
+            if (/тазов/i.test(lower)) el.value = 'тазовое';
+            else if (/поперечн/i.test(lower)) el.value = 'поперечное';
+            else if (/головн/i.test(lower)) el.value = 'головное';
+            el.classList.add('auto-filled'); count++;
+        }
+    }
+    if (/внутренн[ий]+ зев|зев/i.test(lower)) {
+        const el = $('internalOs3');
+        if (el) {
+            if (/открыт/i.test(lower)) el.value = 'открыт';
+            else if (/закрыт/i.test(lower)) el.value = 'закрыт';
+            el.classList.add('auto-filled'); count++;
+        }
+    }
+    if (/допплер|маточно-плацентарн/i.test(lower)) {
+        const el = $('doppler3');
+        if (el) {
+            if (/нарушени|изменени/i.test(lower)) el.value = 'нарушение';
+            else if (/норм/i.test(lower)) el.value = 'норма';
+            el.classList.add('auto-filled'); count++;
+        }
+    }
+    return count;
+}
+
 function parseText() {
     const raw = dom.rawText.value;
     if (!raw.trim()) { toast('warn', 'Нет текста', 'Сначала продиктуйте данные'); return false; }
@@ -2076,6 +2461,11 @@ function parseText() {
             el.value = value; el.classList.add('auto-filled'); filled++;
         } else { el.value = ''; el.classList.remove('auto-filled'); }
     });
+    if (parsePatientName(clean)) filled++;
+    if (parsePatientAge(clean)) filled++;
+    if (parseLMP(clean)) { filled++; calcGestAge(); }
+    filled += parseSelectFields(clean);
+
     const anat = getAnatomySummary();
     if (anat.changed.length || anat.notAssessed.length) {
         let s = '\n\nАнатомия плода: ';
@@ -2090,9 +2480,6 @@ function parseText() {
     return true;
 }
 
-/* ============================================================
-   AUTOSAVE
-   ============================================================ */
 let saveTimer = null;
 function showSaveIndicator(mode) {
     dom.saveIndicator.classList.remove('saving','error');
@@ -2119,13 +2506,7 @@ function saveState() {
                 savedAt: Date.now()
             };
             dom.targets.forEach(el => { if (el.value) data.fields[el.id] = el.value; });
-            const extraIds = ['examNumber','patientName','patientAge','lastMenstruation','gestAge','gestAgeFirstTrim',
-                'examType','fetusCount','sizeMatch','efwPercentile','efwPercentile3','otherBones','presentation3',
-                'heartRate3','piLeft','piRight','cervix3','doppler3','dopplerNotes3','internalOs3','visualizationReason',
-                'defectsDescription','fetalPeculiarities','placentaGrade2','placentaGrade3','amnioticFluid2','amnioticFluid3',
-                'cordInsertion','cordInsertion2','adnexa','nasalBone','tricuspid','ductusVenosus','markersComment',
-                'congenitalDefects','visualization','placentaEdge','umbilicalVessels2'];
-            extraIds.forEach(id => { const el = $(id); if (el && el.value) data.fields[id] = el.value; });
+            EXTRA_IDS.forEach(id => { const el = $(id); if (el && el.value) data.fields[id] = el.value; });
             localStorage.setItem(CONFIG.storageKey, JSON.stringify(data));
             showSaveIndicator('saved');
         } catch (_) { showSaveIndicator('error'); }
@@ -2163,9 +2544,6 @@ function loadState() {
     } catch (_) {}
 }
 
-/* ============================================================
-   DOC EXPORT
-   ============================================================ */
 function v(id) { const el = $(id); return el ? (el.value || '').trim() : ''; }
 function esc(s) {
     return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -2185,6 +2563,7 @@ function buildWordHtml() {
     const lmp = v('lastMenstruation'), gest = v('gestAge'), gestFirst = v('gestAgeFirstTrim');
     const examType = v('examType'), fetusCount = v('fetusCount') || '1';
     const concl = v('conclusion'), fullDesc = v('fullDescription');
+    const doctor = getDoctorName();
 
     const cellStyle = 'border:1px solid #000;padding:4pt 8pt;vertical-align:top;font-size:11pt';
     const labelStyle = 'border:1px solid #000;padding:4pt 8pt;background:#f0f0f0;font-weight:bold;width:38%;font-size:11pt;vertical-align:top';
@@ -2356,7 +2735,7 @@ ${fullDesc ? `<h3 style="${sectionTitleStyle}">Подробное УЗ-опис�
 
 <div class="sig-block">
     <p style="margin:0 0 4pt 0">Врач ультразвуковой диагностики:</p>
-    <p style="margin:0 0 12pt 0"><span class="sig-line"></span>&nbsp;&nbsp;/ ${esc(CONFIG.doctor)} /</p>
+    <p style="margin:0 0 12pt 0"><span class="sig-line"></span>&nbsp;&nbsp;/ ${esc(doctor)} /</p>
     <p style="margin:0">Дата выдачи: ${new Date().toLocaleDateString('ru-RU')}</p>
 </div>
 
@@ -2403,7 +2782,6 @@ async function copyFormatted() {
                 </style>`;
             const htmlForClipboard = `<div>${styleBlock}${bodyHtml}</div>`;
             const plain = bodyHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-
             if (navigator.clipboard && window.ClipboardItem) {
                 try {
                     const item = new ClipboardItem({
@@ -2452,9 +2830,6 @@ function flashCopied() {
     setTimeout(() => { btn.classList.remove('copy-success'); btn.innerHTML = btn.dataset.originalHtml; }, 2200);
 }
 
-/* ============================================================
-   PDF / SHARE
-   ============================================================ */
 function waitForHtml2pdf(timeout = 5000) {
     return new Promise(resolve => {
         if (window.html2pdf) return resolve(true);
@@ -2494,7 +2869,6 @@ function buildReportClone() {
             });
         }
     });
-    // Rebuild print grid with fresh state
     const printBody = clone.querySelector('#anatomyPrintBody');
     if (printBody) {
         printBody.innerHTML = '';
@@ -2576,7 +2950,7 @@ function buildShareText() {
     if (num) text += `№ ${num}\n`;
     if (date) text += `Дата: ${new Date(date).toLocaleDateString('ru-RU')}\n`;
     if (concl) text += `\nЗаключение: ${concl}\n`;
-    text += `\nВрач: ${CONFIG.doctor}`;
+    text += `\nВрач: ${getDoctorName()}`;
     return text;
 }
 async function shareReport() {
@@ -2626,9 +3000,6 @@ async function shareReport() {
     });
 }
 
-/* ============================================================
-   UI HELPERS
-   ============================================================ */
 function showLoading(t, s) { dom.loadingTitle.textContent = t || 'Подождите…'; dom.loadingText.textContent = s || ''; dom.loadingOverlay.classList.add('active'); }
 function hideLoading() { dom.loadingOverlay.classList.remove('active'); }
 function setBusy(btn, busy) {
@@ -2637,9 +3008,6 @@ function setBusy(btn, busy) {
     else { btn.classList.remove('busy'); btn.disabled = false; }
 }
 
-/* ============================================================
-   EVENTS
-   ============================================================ */
 dom.startBtn.addEventListener('click', startDictation);
 dom.pauseBtn.addEventListener('click', pauseDictation);
 dom.stopBtn.addEventListener('click', () => stopDictation(false));
@@ -2659,6 +3027,10 @@ dom.rawText.addEventListener('input', () => { updateCharCount(); saveState(); })
 dom.fullDescription.addEventListener('input', saveState);
 dom.conclusion.addEventListener('input', saveState);
 dom.examDate.addEventListener('input', saveState);
+dom.examDate.addEventListener('input', () => {
+    const d = dom.examDate.value;
+    dom.printDate.textContent = d ? new Date(d).toLocaleDateString('ru-RU') : '—';
+});
 dom.targets.forEach(el => {
     el.addEventListener('input', () => { el.classList.remove('auto-filled'); saveState(); });
     el.addEventListener('change', saveState);
@@ -2697,20 +3069,13 @@ window.addEventListener('beforeunload', (e) => {
     if (isRecording) { e.preventDefault(); e.returnValue = ''; }
 });
 
-/* ============================================================
-   PWA
-   ============================================================ */
 function setupPWA() {
-    // Иконки и манифест подключены статически в <head>.
     if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
         navigator.serviceWorker.register('./sw.js').catch(() => {});
     }
 }
 setupPWA();
 
-/* ============================================================
-   BOOT
-   ============================================================ */
 if (!supported) {
     dom.statusMessage.textContent = 'Web Speech API не поддерживается';
     dom.topbarStatusText.textContent = 'Нет API';
@@ -2734,7 +3099,7 @@ updateRefHints();
 if (!localStorage.getItem(CONFIG.storageKey + ':seen')) {
     setTimeout(() => {
         toast('info', 'Что нового',
-            'Печатная сетка анатомии · Шаблоны · История · DOC · Copy · PWA', 7000);
+            'Свои шаблоны · Парсинг select-полей · Редактируемое ФИО врача', 7000);
         try { localStorage.setItem(CONFIG.storageKey + ':seen', '1'); } catch (_) {}
     }, 800);
 }
@@ -2742,7 +3107,8 @@ if (!localStorage.getItem(CONFIG.storageKey + ':seen')) {
 window.UZI = {
     parseText, startDictation, stopDictation, pauseDictation,
     setProfile, exportPdf, exportDoc, copyFormatted, shareReport,
-    saveState, saveSnapshot, historyStore, calcGestAge, updateRefHints, ENV
+    saveState, saveSnapshot, historyStore, calcGestAge, updateRefHints, ENV,
+    getDoctorName, setDoctorName, loadUserTemplates, saveUserTemplates
 };
 })();
 </script>
