@@ -1,0 +1,2750 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
+<meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0f1a" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ГолосУЗИ">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="64x64" href="./favicon.png">
+<link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
+<title>ГолосУЗИ (UZD Voce) · Приказ 1130н</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<style>
+:root{
+    --brand-1:#6366f1;--brand-2:#8b5cf6;--brand-3:#ec4899;
+    --success:#10b981;--warning:#f59e0b;--danger:#ef4444;--info:#0ea5e9;
+    --bg:#f5f6fb;--surface:#fff;--surface-2:#fafbff;--bg-soft:#eef0f9;
+    --border:#e5e7eb;--border-strong:#d1d5db;
+    --text:#0f172a;--text-muted:#64748b;--text-faint:#94a3b8;
+    --grad-brand:linear-gradient(135deg,#6366f1 0%,#8b5cf6 50%,#ec4899 100%);
+    --grad-success:linear-gradient(135deg,#10b981 0%,#059669 100%);
+    --grad-danger:linear-gradient(135deg,#ef4444 0%,#dc2626 100%);
+    --grad-warn:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);
+    --radius-sm:8px;--radius:12px;--radius-lg:18px;
+    --shadow-sm:0 1px 2px rgba(15,23,42,.05);
+    --shadow:0 4px 12px rgba(15,23,42,.08);
+    --shadow-lg:0 12px 32px rgba(15,23,42,.12);
+    --shadow-glow:0 0 0 3px rgba(99,102,241,.18);
+    --transition:.2s cubic-bezier(.4,0,.2,1);
+    --transition-slow:.35s cubic-bezier(.4,0,.2,1);
+    --font-sans:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,system-ui,sans-serif;
+    --font-mono:ui-monospace,'SF Mono','JetBrains Mono',Consolas,monospace;
+    --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
+    --safe-left:env(safe-area-inset-left,0px);--safe-right:env(safe-area-inset-right,0px);
+}
+[data-theme="dark"]{
+    --bg:#0b0f1a;--surface:#131a2b;--surface-2:#0f1523;--bg-soft:#171e30;
+    --border:#1f2940;--border-strong:#2c3a55;
+    --text:#e6e9f2;--text-muted:#94a3b8;--text-faint:#64748b;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3);--shadow:0 4px 14px rgba(0,0,0,.35);
+    --shadow-lg:0 16px 40px rgba(0,0,0,.5);--shadow-glow:0 0 0 3px rgba(139,92,246,.25);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:var(--font-sans);font-size:15px;line-height:1.55;color:var(--text);
+    background:var(--bg);background-image:radial-gradient(circle at 0% 0%,rgba(99,102,241,.08),transparent 45%),
+    radial-gradient(circle at 100% 0%,rgba(236,72,153,.07),transparent 45%),
+    radial-gradient(circle at 50% 100%,rgba(139,92,246,.06),transparent 55%);
+    background-attachment:fixed;-webkit-font-smoothing:antialiased;min-height:100dvh;
+    transition:background-color var(--transition-slow),color var(--transition-slow)}
+input,button,textarea,select{font-family:inherit;touch-action:manipulation}
+button{user-select:none;-webkit-user-select:none}
+
+/* LAYOUT */
+.app{max-width:1440px;margin:0 auto;padding:calc(20px + var(--safe-top)) calc(20px + var(--safe-right)) 20px calc(20px + var(--safe-left));
+    display:grid;grid-template-columns:minmax(360px,440px) 1fr;gap:22px;align-items:start}
+
+/* TOPBAR */
+.topbar{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 18px;
+    border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);
+    position:sticky;top:calc(8px + var(--safe-top));z-index:40;
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:1rem;letter-spacing:-.01em;min-width:0}
+.brand-logo{width:38px;height:38px;border-radius:11px;background:var(--grad-brand);display:grid;place-items:center;color:#fff;
+    box-shadow:0 6px 16px rgba(99,102,241,.35);flex-shrink:0}
+.brand-logo svg{width:20px;height:20px}
+.brand-title{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand-title span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-title small{font-weight:500;font-size:.7rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.screen-switcher{display:flex;gap:2px;padding:3px;background:var(--bg-soft);border-radius:10px;border:1px solid var(--border)}
+.screen-switcher button{font-family:inherit;font-size:.78rem;font-weight:700;padding:7px 14px;border:none;background:transparent;
+    color:var(--text-muted);border-radius:7px;cursor:pointer;transition:all var(--transition);white-space:nowrap;line-height:1.2}
+.screen-switcher button.active{background:var(--surface);color:var(--brand-1);box-shadow:var(--shadow-sm)}
+.screen-switcher button:hover:not(.active){color:var(--text)}
+.topbar-actions{display:flex;gap:6px;flex-shrink:0;align-items:center}
+.topbar-status{display:none;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--surface-2);
+    border:1px solid var(--border);font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--text-muted);white-space:nowrap}
+.topbar-status .dot{width:8px;height:8px;border-radius:50%;background:var(--text-faint);flex-shrink:0}
+.topbar-status[data-state="recording"]{color:#fff;background:var(--grad-brand);border-color:transparent}
+.topbar-status[data-state="recording"] .dot{background:#fff;animation:pulseDot 1.4s infinite}
+.topbar-status[data-state="paused"]{color:var(--warning);border-color:var(--warning)}
+.topbar-status[data-state="paused"] .dot{background:var(--warning)}
+@keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(255,255,255,.6)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+
+.save-indicator{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--surface-2);
+    border:1px solid var(--border);font-size:.7rem;font-weight:600;color:var(--text-muted);white-space:nowrap;
+    transition:all var(--transition);letter-spacing:.01em}
+.save-indicator .save-dot{width:7px;height:7px;border-radius:50%;background:var(--success);flex-shrink:0;transition:all var(--transition)}
+.save-indicator.saving .save-dot{background:var(--warning);animation:pulseDot 1s infinite}
+.save-indicator.error .save-dot{background:var(--danger)}
+.save-indicator.error{color:var(--danger);border-color:var(--danger)}
+
+.icon-btn{width:40px;height:40px;min-width:40px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);
+    color:var(--text-muted);cursor:pointer;display:grid;place-items:center;transition:all var(--transition);padding:0;position:relative}
+@media(hover:hover){.icon-btn:hover{color:var(--brand-1);border-color:var(--brand-1);transform:translateY(-1px)}}
+.icon-btn:active{transform:scale(.96)}
+.icon-btn svg{width:18px;height:18px}
+.icon-btn.accent{background:var(--grad-brand);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(99,102,241,.28)}
+@media(hover:hover){.icon-btn.accent:hover{box-shadow:0 8px 20px rgba(99,102,241,.4);color:#fff}}
+.icon-btn:disabled{opacity:.4;cursor:not-allowed}
+.icon-btn.busy svg{opacity:.35}
+.icon-btn.busy::after{content:'';position:absolute;inset:0;margin:auto;width:16px;height:16px;border-radius:50%;
+    border:2px solid currentColor;border-top-color:transparent;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.icon-btn .badge{position:absolute;top:-4px;right:-4px;background:var(--danger);color:#fff;font-size:.6rem;font-weight:700;
+    min-width:16px;height:16px;padding:0 4px;border-radius:8px;display:grid;place-items:center;border:2px solid var(--surface)}
+
+/* PANELS */
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+.panel-body{padding:16px 18px}
+
+/* CONTROL PANEL */
+.control-panel{position:sticky;top:calc(72px + var(--safe-top));display:flex;flex-direction:column;gap:14px}
+.status-card{position:relative;padding:16px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);
+    box-shadow:var(--shadow-sm);overflow:hidden;transition:all var(--transition)}
+.status-card::before{content:'';position:absolute;inset:0;background:var(--grad-brand);opacity:0;transition:opacity var(--transition-slow);pointer-events:none}
+.status-card[data-state="recording"]{border-color:transparent;color:#fff}
+.status-card[data-state="recording"]::before{opacity:1}
+.status-card[data-state="recording"] *{position:relative;z-index:1;color:#fff!important}
+.status-card[data-state="paused"]{border-color:var(--warning);background:linear-gradient(180deg,rgba(245,158,11,.08),transparent)}
+.status-card[data-state="paused"] .status-label{color:var(--warning)}
+.status-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.status-dot{width:11px;height:11px;border-radius:50%;background:var(--text-faint);flex-shrink:0;transition:all var(--transition)}
+.status-card[data-state="recording"] .status-dot{background:#fff;animation:pulseDot 1.6s infinite}
+.status-card[data-state="paused"] .status-dot{background:var(--warning)}
+.status-card[data-state="ready"] .status-dot{background:var(--success)}
+.status-label{font-weight:700;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+.status-message{font-size:.9rem;color:var(--text-muted);min-height:20px;word-break:break-word;line-height:1.45}
+.status-card[data-state="recording"] .status-label,.status-card[data-state="recording"] .status-message{color:rgba(255,255,255,.92)}
+.waveform{display:flex;align-items:flex-end;gap:3px;height:30px;margin-top:12px;opacity:0;transition:opacity var(--transition)}
+.status-card[data-state="recording"] .waveform{opacity:1}
+.waveform span{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.8);transition:height .1s ease-out}
+
+.primary-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{font-family:inherit;font-size:.9rem;font-weight:600;padding:12px 14px;min-height:44px;border-radius:var(--radius);
+    border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    transition:all var(--transition);color:var(--text);background:var(--surface-2)}
+.btn svg{width:16px;height:16px;flex-shrink:0}
+.btn:active:not(:disabled){transform:scale(.97)}
+.btn:disabled{opacity:.42;cursor:not-allowed}
+@media(hover:hover){.btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:var(--shadow)}}
+.btn-primary{background:var(--grad-brand);color:#fff;box-shadow:0 6px 14px rgba(99,102,241,.28)}
+.btn-success{background:var(--grad-success);color:#fff;box-shadow:0 6px 14px rgba(16,185,129,.28)}
+.btn-warn{background:var(--grad-warn);color:#fff;box-shadow:0 6px 14px rgba(245,158,11,.28)}
+.btn-danger{background:var(--grad-danger);color:#fff;box-shadow:0 6px 14px rgba(239,68,68,.28)}
+.btn-ghost{background:transparent;border-color:var(--border);color:var(--text-muted)}
+.btn-full{width:100%}
+.btn-pdf{background:linear-gradient(135deg,#ef4444 0%,#dc2626 100%);color:#fff;box-shadow:0 6px 14px rgba(239,68,68,.25)}
+.btn-share{background:linear-gradient(135deg,#0ea5e9 0%,#0284c7 100%);color:#fff;box-shadow:0 6px 14px rgba(14,165,233,.25)}
+.btn-doc{background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:#fff;box-shadow:0 6px 14px rgba(37,99,235,.25)}
+.btn-copy{background:linear-gradient(135deg,#8b5cf6 0%,#7c3aed 100%);color:#fff;box-shadow:0 6px 14px rgba(139,92,246,.25)}
+.copy-success{background:var(--grad-success)!important;box-shadow:0 6px 14px rgba(16,185,129,.3)!important}
+.secondary-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.stream-label{display:flex;align-items:center;justify-content:space-between;font-size:.72rem;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;gap:8px}
+.char-count{font-family:var(--font-mono);font-size:.7rem;color:var(--text-faint);font-weight:500;letter-spacing:0;text-transform:none;white-space:nowrap}
+textarea#rawText{width:100%;height:180px;padding:14px;font-family:var(--font-mono);font-size:15px;line-height:1.55;color:var(--text);
+    background:var(--surface-2);border:1.5px solid var(--border);border-radius:var(--radius);resize:vertical;
+    transition:all var(--transition);outline:none;min-height:120px;-webkit-appearance:none}
+textarea#rawText::placeholder{color:var(--text-faint)}
+textarea#rawText:focus{border-color:var(--brand-1);background:var(--surface);box-shadow:var(--shadow-glow)}
+
+.hint{border-radius:var(--radius);padding:12px 14px;background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(139,92,246,.06));
+    border:1px solid rgba(99,102,241,.18);font-size:.82rem;color:var(--text-muted)}
+.hint-title{display:flex;align-items:center;gap:6px;font-weight:700;color:var(--brand-1);margin-bottom:6px;font-size:.74rem;
+    letter-spacing:.05em;text-transform:uppercase}
+.hint-title svg{width:13px;height:13px}
+.hint ul{margin:0;padding-left:16px}
+.hint li{margin-bottom:3px}
+kbd{font-family:var(--font-mono);font-size:.78em;padding:2px 5px;border-radius:4px;background:var(--surface);
+    border:1px solid var(--border);border-bottom-width:2px;color:var(--brand-1);font-weight:700}
+.hint-shortcuts{display:none}
+
+/* REPORT */
+.report{display:flex;flex-direction:column;gap:14px}
+.report-head{padding:22px 20px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);
+    text-align:center;position:relative;overflow:hidden}
+.report-head::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-brand)}
+.report-head h1{margin:0 0 4px;font-size:1.05rem;font-weight:800;letter-spacing:.02em;text-transform:uppercase;line-height:1.3}
+.report-head p{margin:0;font-size:.82rem;color:var(--text-muted)}
+.report-head .legal{margin-top:8px;font-size:.72rem;color:var(--text-faint);font-style:italic}
+
+.section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+.section-head{padding:13px 18px;background:var(--surface-2);border-bottom:1px solid var(--border);display:flex;align-items:center;
+    gap:10px;cursor:pointer;user-select:none;min-height:52px;transition:background var(--transition)}
+@media(hover:hover){.section-head:hover{background:var(--bg-soft)}}
+.section-head h2{margin:0;font-size:.9rem;font-weight:700;color:var(--text);flex:1;min-width:0}
+.section-icon{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:#fff;flex-shrink:0}
+.section-icon svg{width:15px;height:15px}
+.ic-patient{background:linear-gradient(135deg,#8b5cf6,#7c3aed)}
+.ic-feto{background:linear-gradient(135deg,#6366f1,#4f46e5)}
+.ic-anatomy{background:linear-gradient(135deg,#ec4899,#db2777)}
+.ic-extras{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.ic-markers{background:linear-gradient(135deg,#06b6d4,#0891b2)}
+.ic-vessels{background:linear-gradient(135deg,#10b981,#059669)}
+.ic-conclusion{background:linear-gradient(135deg,#0ea5e9,#0284c7)}
+.ic-desc{background:linear-gradient(135deg,#64748b,#475569)}
+.chevron{width:18px;height:18px;color:var(--text-faint);transition:transform var(--transition);flex-shrink:0}
+.section.collapsed .chevron{transform:rotate(-90deg)}
+.section.collapsed .section-body{display:none}
+.section-body{padding:18px}
+
+.subgroup{margin-bottom:14px}
+.subgroup:last-child{margin-bottom:0}
+.subgroup-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);
+    margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.subgroup-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.field{display:flex;flex-direction:column;position:relative}
+.field label{font-size:.72rem;font-weight:600;color:var(--text-muted);margin-bottom:5px;letter-spacing:.01em}
+.field input,.field select,.field textarea{font-family:inherit;font-size:16px;color:var(--text);background:var(--surface-2);
+    border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;transition:all var(--transition);outline:none;
+    width:100%;-webkit-appearance:none;appearance:none;min-height:42px}
+.field input::placeholder,.field textarea::placeholder{color:var(--text-faint)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brand-1);background:var(--surface);box-shadow:var(--shadow-glow)}
+.field textarea{resize:vertical;min-height:76px;line-height:1.55}
+.field input.auto-filled,.field textarea.auto-filled{background:linear-gradient(180deg,rgba(245,158,11,.12),rgba(245,158,11,.05));
+    border-color:var(--warning);animation:flashFill .6s ease-out}
+@keyframes flashFill{0%{background:rgba(245,158,11,.35)}100%{background:rgba(245,158,11,.08)}}
+.field input.field-warn,.field input.field-error{border-color:var(--danger);background:rgba(239,68,68,.06)}
+.field input.field-required-empty{border-color:var(--warning);background:rgba(245,158,11,.08);
+    box-shadow:0 0 0 3px rgba(245,158,11,.2);animation:flashFill .8s ease-out}
+.field .ref-hint{font-size:.68rem;color:var(--text-faint);margin-top:3px;font-family:var(--font-mono)}
+
+.gest-info{grid-column:1/-1;padding:12px 14px;border-radius:10px;background:linear-gradient(135deg,rgba(14,165,233,.08),rgba(99,102,241,.06));
+    border:1px solid rgba(14,165,233,.25);display:flex;flex-wrap:wrap;gap:14px;font-size:.84rem}
+.gest-info .item{display:flex;flex-direction:column;gap:2px}
+.gest-info .item strong{font-size:1.05rem;color:var(--brand-1);font-weight:700}
+.gest-info .item span{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.gest-info.empty{display:none}
+
+/* ANATOMY interactive */
+.anatomy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.anatomy-item{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:9px;background:var(--surface-2);
+    border:1.5px solid var(--border);cursor:pointer;transition:all var(--transition);font-size:.84rem;min-height:42px}
+@media(hover:hover){.anatomy-item:hover{border-color:var(--border-strong)}}
+.anatomy-item.checked{background:rgba(16,185,129,.08);border-color:var(--success)}
+.anatomy-item.changed{background:rgba(239,68,68,.08);border-color:var(--danger)}
+.anatomy-item.not-assessed{background:rgba(245,158,11,.08);border-color:var(--warning)}
+.anatomy-check{width:18px;height:18px;border-radius:5px;border:2px solid var(--border-strong);display:grid;place-items:center;flex-shrink:0;transition:all var(--transition)}
+.anatomy-item.checked .anatomy-check{background:var(--success);border-color:var(--success)}
+.anatomy-item.changed .anatomy-check{background:var(--danger);border-color:var(--danger)}
+.anatomy-item.not-assessed .anatomy-check{background:var(--warning);border-color:var(--warning)}
+.anatomy-check svg{width:11px;height:11px;color:#fff;opacity:0}
+.anatomy-item.checked .anatomy-check svg,.anatomy-item.changed .anatomy-check svg,.anatomy-item.not-assessed .anatomy-check svg{opacity:1}
+.anatomy-label{flex:1}
+.anatomy-cycles{font-size:.68rem;color:var(--text-faint);margin-left:auto;white-space:nowrap}
+
+/* ANATOMY printed grid */
+.anatomy-print-wrap{margin-top:16px;display:none}
+.anatomy-print-wrap.visible{display:block}
+.anatomy-toggle{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.anatomy-print-table{width:100%;border-collapse:collapse;font-size:.8rem;background:#fff;color:#000}
+.anatomy-print-table th,.anatomy-print-table td{border:1px solid #666;padding:5px 8px;text-align:left;vertical-align:middle}
+.anatomy-print-table th{background:#e6e6e6;font-weight:700;text-align:center;font-size:.75rem;padding:6px 4px}
+.anatomy-print-table th:first-child{text-align:left}
+.anatomy-print-table td.cell-status{text-align:center;width:70px;padding:4px}
+.anatomy-print-table td.cell-status .box{display:inline-block;width:16px;height:16px;border:1.5px solid #333;border-radius:3px;
+    position:relative;vertical-align:middle;background:#fff}
+.anatomy-print-table td.cell-status .box.marked::after{content:'';position:absolute;inset:2px;background:#000;border-radius:1px}
+.anatomy-print-table td.cell-status .box.marked.changed::after{background:#c00}
+.anatomy-print-table td.cell-status .box.marked.not-assessed::after{background:#f59e0b}
+.anatomy-print-table tr:hover td{background:#fafafa}
+
+/* template chips */
+.template-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tchip{font-size:.74rem;padding:6px 10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);
+    color:var(--text-muted);cursor:pointer;transition:all var(--transition);font-weight:600;white-space:nowrap;
+    overflow:hidden;text-overflow:ellipsis;max-width:100%}
+@media(hover:hover){.tchip:hover{color:var(--brand-1);border-color:var(--brand-1);background:rgba(99,102,241,.06)}}
+.tchip:active{transform:scale(.96)}
+
+.signatures{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:20px;background:var(--surface);
+    border:1px solid var(--border);border-radius:var(--radius-lg);font-size:.86rem;color:var(--text-muted);flex-wrap:wrap}
+.sign-line{flex:1;min-width:160px;display:flex;flex-direction:column;gap:4px}
+.sign-line .line{border-bottom:1px solid var(--border-strong);height:18px}
+.sign-line strong{color:var(--text);font-weight:700}
+
+/* TOASTS */
+.toast-wrap{position:fixed;top:calc(20px + var(--safe-top));right:calc(20px + var(--safe-right));z-index:9999;
+    display:flex;flex-direction:column;gap:10px;pointer-events:none;max-width:340px}
+.toast{pointer-events:auto;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow-lg);display:flex;align-items:flex-start;gap:11px;font-size:.86rem;color:var(--text);
+    animation:toastIn .35s cubic-bezier(.2,.9,.3,1.2);border-left:4px solid var(--brand-1)}
+.toast.success{border-left-color:var(--success)}
+.toast.error{border-left-color:var(--danger)}
+.toast.warn{border-left-color:var(--warning)}
+.toast.info{border-left-color:var(--info)}
+.toast-icon{width:20px;height:20px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;color:#fff;margin-top:1px}
+.toast.success .toast-icon{background:var(--success)}
+.toast.error .toast-icon{background:var(--danger)}
+.toast.warn .toast-icon{background:var(--warning)}
+.toast.info .toast-icon{background:var(--info)}
+.toast-icon svg{width:12px;height:12px}
+.toast-content{flex:1;line-height:1.4;min-width:0}
+.toast-title{font-weight:700;margin-bottom:2px}
+.toast-text{color:var(--text-muted);font-size:.82rem}
+@keyframes toastIn{from{opacity:0;transform:translateX(30px) scale(.95)}to{opacity:1;transform:translateX(0) scale(1)}}
+
+/* MODALS */
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    display:none;align-items:center;justify-content:center;z-index:9000;padding:20px;animation:fadeIn .18s ease}
+.modal.active{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-card{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);
+    max-width:720px;width:100%;max-height:90dvh;display:flex;flex-direction:column;overflow:hidden;
+    animation:modalIn .25s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0}
+.modal-head h3{margin:0;font-size:1rem;font-weight:700;flex:1;min-width:0}
+.modal-close{width:32px;height:32px;min-width:32px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);
+    color:var(--text-muted);cursor:pointer;display:grid;place-items:center;padding:0;transition:all var(--transition)}
+@media(hover:hover){.modal-close:hover{color:var(--danger);border-color:var(--danger)}}
+.modal-close svg{width:16px;height:16px}
+.modal-body{padding:20px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+.modal-foot{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;flex-shrink:0;flex-wrap:wrap}
+
+.tpl-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tpl-tabs button{font-size:.78rem;font-weight:600;padding:7px 12px;border-radius:8px;border:1px solid var(--border);
+    background:var(--surface-2);color:var(--text-muted);cursor:pointer;transition:all var(--transition)}
+.tpl-tabs button.active{background:var(--grad-brand);color:#fff;border-color:transparent}
+.tpl-list{display:flex;flex-direction:column;gap:8px}
+.tpl-item{padding:12px 14px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);
+    cursor:pointer;transition:all var(--transition);display:flex;gap:10px;align-items:flex-start;font-size:.86rem}
+@media(hover:hover){.tpl-item:hover{border-color:var(--brand-1);background:rgba(99,102,241,.05)}}
+.tpl-item .tpl-icon{width:22px;height:22px;border-radius:6px;background:var(--grad-brand);display:grid;place-items:center;
+    color:#fff;flex-shrink:0;margin-top:1px}
+.tpl-item .tpl-icon svg{width:12px;height:12px}
+.tpl-item .tpl-text{flex:1;line-height:1.45}
+.tpl-item .tpl-insert{font-size:.72rem;color:var(--brand-1);font-weight:700;flex-shrink:0;margin-top:2px}
+
+.hist-search{width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface-2);
+    color:var(--text);font-size:14px;margin-bottom:14px;outline:none}
+.hist-search:focus{border-color:var(--brand-1);box-shadow:var(--shadow-glow)}
+.hist-list{display:flex;flex-direction:column;gap:8px}
+.hist-item{padding:12px 14px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);
+    display:flex;gap:12px;align-items:center;transition:all var(--transition)}
+@media(hover:hover){.hist-item:hover{border-color:var(--brand-1)}}
+.hist-info{flex:1;min-width:0}
+.hist-info .title{font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.hist-info .meta{font-size:.72rem;color:var(--text-muted);display:flex;gap:8px;flex-wrap:wrap}
+.hist-info .meta .badge{font-weight:700;color:var(--brand-1);background:rgba(99,102,241,.1);padding:1px 6px;border-radius:4px}
+.hist-actions{display:flex;gap:6px;flex-shrink:0}
+.hist-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--surface);
+    color:var(--text-muted);cursor:pointer;display:grid;place-items:center;padding:0;transition:all var(--transition)}
+.hist-btn svg{width:15px;height:15px}
+@media(hover:hover){.hist-btn:hover{color:var(--brand-1);border-color:var(--brand-1)}}
+.hist-btn.danger:hover{color:var(--danger);border-color:var(--danger)}
+.hist-empty{text-align:center;padding:40px 20px;color:var(--text-faint);font-size:.9rem}
+
+.val-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.val-item{padding:11px 14px;border-radius:9px;background:rgba(245,158,11,.08);border-left:4px solid var(--warning);
+    display:flex;align-items:center;gap:10px;font-size:.88rem;cursor:pointer;transition:all var(--transition)}
+@media(hover:hover){.val-item:hover{background:rgba(245,158,11,.14)}}
+.val-item svg{width:16px;height:16px;color:var(--warning);flex-shrink:0}
+.val-item .val-text{flex:1}
+.val-item .val-arrow{color:var(--text-faint);font-size:1.1rem}
+.val-info{font-size:.84rem;color:var(--text-muted);margin-bottom:14px;padding:12px 14px;border-radius:9px;background:var(--bg-soft)}
+
+.loading-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    display:none;align-items:center;justify-content:center;z-index:10000;animation:fadeIn .2s ease}
+.loading-overlay.active{display:flex}
+.loading-card{background:var(--surface);border-radius:var(--radius-lg);padding:28px 32px;box-shadow:var(--shadow-lg);
+    display:flex;flex-direction:column;align-items:center;gap:14px;max-width:320px;text-align:center}
+.loading-spinner{width:44px;height:44px;border-radius:50%;border:3px solid var(--border);border-top-color:var(--brand-1);animation:spin .8s linear infinite}
+.loading-title{font-weight:700;font-size:1rem}
+.loading-text{font-size:.85rem;color:var(--text-muted)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+    .app{grid-template-columns:1fr;padding:calc(14px + var(--safe-top)) calc(14px + var(--safe-right)) 14px calc(14px + var(--safe-left));gap:14px}
+    .control-panel{position:static}
+    .topbar{top:calc(6px + var(--safe-top))}
+    textarea#rawText{height:160px}
+    .hint-shortcuts{display:block}
+    .screen-switcher button{padding:6px 10px;font-size:.74rem}
+}
+@media(max-width:640px){
+    body{padding-bottom:calc(84px + var(--safe-bottom));font-size:14.5px}
+    .app{padding:calc(10px + var(--safe-top)) calc(10px + var(--safe-right)) 10px calc(10px + var(--safe-left));gap:12px}
+    .topbar{padding:9px 12px;border-radius:var(--radius);top:calc(4px + var(--safe-top));gap:8px}
+    .brand-logo{width:34px;height:34px;border-radius:9px}
+    .brand-logo svg{width:18px;height:18px}
+    .brand{font-size:.92rem;gap:9px}
+    .brand-title small{display:none}
+    .topbar-status{display:inline-flex}
+    .save-indicator span:not(.save-dot){display:none}
+    .icon-btn{width:36px;height:36px;min-width:36px;border-radius:9px}
+    .icon-btn svg{width:17px;height:17px}
+    .screen-switcher{order:3;width:100%}
+    .screen-switcher button{flex:1;padding:8px 6px;font-size:.72rem}
+    .status-card{display:none}
+    .primary-actions{position:fixed;bottom:0;left:0;right:0;
+        padding:10px calc(10px + var(--safe-right)) calc(10px + var(--safe-bottom)) calc(10px + var(--safe-left));
+        background:var(--surface);border-top:1px solid var(--border);box-shadow:0 -8px 24px rgba(0,0,0,.08);z-index:100;
+        display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:8px;border-radius:0}
+    [data-theme="dark"] .primary-actions{box-shadow:0 -8px 24px rgba(0,0,0,.5)}
+    .primary-actions .btn{padding:10px 6px;min-height:48px;font-size:.82rem;border-radius:10px;flex-direction:column;gap:3px}
+    .primary-actions .btn svg{width:18px;height:18px}
+    .primary-actions .btn-text{font-size:.68rem;font-weight:700;letter-spacing:.02em}
+    .panel-body,.section-body{padding:14px}
+    .section-head{padding:12px 14px;min-height:48px}
+    .section-head h2{font-size:.85rem}
+    .section-icon{width:26px;height:26px}
+    .grid{grid-template-columns:1fr;gap:10px}
+    .anatomy-grid{grid-template-columns:1fr}
+    .report-head{padding:16px 14px}
+    .report-head h1{font-size:.92rem}
+    .report-head p{font-size:.76rem}
+    .toast-wrap{top:calc(10px + var(--safe-top));right:calc(10px + var(--safe-right));left:calc(10px + var(--safe-left));max-width:none}
+    .signatures{padding:16px 14px;font-size:.82rem;gap:14px}
+    .sign-line{min-width:100%}
+    .modal{padding:10px}
+    .modal-card{max-height:95dvh}
+    .modal-body{padding:16px}
+    .modal-head,.modal-foot{padding:12px 16px}
+    .gest-info{font-size:.78rem}
+    .anatomy-print-table{font-size:.72rem}
+    .anatomy-print-table th,.anatomy-print-table td{padding:4px 6px}
+    .anatomy-print-table td.cell-status{width:48px}
+    .anatomy-print-table td.cell-status .box{width:14px;height:14px}
+}
+@media(max-width:380px){
+    .primary-actions .btn-text{display:none}
+    .primary-actions .btn{min-height:46px}
+    .brand-title span{font-size:.88rem}
+}
+
+/* PRINT */
+@media print{
+    @page{size:A4;margin:12mm}
+    body{background:#fff!important;color:#000!important;padding:0!important;margin:0;font-size:10pt}
+    .topbar,.control-panel,.toast-wrap,.no-print,.primary-actions,.modal,.loading-overlay,.anatomy-toggle,.template-chips{display:none!important}
+    .app{display:block;max-width:100%;padding:0;gap:0}
+    .report{gap:6px}
+    .report-head{padding:0 0 8px;border:none;border-bottom:2px solid #000;box-shadow:none;border-radius:0}
+    .report-head::before{display:none}
+    .report-head h1{font-size:13pt}
+    .report-head p{font-size:9pt}
+    .report-head .legal{font-size:8pt}
+    .section{border:none;box-shadow:none;border-radius:0;page-break-inside:avoid;margin-bottom:4px}
+    .section-head{background:transparent;border-bottom:1px solid #999;padding:4px 0;cursor:default;min-height:0}
+    .section-head .section-icon,.section-head .chevron{display:none}
+    .section-head h2{font-size:10pt;text-transform:uppercase;letter-spacing:.3pt}
+    .section-body{padding:6px 0}
+    .section.collapsed .section-body{display:block!important}
+    .subgroup-label{color:#444;font-size:8pt}
+    .field label{color:#333;font-size:8pt}
+    .field input,.field select,.field textarea{border:none!important;background:transparent!important;padding:0!important;
+        font-size:9.5pt!important;color:#000!important;box-shadow:none!important;resize:none;
+        border-bottom:1px dotted #999!important;border-radius:0!important;min-height:0;overflow:visible}
+    .field input.auto-filled,.field textarea.auto-filled{background:transparent!important;border-bottom:1px dotted #999!important;animation:none}
+    .field textarea{min-height:40px;height:auto}
+    .field .ref-hint{display:none}
+    /* Скрыть интерактивную сетку, показать печатную */
+    .anatomy-grid{display:none!important}
+    .anatomy-print-wrap{display:block!important}
+    .anatomy-print-table{font-size:9pt}
+    .anatomy-print-table th,.anatomy-print-table td{border:1px solid #000;padding:3px 5px}
+    .anatomy-print-table th{background:#e6e6e6!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .anatomy-print-table td.cell-status .box{width:12px;height:12px;border-width:1px}
+    .anatomy-print-table td.cell-status .box.marked::after{background:#000!important}
+    .anatomy-print-table td.cell-status .box.marked.changed::after{background:#c00!important}
+    .anatomy-print-table td.cell-status .box.marked.not-assessed::after{background:#f59e0b!important}
+    .signatures{border:none;padding:16px 0 0;page-break-inside:avoid}
+    .sign-line .line{border-bottom:1px solid #000}
+    .gest-info{display:none}
+}
+
+/* PROFILE VISIBILITY */
+.profile-1,.profile-2,.profile-3{display:none}
+body[data-profile="p1"] .profile-1{display:block}
+body[data-profile="p2"] .profile-2{display:block}
+body[data-profile="p3"] .profile-3{display:block}
+
+/* PDF export clone */
+.pdf-export-mode{background:#fff!important;color:#000!important;padding:0!important;font-size:10pt;max-width:210mm;width:210mm}
+.pdf-export-mode .topbar,.pdf-export-mode .control-panel,.pdf-export-mode .toast-wrap,.pdf-export-mode .no-print,
+.pdf-export-mode .primary-actions,.pdf-export-mode .modal,.pdf-export-mode .template-chips,.pdf-export-mode .gest-info,
+.pdf-export-mode .anatomy-toggle,.pdf-export-mode .anatomy-grid{display:none!important}
+.pdf-export-mode .app{display:block;max-width:100%;padding:0;gap:0}
+.pdf-export-mode .report{gap:6px}
+.pdf-export-mode .report-head{padding:0 0 8px;border:none;border-bottom:2px solid #000;box-shadow:none;border-radius:0}
+.pdf-export-mode .report-head::before{display:none}
+.pdf-export-mode .report-head h1{font-size:13pt}
+.pdf-export-mode .report-head p{font-size:9pt}
+.pdf-export-mode .report-head .legal{font-size:8pt}
+.pdf-export-mode .section{border:none;box-shadow:none;border-radius:0;page-break-inside:avoid;margin-bottom:4px}
+.pdf-export-mode .section-head{background:transparent;border-bottom:1px solid #999;padding:4px 0;min-height:0}
+.pdf-export-mode .section-head .section-icon,.pdf-export-mode .section-head .chevron{display:none}
+.pdf-export-mode .section-head h2{font-size:10pt;text-transform:uppercase;letter-spacing:.3pt}
+.pdf-export-mode .section-body{padding:6px 0}
+.pdf-export-mode .section.collapsed .section-body{display:block!important}
+.pdf-export-mode .subgroup-label{color:#444;font-size:8pt}
+.pdf-export-mode .field label{color:#333;font-size:8pt}
+.pdf-export-mode .field input,.pdf-export-mode .field select,.pdf-export-mode .field textarea{
+    border:none!important;background:transparent!important;padding:0!important;font-size:9.5pt!important;
+    color:#000!important;box-shadow:none!important;resize:none;border-bottom:1px dotted #999!important;
+    border-radius:0!important;min-height:0;overflow:visible}
+.pdf-export-mode .field input.auto-filled,.pdf-export-mode .field textarea.auto-filled{background:transparent!important;border-bottom:1px dotted #999!important}
+.pdf-export-mode .field textarea{min-height:40px;height:auto}
+.pdf-export-mode .field .ref-hint{display:none}
+.pdf-export-mode .anatomy-print-wrap{display:block!important}
+.pdf-export-mode .anatomy-print-table{font-size:8.5pt}
+.pdf-export-mode .anatomy-print-table th,.pdf-export-mode .anatomy-print-table td{border:1px solid #000;padding:3px 5px}
+.pdf-export-mode .anatomy-print-table th{background:#e6e6e6}
+.pdf-export-mode .anatomy-print-table td.cell-status .box{width:11px;height:11px;border-width:1px}
+.pdf-export-mode .signatures{border:none;padding:16px 0 0}
+.pdf-export-mode .sign-line .line{border-bottom:1px solid #000}
+</style>
+</head>
+<body data-profile="p2">
+
+<div class="app">
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
+            </div>
+            <div class="brand-title">
+                <span>ГолосУЗИ</span>
+                <small>UZD Voce · Приказ МЗ РФ № 1130н</small>
+            </div>
+        </div>
+
+        <div class="screen-switcher" role="tablist">
+            <button data-profile="p1" role="tab">I&nbsp;трим.<br><small style="font-weight:600;opacity:.7">11–14 нед</small></button>
+            <button data-profile="p2" role="tab" class="active">II&nbsp;трим.<br><small style="font-weight:600;opacity:.7">19–21 нед</small></button>
+            <button data-profile="p3" role="tab">III&nbsp;трим.<br><small style="font-weight:600;opacity:.7">30–34 нед</small></button>
+        </div>
+
+        <div class="save-indicator" id="saveIndicator" title="Автосохранение">
+            <span class="save-dot"></span>
+            <span id="saveText">Сохранено</span>
+        </div>
+
+        <div class="topbar-status" id="topbarStatus" data-state="ready">
+            <span class="dot"></span>
+            <span id="topbarStatusText">Готов</span>
+        </div>
+
+        <div class="topbar-actions">
+            <button class="icon-btn" id="historyBtn" title="История исследований" aria-label="История">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/>
+                    <path d="M12 7v5l4 2"/>
+                </svg>
+                <span class="badge" id="historyBadge" style="display:none">0</span>
+            </button>
+            <button class="icon-btn" id="themeToggle" title="Тема" aria-label="Переключить тему">
+                <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                </svg>
+            </button>
+            <button class="icon-btn" id="docBtn" title="Скачать DOC" aria-label="Экспорт в DOC">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                </svg>
+            </button>
+            <button class="icon-btn" id="pdfBtn" title="Скачать PDF" aria-label="Экспорт в PDF">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+            </button>
+            <button class="icon-btn accent" id="shareBtn" title="Поделиться" aria-label="Поделиться">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+            </button>
+            <button class="icon-btn" id="printBtn" title="Печать" aria-label="Печать">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 6 2 18 2 18 9"/>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                    <rect x="6" y="14" width="12" height="8"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <aside class="control-panel no-print">
+        <div class="status-card" id="statusCard" data-state="ready">
+            <div class="status-top">
+                <div class="status-dot"></div>
+                <div class="status-label" id="statusLabel">Готов к работе</div>
+            </div>
+            <div class="status-message" id="statusMessage">Нажмите «Начать», чтобы диктовать</div>
+            <div class="waveform" id="waveform" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <div class="primary-actions" id="primaryActions">
+            <button class="btn btn-success" id="startBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span class="btn-text">Начать</span>
+            </button>
+            <button class="btn btn-warn" id="pauseBtn" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                <span class="btn-text">Пауза</span>
+            </button>
+            <button class="btn btn-danger" id="stopBtn" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+                <span class="btn-text">Стоп</span>
+            </button>
+            <button class="btn btn-ghost" id="clearBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+                <span class="btn-text">Сброс</span>
+            </button>
+        </div>
+
+        <div class="panel">
+            <div class="panel-body">
+                <div class="stream-label">
+                    <span>Исходный поток</span>
+                    <span class="char-count" id="charCount">0 символов</span>
+                </div>
+                <textarea id="rawText" placeholder="Здесь появится распознанный текст…&#10;&#10;Скажите «пауза», «продолжить», «готово»." autocapitalize="sentences" autocorrect="off" spellcheck="false" enterkeyhint="done"></textarea>
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-full" id="parseBtn" style="padding:14px;min-height:48px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Распределить по полям
+        </button>
+
+        <button class="btn btn-ghost btn-full" id="snapshotBtn" style="padding:12px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17 21 17 13 7 13 7 21"/>
+                <polyline points="7 3 7 8 15 8"/>
+            </svg>
+            Сохранить в историю
+        </button>
+
+        <div class="secondary-actions" style="grid-template-columns:1fr 1fr 1fr 1fr">
+            <button class="btn btn-doc" id="docBtn2" style="font-size:.8rem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                DOC
+            </button>
+            <button class="btn btn-copy" id="copyBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Копир.
+            </button>
+            <button class="btn btn-pdf" id="pdfBtn2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                PDF
+            </button>
+            <button class="btn btn-share" id="shareBtn2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                Отпр.
+            </button>
+        </div>
+
+        <div class="hint">
+            <div class="hint-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Голосовые команды
+            </div>
+            <ul>
+                <li>«<b>Пауза</b>» / «<b>Стоп</b>» — остановить</li>
+                <li>«<b>Продолжить</b>» — возобновить</li>
+                <li>«<b>Готово</b>» / «<b>Закончить</b>» — авторазбор</li>
+            </ul>
+            <div class="hint-shortcuts" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:.78rem">
+                <b>Горячие клавиши:</b> <kbd>Ctrl+Enter</kbd> старт/пауза · <kbd>Ctrl+P</kbd> печать · <kbd>Ctrl+S</kbd> PDF
+            </div>
+        </div>
+    </aside>
+
+    <main class="report" id="reportArea">
+        <div class="report-head">
+            <h1 id="reportTitle">Протокол скринингового ультразвукового исследования</h1>
+            <p id="reportSubtitle">Женщины в 19–21 неделю беременности · Приложение № 9</p>
+            <p class="legal">к приказу Министерства здравоохранения Российской Федерации от 20 октября 2020 г. № 1130н</p>
+        </div>
+
+        <!-- PATIENT -->
+        <section class="section" data-section>
+            <header class="section-head" data-toggle>
+                <div class="section-icon ic-patient"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <h2>Данные пациентки</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </header>
+            <div class="section-body">
+                <div class="grid">
+                    <div class="field"><label>Номер исследования</label><input type="text" id="examNumber" placeholder="Автоматически"></div>
+                    <div class="field"><label>Дата исследования</label><input type="date" id="examDate" required></div>
+                    <div class="field"><label>Ф.И.О. беременной</label><input type="text" id="patientName" placeholder="Иванова Мария Петровна" autocomplete="name" required></div>
+                    <div class="field"><label>Возраст беременной</label><input type="number" inputmode="numeric" id="patientAge" placeholder="32" min="14" max="60"></div>
+                    <div class="field"><label>Первый день последней менструации</label><input type="date" id="lastMenstruation"></div>
+                    <div class="field"><label>Срок беременности</label><input type="text" id="gestAge" placeholder="20 нед 3 дня" class="auto-target" data-keywords="срок беременности, срок гестации" required></div>
+                    <div class="field"><label>Срок по УЗИ в I триместре</label><input type="text" id="gestAgeFirstTrim" placeholder="12 нед 2 дня (если есть)"></div>
+                    <div class="field"><label>Вид исследования</label>
+                        <select id="examType">
+                            <option value="">— выберите —</option>
+                            <option value="Трансабдоминальный">Трансабдоминальный</option>
+                            <option value="Трансвагинальный">Трансвагинальный</option>
+                        </select>
+                    </div>
+                    <div class="field"><label>Количество плодов</label><input type="number" inputmode="numeric" id="fetusCount" placeholder="1" min="1" max="4" value="1"></div>
+                    <div class="gest-info empty" id="gestInfo"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FETOMETRY -->
+        <section class="section" data-section>
+            <header class="section-head" data-toggle>
+                <div class="section-icon ic-feto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8c2-3 6-4 10-3l3 1c2 1 3 3 3 5s-1 4-3 5l-4 2c-3 1-6 0-8-2s-3-5-1-8z"/></svg></div>
+                <h2>Фетометрия</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </header>
+            <div class="section-body">
+                <p style="margin:0 0 12px;font-size:.78rem;color:var(--text-faint)">Справочные диапазоны (5–95 процентиль) подставляются автоматически после ввода срока беременности.</p>
+                <div class="grid">
+                    <div class="field"><label>Бипариетальный размер (БПР), мм</label><input type="number" inputmode="decimal" step="0.1" id="bpd" class="auto-target" data-keywords="бпр, бипариетальный размер, бипариетальный"><div class="ref-hint" id="bpdRef"></div></div>
+                    <div class="field"><label>Окружность головы (ОГ), мм</label><input type="number" inputmode="decimal" step="0.1" id="hc" class="auto-target" data-keywords="ог, окружность головы"><div class="ref-hint" id="hcRef"></div></div>
+                    <div class="field"><label>Окружность живота (ОЖ), мм</label><input type="number" inputmode="decimal" step="0.1" id="ac" class="auto-target" data-keywords="ож, окружность живота"><div class="ref-hint" id="acRef"></div></div>
+                    <div class="field"><label>Длина бедра (ДБ), мм</label><input type="number" inputmode="decimal" step="0.1" id="fl" class="auto-target" data-keywords="дб, длина бедра, бедро"><div class="ref-hint" id="flRef"></div></div>
+                </div>
+                <div class="grid" style="margin-top:12px">
+                    <div class="field"><label>Длина других костей</label><input type="text" id="otherBones" placeholder="Голень, плечо, предплечье"></div>
+                    <div class="field"><label>Размеры плода соответствуют сроку</label>
+                        <select id="sizeMatch">
+                            <option value="да">да</option>
+                            <option value="нет">нет</option>
+                            <option value="несимметричны">размеры несимметричны и не позволяют судить о сроке</option>
+                        </select>
+                    </div>
+                    <div class="field"><label>Предполагаемая масса плода, г</label><input type="number" inputmode="numeric" id="efw" class="auto-target" data-keywords="масса плода, вес плода, предполагаемая масса"><div class="ref-hint" id="efwRef"></div></div>
+                    <div class="field"><label>Процентиль массы</label><input type="text" id="efwPercentile" placeholder="Например, 45"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFILE 1 -->
+        <div class="profile-1">
+            <section class="section" data-section>
+                <header class="section-head" data-toggle>
+                    <div class="section-icon ic-markers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
+                    <h2>Специфические маркеры I триместра</h2>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </header>
+                <div class="section-body">
+                    <div class="grid">
+                        <div class="field"><label>КТР, мм</label><input type="number" inputmode="decimal" step="0.1" id="crl" class="auto-target" data-keywords="ктр, копчико-теменной размер"></div>
+                        <div class="field"><label>ТВП, мм</label><input type="number" inputmode="decimal" step="0.1" id="nt" class="auto-target" data-keywords="твп, толщина воротникового пространства"></div>
+                        <div class="field"><label>Диаметр плодного яйца, мм</label><input type="number" inputmode="decimal" step="0.1" id="gestSac" class="auto-target" data-keywords="диаметр плодного яйца, плодное яйцо"></div>
+                        <div class="field"><label>ЧСС плода, уд/мин</label><input type="number" inputmode="numeric" id="heartRate" class="auto-target" data-keywords="чсс, сердцебиение"></div>
+                    </div>
+                    <div class="subgroup" style="margin-top:14px">
+                        <div class="subgroup-label">Дополнительные УЗ-маркеры ХА</div>
+                        <div class="grid">
+                            <div class="field"><label>Носовая кость</label>
+                                <select id="nasalBone"><option>визуализируется</option><option>не визуализируется</option><option>не удалось оценить</option></select>
+                            </div>
+                            <div class="field"><label>Трикуспидальная регургитация</label>
+                                <select id="tricuspid"><option>нет</option><option>да</option></select>
+                            </div>
+                            <div class="field"><label>ПИ в венозном протоке</label><input type="text" id="ductusVenosus" placeholder="Например, 1.05"></div>
+                            <div class="field"><label>Комментарии</label><input type="text" id="markersComment" placeholder="Свободный текст"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section" data-section>
+                <header class="section-head" data-toggle>
+                    <div class="section-icon ic-extras"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg></div>
+                    <h2>Хорион / плацента, пуповина</h2>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </header>
+                <div class="section-body">
+                    <div class="grid">
+                        <div class="field"><label>Хорион (плацента) — локализация</label><input type="text" id="chorionLocation" class="auto-target" data-keywords="хорион, плацента расположена, локализация плаценты, плацента"></div>
+                        <div class="field"><label>Пуповина — сосуды</label><input type="text" id="umbilicalVessels" placeholder="2 / 3"></div>
+                        <div class="field"><label>Место прикрепления</label>
+                            <select id="cordInsertion"><option>центральное</option><option>краевое</option><option>оболочечное</option><option>не удалось осмотреть</option></select>
+                        </div>
+                        <div class="field"><label>Придатки, стенки матки</label>
+                            <select id="adnexa"><option>норма</option><option>выявлены изменения</option></select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PROFILE 2 -->
+        <div class="profile-2">
+            <section class="section" data-section>
+                <header class="section-head" data-toggle>
+                    <div class="section-icon ic-anatomy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                    <h2>Анатомия плода</h2>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </header>
+                <div class="section-body">
+                    <p style="margin:0 0 12px;font-size:.78rem;color:var(--text-faint)">Клик по структуре переключает: Норма → Изменения → Не оценено.</p>
+
+                    <div class="anatomy-grid" id="anatomyGrid"></div>
+
+                    <div class="anatomy-toggle" style="margin-top:14px">
+                        <button class="btn btn-ghost" id="togglePrintGrid" style="font-size:.8rem;min-height:38px">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+                            Показать печатный вид
+                        </button>
+                    </div>
+
+                    <!-- ПЕЧАТНАЯ СЕТКА (показывается по кнопке, в PDF/печать — всегда) -->
+                    <div class="anatomy-print-wrap" id="anatomyPrintWrap">
+                        <div style="font-size:.78rem;font-weight:700;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">Сетка анатомических структур — печатный вид</div>
+                        <table class="anatomy-print-table" id="anatomyPrintTable">
+                            <thead>
+                                <tr>
+                                    <th>Анатомическая структура</th>
+                                    <th>Норма</th>
+                                    <th>Измен.</th>
+                                    <th>Не оц.</th>
+                                </tr>
+                            </thead>
+                            <tbody id="anatomyPrintBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" data-section>
+                <header class="section-head" data-toggle>
+                    <div class="section-icon ic-extras"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg></div>
+                    <h2>Плацента, пуповина, воды</h2>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </header>
+                <div class="section-body">
+                    <div class="grid">
+                        <div class="field"><label>Плацента расположена</label><input type="text" id="placentaLocation2" class="auto-target" data-keywords="плацента расположена, локализация плаценты, плацента"></div>
+                        <div class="field"><label>Толщина плаценты, мм</label><input type="number" inputmode="decimal" step="0.1" id="placentaThickness2" class="auto-target" data-keywords="толщина плаценты"></div>
+                        <div class="field"><label>Степень зрелости</label>
+                            <select id="placentaGrade2"><option value="0">0</option><option value="I">I</option><option value="II">II</option><option value="III">III</option></select>
+                        </div>
+                        <div class="field"><label>Нижний край</label><input type="text" id="placentaEdge" placeholder="60 мм от в/зева"></div>
+                        <div class="field"><label>Околоплодные воды</label>
+                            <select id="amnioticFluid2"><option value="норма">норма</option><option value="маловодие">маловодие</option><option value="многоводие">многоводие</option></select>
+                        </div>
+                        <div class="field"><label>ИАЖ, мм</label><input type="number" inputmode="decimal" step="0.1" id="afIndex2" class="auto-target" data-keywords="иаж, индекс амниотической жидкости"></div>
+                        <div class="field"><label>Пуповина — сосуды</label><input type="text" id="umbilicalVessels2" placeholder="3"></div>
+                        <div class="field"><label>Место прикрепления</label>
+                            <select id="cordInsertion2"><option>центральное</option><option>краевое</option><option>оболочечное</option><option>не удалось осмотреть</option></select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" data-section>
+                <header class="section-head" data-toggle>
+                    <div class="section-icon ic-vessels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg></div>
+                    <h2>Шейка матки, маточные артерии</h2>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </header>
+                <div class="section-body">
+                    <div class="grid">
+                        <div class="field"><label>Цервикометрия, мм</label><input type="number" inputmode="decimal" step="0.1" id="cervix" class="auto-target" data-keywords="шейка матки, цервикометрия, длина шейки"></div>
+                        <div class="field"><label>ПИ в маточных артериях (слева)</label><input type="text" id="piLeft" placeholder="1.45"></div>
+                        <div class="field"><label>ПИ в маточных артериях (справа)</label><input type="text" id="piRight" placeholder="1.52"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PROFILE 3 -->
+        <div class="profile-3">
+            <section class="section" data-section>
+                <header class="section-head" data-toggle>
+                    <div class="section-icon ic-feto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M12 12c-4 0-7 2-7 6v3h14v-3c0-4-3-6-7-6z"/></svg></div>
+                    <h2>Фетометрия III триместра</h2>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </header>
+                <div class="section-body">
+                    <div class="grid">
+                        <div class="field"><label>Масса плода, г</label><input type="number" inputmode="numeric" id="efw3" class="auto-target" data-keywords="масса плода, вес плода"><div class="ref-hint" id="efw3Ref"></div></div>
+                        <div class="field"><label>Процентиль массы</label><input type="text" id="efwPercentile3" placeholder="45"></div>
+                        <div class="field"><label>Предлежание</label>
+                            <select id="presentation3"><option>головное</option><option>тазовое</option><option>поперечное</option></select>
+                        </div>
+                        <div class="field"><label>Сердцебиение плода, уд/мин</label><input type="number" inputmode="numeric" id="heartRate3" class="auto-target" data-keywords="сердцебиение, чсс"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="section" data-section>
+                <header class="section-head" data-toggle>
+                    <div class="section-icon ic-extras"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/></svg></div>
+                    <h2>Плацента, воды</h2>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </header>
+                <div class="section-body">
+                    <div class="grid">
+                        <div class="field"><label>Плацента расположена</label><input type="text" id="placentaLocation3" class="auto-target" data-keywords="плацента расположена, локализация плаценты, плацента"></div>
+                        <div class="field"><label>Толщина плаценты, мм</label><input type="number" inputmode="decimal" step="0.1" id="placentaThickness3" class="auto-target" data-keywords="толщина плаценты"></div>
+                        <div class="field"><label>Степень зрелости</label>
+                            <select id="placentaGrade3"><option value="0">0</option><option value="I">I</option><option value="II">II</option><option value="III">III</option></select>
+                        </div>
+                        <div class="field"><label>Околоплодные воды</label>
+                            <select id="amnioticFluid3"><option value="норма">норма</option><option value="маловодие">маловодие</option><option value="многоводие">многоводие</option></select>
+                        </div>
+                        <div class="field"><label>ИАЖ, мм</label><input type="number" inputmode="decimal" step="0.1" id="afIndex3" class="auto-target" data-keywords="иаж, индекс амниотической жидкости"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="section" data-section>
+                <header class="section-head" data-toggle>
+                    <div class="section-icon ic-vessels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg></div>
+                    <h2>Допплерометрия, цервикометрия</h2>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </header>
+                <div class="section-body">
+                    <div class="grid">
+                        <div class="field"><label>Цервикометрия</label><input type="text" id="cervix3" placeholder="Длина сомкнутой части, мм"></div>
+                        <div class="field"><label>Внутренний зев</label>
+                            <select id="internalOs3"><option>закрыт</option><option>открыт</option></select>
+                        </div>
+                        <div class="field"><label>Допплерография маточно-плацентарного кровотока</label>
+                            <select id="doppler3"><option>норма</option><option>нарушение</option></select>
+                        </div>
+                        <div class="field"><label>Особенности</label><input type="text" id="dopplerNotes3" placeholder="Свободный текст"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ВПР -->
+        <section class="section" data-section>
+            <header class="section-head" data-toggle>
+                <div class="section-icon ic-anatomy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+                <h2>Врожденные пороки развития плода</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </header>
+            <div class="section-body">
+                <div class="grid">
+                    <div class="field"><label>ВПР</label>
+                        <select id="congenitalDefects"><option>не обнаружено</option><option>обнаружено</option></select>
+                    </div>
+                    <div class="field" style="grid-column:1/-1"><label>Описание выявленных изменений</label><input type="text" id="defectsDescription" placeholder="Указать при наличии"></div>
+                    <div class="field" style="grid-column:1/-1"><label>Особенности строения плода</label><input type="text" id="fetalPeculiarities" placeholder="Указать при наличии"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Визуализация -->
+        <section class="section" data-section>
+            <header class="section-head" data-toggle>
+                <div class="section-icon ic-desc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+                <h2>Визуализация</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </header>
+            <div class="section-body">
+                <div class="grid">
+                    <div class="field"><label>Визуализация</label>
+                        <select id="visualization"><option>удовлетворительная</option><option>затруднена</option></select>
+                    </div>
+                    <div class="field"><label>Причина затруднения</label><input type="text" id="visualizationReason" placeholder="Указать причину"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Заключение -->
+        <section class="section" data-section>
+            <header class="section-head" data-toggle>
+                <div class="section-icon ic-conclusion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+                <h2>Заключение</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </header>
+            <div class="section-body">
+                <div class="template-chips" id="templateChips"></div>
+                <div class="field">
+                    <textarea id="conclusion" rows="4" placeholder="Беременность ___ нед ___ дней. …" spellcheck="false" required></textarea>
+                </div>
+                <button class="btn btn-ghost btn-full" id="openTemplatesBtn" style="margin-top:10px">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                    Все шаблоны заключений
+                </button>
+            </div>
+        </section>
+
+        <!-- Подробное описание -->
+        <section class="section" data-section>
+            <header class="section-head" data-toggle>
+                <div class="section-icon ic-desc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                <h2>Подробное УЗ-описание</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </header>
+            <div class="section-body">
+                <div class="field"><textarea id="fullDescription" rows="6" placeholder="Здесь появится полный текст диктовки…" spellcheck="false"></textarea></div>
+            </div>
+        </section>
+
+        <div class="signatures">
+            <div class="sign-line"><span>Врач ультразвуковой диагностики:</span><div class="line"></div><strong id="doctorName">Петров П.П.</strong></div>
+            <div class="sign-line" style="max-width:220px"><span>Дата выдачи:</span><div class="line"></div><strong id="printDate">—</strong></div>
+        </div>
+    </main>
+</div>
+
+<!-- MODALS -->
+<div class="modal" id="templatesModal">
+    <div class="modal-card">
+        <div class="modal-head">
+            <h3>Шаблоны заключений</h3>
+            <button class="modal-close" data-close="templatesModal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <div class="modal-body">
+            <div class="tpl-tabs" id="tplTabs"></div>
+            <div class="tpl-list" id="tplList"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="historyModal">
+    <div class="modal-card">
+        <div class="modal-head">
+            <h3>История исследований</h3>
+            <button class="modal-close" data-close="historyModal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <div class="modal-body">
+            <input type="text" class="hist-search" id="histSearch" placeholder="Поиск по ФИО, номеру или дате…">
+            <div class="hist-list" id="histList"></div>
+        </div>
+        <div class="modal-foot">
+            <button class="btn btn-ghost" id="histExport">Экспорт JSON</button>
+            <button class="btn btn-ghost" id="histImport">Импорт JSON</button>
+            <input type="file" id="histImportFile" accept="application/json" style="display:none">
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="validationModal">
+    <div class="modal-card" style="max-width:520px">
+        <div class="modal-head">
+            <h3>Проверьте обязательные поля</h3>
+            <button class="modal-close" data-close="validationModal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <div class="modal-body">
+            <div class="val-info">Эти поля не заполнены. Нажмите на строку, чтобы перейти к полю.</div>
+            <div class="val-list" id="valList"></div>
+        </div>
+        <div class="modal-foot">
+            <button class="btn btn-ghost" data-close="validationModal">Вернуться</button>
+            <button class="btn btn-danger" id="valContinue">Продолжить всё равно</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-card">
+        <div class="loading-spinner"></div>
+        <div class="loading-title" id="loadingTitle">Готовим PDF…</div>
+        <div class="loading-text" id="loadingText">Это может занять несколько секунд</div>
+    </div>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+/* ============================================================
+   ENV
+   ============================================================ */
+const UA = navigator.userAgent;
+const ENV = {
+    isIOS: /iPad|iPhone|iPod/.test(UA) && !window.MSStream,
+    isAndroid: /Android/i.test(UA),
+    isMobile: /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(UA),
+    isTouch: ('ontouchstart' in window) || navigator.maxTouchPoints > 0,
+    canShareFiles: false
+};
+if (navigator.canShare) {
+    try {
+        const f = new File(['t'], 't.pdf', { type: 'application/pdf' });
+        ENV.canShareFiles = navigator.canShare({ files: [f] });
+    } catch (_) {}
+}
+const RESTART_DELAY = ENV.isIOS ? 100 : 350;
+const COMMAND_COOLDOWN = ENV.isIOS ? 700 : 900;
+
+const CONFIG = {
+    doctor: 'Петров П.П.',
+    lang: 'ru-RU',
+    storageKey: 'uzi-screening-1130n',
+    commands: {
+        PAUSE:  ['пауза','стоп','перерыв','остановись','остановить'],
+        RESUME: ['продолжить','продолжай','дальше','возобновить'],
+        FINISH: ['готово','закончить','конец','завершить','сохранить']
+    }
+};
+
+/* ============================================================
+   DOM
+   ============================================================ */
+const $ = (id) => document.getElementById(id);
+const dom = {
+    body: document.body,
+    statusCard: $('statusCard'), statusLabel: $('statusLabel'), statusMessage: $('statusMessage'),
+    topbarStatus: $('topbarStatus'), topbarStatusText: $('topbarStatusText'),
+    saveIndicator: $('saveIndicator'), saveText: $('saveText'),
+    waveform: $('waveform'),
+    startBtn: $('startBtn'), pauseBtn: $('pauseBtn'), stopBtn: $('stopBtn'), clearBtn: $('clearBtn'),
+    parseBtn: $('parseBtn'), snapshotBtn: $('snapshotBtn'),
+    pdfBtn: $('pdfBtn'), pdfBtn2: $('pdfBtn2'), shareBtn: $('shareBtn'), shareBtn2: $('shareBtn2'),
+    printBtn: $('printBtn'), historyBtn: $('historyBtn'), historyBadge: $('historyBadge'),
+    docBtn: $('docBtn'), docBtn2: $('docBtn2'), copyBtn: $('copyBtn'),
+    rawText: $('rawText'), charCount: $('charCount'),
+    fullDescription: $('fullDescription'), conclusion: $('conclusion'),
+    examDate: $('examDate'), printDate: $('printDate'), doctorName: $('doctorName'),
+    themeToggle: $('themeToggle'),
+    toastWrap: $('toastWrap'),
+    reportTitle: $('reportTitle'), reportSubtitle: $('reportSubtitle'),
+    anatomyGrid: $('anatomyGrid'), anatomyPrintWrap: $('anatomyPrintWrap'), anatomyPrintBody: $('anatomyPrintBody'),
+    togglePrintGrid: $('togglePrintGrid'),
+    reportArea: $('reportArea'),
+    loadingOverlay: $('loadingOverlay'), loadingTitle: $('loadingTitle'), loadingText: $('loadingText'),
+    screenSwitcher: document.querySelectorAll('.screen-switcher button'),
+    targets: document.querySelectorAll('.auto-target'),
+    sections: document.querySelectorAll('[data-section]'),
+    gestInfo: $('gestInfo'),
+    lastMenstruation: $('lastMenstruation'),
+    templateChips: $('templateChips'),
+    openTemplatesBtn: $('openTemplatesBtn'),
+    templatesModal: $('templatesModal'), tplTabs: $('tplTabs'), tplList: $('tplList'),
+    historyModal: $('historyModal'), histSearch: $('histSearch'), histList: $('histList'),
+    histExport: $('histExport'), histImport: $('histImport'), histImportFile: $('histImportFile'),
+    validationModal: $('validationModal'), valList: $('valList'), valContinue: $('valContinue')
+};
+
+/* ============================================================
+   PROFILES
+   ============================================================ */
+const PROFILES = {
+    p1: { title:'Протокол скринингового ультразвукового исследования', subtitle:'Женщины в 11–14 недель беременности · Приложение № 7' },
+    p2: { title:'Протокол скринингового ультразвукового исследования', subtitle:'Женщины в 19–21 неделю беременности · Приложение № 9' },
+    p3: { title:'Протокол ультразвукового исследования', subtitle:'Женщины в 30–34 недели беременности · Приложение № 3 (обменная карта 113/у-20)' }
+};
+const LEGAL_TEXT = 'к приказу Министерства здравоохранения Российской Федерации от 20 октября 2020 г. № 1130н';
+
+function setProfile(profileId) {
+    dom.body.dataset.profile = profileId;
+    const p = PROFILES[profileId];
+    if (p) {
+        dom.reportTitle.textContent = p.title;
+        dom.reportSubtitle.textContent = p.subtitle;
+        const l = document.querySelector('.report-head .legal');
+        if (l) l.textContent = LEGAL_TEXT;
+    }
+    dom.screenSwitcher.forEach(b => b.classList.toggle('active', b.dataset.profile === profileId));
+    renderTemplateChips();
+    saveState();
+}
+dom.screenSwitcher.forEach(b => b.addEventListener('click', () => { setProfile(b.dataset.profile); vibrate(8); }));
+
+/* ============================================================
+   ANATOMY
+   ============================================================ */
+const ANATOMY_STRUCTURES = [
+    { id:'skull', label:'Кости свода черепа', keywords:'кости свода черепа, свод черепа' },
+    { id:'csp', label:'Полость прозрачной перегородки', keywords:'полость прозрачной перегородки, прозрачная перегородка' },
+    { id:'midline', label:'Срединные структуры', keywords:'срединные структуры' },
+    { id:'ventricles', label:'Задние рога боковых желудочков', keywords:'задние рога, боковые желудочки' },
+    { id:'cerebellum', label:'Мозжечок', keywords:'мозжечок' },
+    { id:'cisterna', label:'Большая цистерна', keywords:'большая цистерна' },
+    { id:'faceLips', label:'Губы', keywords:'губы' },
+    { id:'faceProfile', label:'Профиль', keywords:'профиль' },
+    { id:'faceOrbits', label:'Глазницы', keywords:'глазницы' },
+    { id:'faceNose', label:'Нос, ноздри', keywords:'нос, ноздри' },
+    { id:'heartAxis', label:'Сердце — ось', keywords:'ось сердца, ось' },
+    { id:'heartPos', label:'Сердце — позиция', keywords:'позиция сердца, позиция' },
+    { id:'heartSize', label:'Сердце — размеры', keywords:'размеры сердца' },
+    { id:'heart4ch', label:'Сердце — 4-камерный срез', keywords:'4-камерный срез, четырехкамерный' },
+    { id:'heart3v', label:'Срез через 3 сосуда и трахею', keywords:'3 сосуда, срез через 3 сосуда' },
+    { id:'heartLvo', label:'Левый выносящий тракт', keywords:'левый выносящий тракт' },
+    { id:'heartRvo', label:'Правый выносящий тракт', keywords:'правый выносящий тракт' },
+    { id:'stomach', label:'Желудок', keywords:'желудок' },
+    { id:'intestines', label:'Кишечник', keywords:'кишечник' },
+    { id:'kidneys', label:'Почки', keywords:'почки' },
+    { id:'bladder', label:'Мочевой пузырь', keywords:'мочевой пузырь' },
+    { id:'umbilicalRing', label:'Область пупочного кольца', keywords:'пупочное кольцо' },
+    { id:'spine', label:'Позвоночник', keywords:'позвоночник' },
+    { id:'arms', label:'Руки (включая кисти)', keywords:'руки, кисти' },
+    { id:'legs', label:'Ноги (включая стопы)', keywords:'ноги, стопы' },
+    { id:'chest', label:'Грудная клетка', keywords:'грудная клетка' },
+    { id:'neck', label:'Шея', keywords:'шея' }
+];
+const ANATOMY_STATES = ['normal','changed','not-assessed'];
+const ANATOMY_LABELS = { 'normal':'Норма','changed':'Изменения','not-assessed':'Не оценено' };
+const anatomyState = {};
+
+function buildAnatomyGrid() {
+    // Интерактивная сетка
+    dom.anatomyGrid.innerHTML = '';
+    ANATOMY_STRUCTURES.forEach(s => {
+        if (!anatomyState[s.id]) anatomyState[s.id] = 'normal';
+        const state = anatomyState[s.id];
+        const item = document.createElement('div');
+        item.className = 'anatomy-item ' + (state === 'normal' ? 'checked' : state);
+        item.dataset.id = s.id;
+        item.innerHTML = `
+            <div class="anatomy-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span class="anatomy-label">${s.label}</span>
+            <span class="anatomy-cycles">${ANATOMY_LABELS[state]}</span>`;
+        item.addEventListener('click', () => cycleAnatomy(item, s.id));
+        dom.anatomyGrid.appendChild(item);
+    });
+    buildPrintGrid();
+}
+
+function buildPrintGrid() {
+    // Печатная таблица
+    dom.anatomyPrintBody.innerHTML = '';
+    ANATOMY_STRUCTURES.forEach(s => {
+        const st = anatomyState[s.id] || 'normal';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${s.label}</td>
+            <td class="cell-status"><span class="box ${st === 'normal' ? 'marked' : ''}"></span></td>
+            <td class="cell-status"><span class="box ${st === 'changed' ? 'marked changed' : ''}"></span></td>
+            <td class="cell-status"><span class="box ${st === 'not-assessed' ? 'marked not-assessed' : ''}"></span></td>`;
+        dom.anatomyPrintBody.appendChild(tr);
+    });
+}
+
+function cycleAnatomy(item, id) {
+    const cur = anatomyState[id];
+    const next = ANATOMY_STATES[(ANATOMY_STATES.indexOf(cur) + 1) % ANATOMY_STATES.length];
+    anatomyState[id] = next;
+    item.classList.remove('checked','changed','not-assessed');
+    if (next === 'normal') item.classList.add('checked');
+    else item.classList.add(next);
+    item.querySelector('.anatomy-cycles').textContent = ANATOMY_LABELS[next];
+    buildPrintGrid();
+    vibrate(8);
+    saveState();
+}
+
+function getAnatomySummary() {
+    const changed = [], notAssessed = [];
+    ANATOMY_STRUCTURES.forEach(s => {
+        if (anatomyState[s.id] === 'changed') changed.push(s.label);
+        if (anatomyState[s.id] === 'not-assessed') notAssessed.push(s.label);
+    });
+    return { changed, notAssessed };
+}
+
+// Кнопка "Показать печатный вид"
+dom.togglePrintGrid.addEventListener('click', () => {
+    const on = dom.anatomyPrintWrap.classList.toggle('visible');
+    dom.togglePrintGrid.innerHTML = on
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Скрыть печатный вид'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>Показать печатный вид';
+    vibrate(6);
+});
+
+/* ============================================================
+   TEMPLATES
+   ============================================================ */
+const TEMPLATES = {
+    norm: { label:'Норма', items:[
+        { text:'Беременность прогрессирует, размеры плода соответствуют сроку гестации. Признаков ВПР не выявлено.', tags:['p2','p3'] },
+        { text:'Беременность 12 недель. КТР соответствует сроку. ТВП в пределах нормы. Носовая кость визуализируется. Кровоток в венозном протоке не изменён.', tags:['p1'] },
+        { text:'Плацента расположена по передней стенке, соответствует сроку гестации. Степень зрелости 0–I. Околоплодные воды в норме.', tags:['p2','p3'] },
+        { text:'Анатомия плода без особенностей. Все структуры визуализируются, соответствуют сроку.', tags:['p2'] },
+        { text:'Шейка матки 35–40 мм, внутренний зев закрыт. Маточные артерии без нарушения кровотока.', tags:['p2','p3'] }
+    ]},
+    i: { label:'I триместр', items:[
+        { text:'Беременность 11–14 недель, прогрессирует. КТР соответствует сроку гестации. ТВП в пределах возрастной нормы.', tags:['p1'] },
+        { text:'Носовая кость визуализируется, длина 2,5 мм. Трикуспидальная регургитация не определяется. ПИ в венозном протоке 1,05.', tags:['p1'] },
+        { text:'Хорион расположен по передней стенке матки. Пуповина содержит 3 сосуда. Область придатков без особенностей.', tags:['p1'] },
+        { text:'Комбинированный риск хромосомных аномалий низкий. Показаний к инвазивной диагностике нет.', tags:['p1'] }
+    ]},
+    ii: { label:'II триместр', items:[
+        { text:'Беременность 19–21 неделя. Фетометрия соответствует сроку гестации. Предполагаемая масса плода в пределах нормы.', tags:['p2'] },
+        { text:'Анатомия плода без эхографических особенностей. Все структуры визуализируются отчётливо.', tags:['p2'] },
+        { text:'Плацента по задней стенке, нижний край на 60 мм выше внутреннего зева. ИАЖ в пределах нормы.', tags:['p2'] },
+        { text:'УЗ-признаков ВПР и маркеров хромосомных аномалий не выявлено. Цервикометрия 38 мм.', tags:['p2'] }
+    ]},
+    iii: { label:'III триместр', items:[
+        { text:'Беременность 30–34 недели. Фетометрия соответствует сроку. Предполагаемая масса плода в пределах процентильных значений.', tags:['p3'] },
+        { text:'Предлежание головное. Сердцебиение плода ясное, ритмичное, 140 уд/мин.', tags:['p3'] },
+        { text:'Плацента соответствует сроку гестации, степень зрелости II. Околоплодные воды в норме.', tags:['p3'] },
+        { text:'Маточно-плацентарный кровоток без признаков нарушения. Допплерометрия в пределах нормы.', tags:['p3'] }
+    ]},
+    dev: { label:'Отклонения', items:[
+        { text:'Выявлены эхографические признаки задержки роста плода. Рекомендовано динамическое наблюдение через 2 недели.', tags:['p2','p3'] },
+        { text:'Обнаружены признаки маловодия. ИАЖ ниже 5-го процентиля для данного срока.', tags:['p2','p3'] },
+        { text:'Плацента с признаками преждевременного созревания. Степень зрелости III при сроке менее 32 недель.', tags:['p2','p3'] },
+        { text:'Выявлены множественные УЗ-маркеры хромосомных аномалий. Показана консультация генетика.', tags:['p1','p2'] }
+    ]},
+    misc: { label:'Прочее', items:[
+        { text:'Визуализация удовлетворительная. Осмотр проведён в полном объёме.', tags:['p1','p2','p3'] },
+        { text:'Визуализация затруднена в связи с низким расположением плаценты и тазовым предлежанием.', tags:['p2','p3'] },
+        { text:'Результаты УЗИ носят рекомендательный характер. Требуется динамическое наблюдение в женской консультации.', tags:['p1','p2','p3'] },
+        { text:'Рекомендовано: консультация акушера-гинеколога, повторное УЗИ в срок 30–34 недели.', tags:['p2'] }
+    ]}
+};
+
+function renderTemplateChips() {
+    const profile = dom.body.dataset.profile || 'p2';
+    const chips = [];
+    ['norm','dev'].forEach(catKey => {
+        TEMPLATES[catKey].items.forEach(t => {
+            if (t.tags.includes(profile) && chips.length < 4) chips.push(t.text);
+        });
+    });
+    dom.templateChips.innerHTML = '';
+    chips.forEach(text => {
+        const btn = document.createElement('button');
+        btn.className = 'tchip';
+        btn.textContent = text.length > 45 ? text.slice(0, 45) + '…' : text;
+        btn.title = text;
+        btn.addEventListener('click', () => insertTemplate(text));
+        dom.templateChips.appendChild(btn);
+    });
+}
+
+function insertTemplate(text) {
+    const cur = dom.conclusion.value.trim();
+    dom.conclusion.value = cur ? cur + '\n' + text : text;
+    dom.conclusion.classList.remove('auto-filled');
+    vibrate(12);
+    saveState();
+    toast('success', 'Шаблон вставлен', text.slice(0, 60) + (text.length > 60 ? '…' : ''), 2500);
+}
+
+function openTemplatesPanel() { renderTemplatesModal('norm'); openModal('templatesModal'); }
+
+function renderTemplatesModal(activeKey) {
+    dom.tplTabs.innerHTML = '';
+    Object.entries(TEMPLATES).forEach(([key, cat]) => {
+        const b = document.createElement('button');
+        b.textContent = cat.label;
+        b.className = key === activeKey ? 'active' : '';
+        b.addEventListener('click', () => renderTemplatesModal(key));
+        dom.tplTabs.appendChild(b);
+    });
+    const profile = dom.body.dataset.profile || 'p2';
+    const list = TEMPLATES[activeKey].items.filter(t => t.tags.includes(profile) || t.tags.length === 3);
+    dom.tplList.innerHTML = '';
+    if (!list.length) { dom.tplList.innerHTML = '<div class="hist-empty">Нет шаблонов для этого триместра</div>'; return; }
+    list.forEach(t => {
+        const item = document.createElement('div');
+        item.className = 'tpl-item';
+        item.innerHTML = `
+            <div class="tpl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="tpl-text">${t.text}</div>
+            <div class="tpl-insert">Вставить</div>`;
+        item.addEventListener('click', () => { insertTemplate(t.text); closeModal('templatesModal'); });
+        dom.tplList.appendChild(item);
+    });
+}
+dom.openTemplatesBtn.addEventListener('click', openTemplatesPanel);
+renderTemplateChips();
+
+/* ============================================================
+   CALCULATOR + REF
+   ============================================================ */
+const REF_WEEKS = {
+    11:{BPD:[14,20],HC:[55,75],AC:[40,60],FL:[6,11],EFW:[30,70]},
+    12:{BPD:[17,23],HC:[65,85],AC:[50,70],FL:[8,13],EFW:[45,90]},
+    13:{BPD:[20,27],HC:[75,95],AC:[60,80],FL:[10,15],EFW:[65,115]},
+    14:{BPD:[23,30],HC:[85,105],AC:[70,95],FL:[12,18],EFW:[90,150]},
+    15:{BPD:[26,33],HC:[95,115],AC:[80,105],FL:[14,21],EFW:[115,190]},
+    16:{BPD:[29,37],HC:[105,125],AC:[90,115],FL:[17,24],EFW:[145,240]},
+    17:{BPD:[32,40],HC:[115,137],AC:[100,130],FL:[20,27],EFW:[180,290]},
+    18:{BPD:[35,43],HC:[125,150],AC:[110,145],FL:[23,30],EFW:[220,350]},
+    19:{BPD:[38,46],HC:[137,162],AC:[120,158],FL:[26,33],EFW:[260,410]},
+    20:{BPD:[41,50],HC:[148,175],AC:[130,170],FL:[29,36],EFW:[300,480]},
+    21:{BPD:[44,53],HC:[160,187],AC:[140,182],FL:[31,38],EFW:[350,560]},
+    22:{BPD:[47,56],HC:[171,200],AC:[150,193],FL:[34,41],EFW:[400,640]},
+    23:{BPD:[50,59],HC:[182,211],AC:[159,204],FL:[36,43],EFW:[460,730]},
+    24:{BPD:[53,62],HC:[192,223],AC:[168,216],FL:[39,46],EFW:[520,830]},
+    25:{BPD:[55,65],HC:[203,234],AC:[177,227],FL:[41,48],EFW:[590,940]},
+    26:{BPD:[58,68],HC:[213,245],AC:[186,239],FL:[43,50],EFW:[660,1060]},
+    27:{BPD:[61,71],HC:[223,255],AC:[195,251],FL:[45,52],EFW:[740,1180]},
+    28:{BPD:[63,74],HC:[232,266],AC:[204,262],FL:[47,54],EFW:[830,1310]},
+    29:{BPD:[66,77],HC:[241,276],AC:[213,274],FL:[49,56],EFW:[920,1450]},
+    30:{BPD:[68,80],HC:[250,286],AC:[222,286],FL:[51,58],EFW:[1020,1590]},
+    31:{BPD:[71,82],HC:[259,296],AC:[231,297],FL:[53,60],EFW:[1130,1750]},
+    32:{BPD:[73,85],HC:[267,306],AC:[241,309],FL:[55,62],EFW:[1240,1900]},
+    33:{BPD:[76,87],HC:[275,315],AC:[250,320],FL:[57,64],EFW:[1360,2070]},
+    34:{BPD:[78,90],HC:[283,325],AC:[260,332],FL:[59,66],EFW:[1480,2240]},
+    35:{BPD:[80,92],HC:[291,334],AC:[269,343],FL:[61,67],EFW:[1610,2420]},
+    36:{BPD:[82,95],HC:[299,344],AC:[279,354],FL:[62,69],EFW:[1750,2600]},
+    37:{BPD:[85,97],HC:[306,353],AC:[289,365],FL:[64,70],EFW:[1890,2790]},
+    38:{BPD:[87,99],HC:[314,362],AC:[298,376],FL:[66,72],EFW:[2030,2980]},
+    39:{BPD:[89,102],HC:[321,371],AC:[308,386],FL:[67,73],EFW:[2180,3170]},
+    40:{BPD:[91,104],HC:[328,379],AC:[318,397],FL:[68,75],EFW:[2320,3350]}
+};
+
+function getGestWeek() {
+    const gest = ($('gestAge').value || '').match(/(\d+)/);
+    if (gest) return parseInt(gest[1], 10);
+    const lmp = dom.lastMenstruation.value;
+    if (lmp) {
+        const days = Math.floor((Date.now() - new Date(lmp).getTime()) / 86400000);
+        if (days > 0) return Math.floor(days / 7);
+    }
+    return null;
+}
+
+function calcGestAge() {
+    const lmp = dom.lastMenstruation.value;
+    if (!lmp) { dom.gestInfo.classList.add('empty'); return; }
+    const lmpDate = new Date(lmp);
+    const now = new Date();
+    const days = Math.floor((now - lmpDate) / 86400000);
+    if (days < 0 || days > 320) { dom.gestInfo.classList.add('empty'); return; }
+    const weeks = Math.floor(days / 7);
+    const remDays = days % 7;
+    const pdr = new Date(lmpDate.getTime() + 280 * 86400000);
+    if (!$('gestAge').value.trim()) {
+        $('gestAge').value = `${weeks} нед ${remDays} дн`;
+        $('gestAge').classList.add('auto-filled');
+    }
+    dom.gestInfo.classList.remove('empty');
+    dom.gestInfo.innerHTML = `
+        <div class="item"><span>Срок беременности</span><strong>${weeks} нед ${remDays} дн</strong></div>
+        <div class="item"><span>ПДР</span><strong>${pdr.toLocaleDateString('ru-RU')}</strong></div>
+        <div class="item"><span>Дней от ПМ</span><strong>${days}</strong></div>`;
+    updateRefHints();
+}
+
+function updateRefHints() {
+    const week = getGestWeek();
+    const ref = week && REF_WEEKS[week] ? REF_WEEKS[week] : null;
+    const map = [
+        { field:'bpd', el:$('bpdRef'), key:'BPD' },
+        { field:'hc', el:$('hcRef'), key:'HC' },
+        { field:'ac', el:$('acRef'), key:'AC' },
+        { field:'fl', el:$('flRef'), key:'FL' },
+        { field:'efw', el:$('efwRef'), key:'EFW' },
+        { field:'efw3', el:$('efw3Ref'), key:'EFW' }
+    ];
+    map.forEach(m => {
+        const el = $(m.field);
+        const hintEl = m.el;
+        if (!hintEl) return;
+        if (!ref) { hintEl.textContent = ''; el.classList.remove('field-warn'); return; }
+        const range = ref[m.key];
+        hintEl.textContent = `Норма ${week} нед: ${range[0]}–${range[1]}`;
+        const val = parseFloat(el.value);
+        if (!isNaN(val) && val > 0) {
+            if (val < range[0] || val > range[1]) el.classList.add('field-warn');
+            else el.classList.remove('field-warn');
+        } else el.classList.remove('field-warn');
+    });
+}
+
+dom.lastMenstruation.addEventListener('input', calcGestAge);
+['bpd','hc','ac','fl','efw','efw3'].forEach(id => {
+    const el = $(id);
+    if (el) el.addEventListener('input', updateRefHints);
+});
+$('gestAge').addEventListener('input', updateRefHints);
+
+/* ============================================================
+   HISTORY (IndexedDB)
+   ============================================================ */
+class HistoryStore {
+    constructor() { this.db = null; this.ready = this.init(); }
+    async init() {
+        return new Promise(resolve => {
+            const req = indexedDB.open('uzi-history', 1);
+            req.onerror = () => resolve(null);
+            req.onsuccess = () => { this.db = req.result; resolve(this.db); };
+            req.onupgradeneeded = (e) => {
+                const db = e.target.result;
+                if (!db.objectStoreNames.contains('reports')) {
+                    const store = db.createObjectStore('reports', { keyPath: 'id' });
+                    store.createIndex('savedAt', 'savedAt');
+                    store.createIndex('patientName', 'patientName');
+                }
+            };
+        });
+    }
+    async add(report) {
+        await this.ready; if (!this.db) return false;
+        return new Promise(resolve => {
+            const tx = this.db.transaction('reports', 'readwrite');
+            tx.objectStore('reports').put(report);
+            tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+    }
+    async list() {
+        await this.ready; if (!this.db) return [];
+        return new Promise(resolve => {
+            const tx = this.db.transaction('reports', 'readonly');
+            const req = tx.objectStore('reports').index('savedAt').openCursor(null, 'prev');
+            const out = [];
+            req.onsuccess = (e) => {
+                const c = e.target.result;
+                if (c) { out.push(c.value); c.continue(); } else resolve(out);
+            };
+            req.onerror = () => resolve([]);
+        });
+    }
+    async remove(id) {
+        await this.ready; if (!this.db) return false;
+        return new Promise(resolve => {
+            const tx = this.db.transaction('reports', 'readwrite');
+            tx.objectStore('reports').delete(id);
+            tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+    }
+    async count() { return (await this.list()).length; }
+}
+const historyStore = new HistoryStore();
+
+function collectReport() {
+    const data = {
+        id: 'r_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+        savedAt: Date.now(),
+        profile: dom.body.dataset.profile || 'p2',
+        patientName: $('patientName').value || 'Без имени',
+        examNumber: $('examNumber').value || '',
+        examDate: dom.examDate.value || '',
+        gestAge: $('gestAge').value || '',
+        conclusion: dom.conclusion.value || '',
+        rawText: dom.rawText.value || '',
+        fullDescription: dom.fullDescription.value || '',
+        anatomy: { ...anatomyState },
+        fields: {}
+    };
+    dom.targets.forEach(el => { if (el.value) data.fields[el.id] = el.value; });
+    const extraIds = ['examNumber','patientName','patientAge','lastMenstruation','gestAge','gestAgeFirstTrim',
+        'examType','fetusCount','sizeMatch','efwPercentile','efwPercentile3','otherBones','presentation3',
+        'heartRate3','piLeft','piRight','cervix3','doppler3','dopplerNotes3','internalOs3','visualizationReason',
+        'defectsDescription','fetalPeculiarities','placentaGrade2','placentaGrade3','amnioticFluid2','amnioticFluid3',
+        'cordInsertion','cordInsertion2','adnexa','nasalBone','tricuspid','ductusVenosus','markersComment',
+        'congenitalDefects','visualization','placentaEdge','umbilicalVessels2'];
+    extraIds.forEach(id => { const el = $(id); if (el && el.value) data.fields[id] = el.value; });
+    return data;
+}
+
+function applyReport(data) {
+    if (!data) return;
+    if (data.profile) setProfile(data.profile);
+    if (data.examNumber) $('examNumber').value = data.examNumber;
+    if (data.examDate) dom.examDate.value = data.examDate;
+    $('patientName').value = data.patientName === 'Без имени' ? '' : (data.patientName || '');
+    $('gestAge').value = data.gestAge || '';
+    dom.conclusion.value = data.conclusion || '';
+    dom.rawText.value = data.rawText || '';
+    dom.fullDescription.value = data.fullDescription || '';
+    if (data.anatomy) {
+        Object.entries(data.anatomy).forEach(([k,v]) => { anatomyState[k] = v; });
+        buildAnatomyGrid();
+    }
+    dom.targets.forEach(el => { el.value = ''; el.classList.remove('auto-filled','field-warn'); });
+    const extraIds = ['examType','fetusCount','sizeMatch','efwPercentile','efwPercentile3','otherBones','presentation3',
+        'heartRate3','piLeft','piRight','cervix3','doppler3','dopplerNotes3','internalOs3','visualizationReason',
+        'defectsDescription','fetalPeculiarities','placentaGrade2','placentaGrade3','amnioticFluid2','amnioticFluid3',
+        'cordInsertion','cordInsertion2','adnexa','nasalBone','tricuspid','ductusVenosus','markersComment',
+        'congenitalDefects','visualization','patientAge'];
+    extraIds.forEach(id => { const el = $(id); if (el) el.value = ''; });
+    if (data.fields) {
+        Object.entries(data.fields).forEach(([id,val]) => {
+            const el = $(id);
+            if (el) {
+                el.value = val;
+                if (el.classList.contains('auto-target')) el.classList.add('auto-filled');
+            }
+        });
+    }
+    updateCharCount();
+    calcGestAge();
+    updateRefHints();
+    saveState();
+}
+
+async function saveSnapshot() {
+    const data = collectReport();
+    if (!data.patientName || data.patientName === 'Без имени') {
+        if (!confirm('ФИО пациентки не указано. Сохранить как «Без имени»?')) return;
+    }
+    const ok = await historyStore.add(data);
+    if (ok) {
+        toast('success', 'Сохранено в историю', data.patientName + ' · ' + new Date(data.savedAt).toLocaleString('ru-RU'), 3000);
+        updateHistoryBadge();
+        vibrate(20);
+    } else toast('error', 'Не удалось сохранить', 'IndexedDB недоступна');
+}
+
+async function updateHistoryBadge() {
+    try {
+        const c = await historyStore.count();
+        if (c > 0) { dom.historyBadge.style.display = 'grid'; dom.historyBadge.textContent = c > 99 ? '99+' : String(c); }
+        else dom.historyBadge.style.display = 'none';
+    } catch (_) {}
+}
+
+async function openHistoryPanel() { openModal('historyModal'); await renderHistoryList(); }
+
+async function renderHistoryList(query = '') {
+    const list = await historyStore.list();
+    const q = query.trim().toLowerCase();
+    const filtered = q
+        ? list.filter(r => (r.patientName || '').toLowerCase().includes(q) || (r.examNumber || '').toLowerCase().includes(q) || (r.examDate || '').includes(q))
+        : list;
+    dom.histList.innerHTML = '';
+    if (!filtered.length) {
+        dom.histList.innerHTML = `<div class="hist-empty">${q ? 'Ничего не найдено' : 'История пуста. Нажмите «Сохранить в историю».'}</div>`;
+        return;
+    }
+    filtered.forEach(r => {
+        const item = document.createElement('div');
+        item.className = 'hist-item';
+        const profileLabel = { p1:'I трим.', p2:'II трим.', p3:'III трим.' }[r.profile] || '';
+        const dateStr = r.savedAt ? new Date(r.savedAt).toLocaleString('ru-RU', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' }) : '';
+        item.innerHTML = `
+            <div class="hist-info">
+                <div class="title">${esc(r.patientName || 'Без имени')}</div>
+                <div class="meta">
+                    <span class="badge">${esc(profileLabel)}</span>
+                    ${r.examDate ? `<span>${esc(r.examDate)}</span>` : ''}
+                    ${r.gestAge ? `<span>${esc(r.gestAge)}</span>` : ''}
+                    <span>${esc(dateStr)}</span>
+                </div>
+            </div>
+            <div class="hist-actions">
+                <button class="hist-btn" data-act="load" title="Открыть">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-8l-2-2H5a2 2 0 0 0-2 2z"/></svg>
+                </button>
+                <button class="hist-btn danger" data-act="delete" title="Удалить">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+                </button>
+            </div>`;
+        item.querySelector('[data-act="load"]').addEventListener('click', () => {
+            if (dom.rawText.value.trim() && !confirm('Загрузить запись? Текущие данные будут заменены.')) return;
+            applyReport(r);
+            closeModal('historyModal');
+            toast('success', 'Загружено', r.patientName, 2500);
+        });
+        item.querySelector('[data-act="delete"]').addEventListener('click', async () => {
+            if (!confirm('Удалить эту запись?')) return;
+            await historyStore.remove(r.id);
+            updateHistoryBadge();
+            renderHistoryList(dom.histSearch.value);
+        });
+        dom.histList.appendChild(item);
+    });
+}
+
+dom.historyBtn.addEventListener('click', openHistoryPanel);
+dom.histSearch.addEventListener('input', (e) => renderHistoryList(e.target.value));
+
+dom.histExport.addEventListener('click', async () => {
+    const list = await historyStore.list();
+    if (!list.length) { toast('warn', 'История пуста'); return; }
+    const blob = new Blob([JSON.stringify(list, null, 2)], { type:'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `uzi-history-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
+    toast('success', 'Экспортировано', `${list.length} записей`);
+});
+dom.histImport.addEventListener('click', () => dom.histImportFile.click());
+dom.histImportFile.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+        const arr = JSON.parse(await file.text());
+        if (!Array.isArray(arr)) throw new Error('bad format');
+        let count = 0;
+        for (const r of arr) { if (r && r.id) { await historyStore.add(r); count++; } }
+        updateHistoryBadge();
+        renderHistoryList(dom.histSearch.value);
+        toast('success', 'Импортировано', `${count} записей`);
+    } catch (err) { toast('error', 'Ошибка импорта', err.message); }
+    e.target.value = '';
+});
+
+/* ============================================================
+   VALIDATION
+   ============================================================ */
+const REQUIRED_FIELDS = [
+    { id:'patientName', label:'Ф.И.О. пациентки', section:'Данные пациентки' },
+    { id:'examDate', label:'Дата исследования', section:'Данные пациентки' },
+    { id:'gestAge', label:'Срок беременности', section:'Данные пациентки' },
+    { id:'conclusion', label:'Заключение', section:'Заключение' }
+];
+
+function validateBeforeExport() {
+    const missing = [];
+    REQUIRED_FIELDS.forEach(f => {
+        const el = $(f.id);
+        if (!el) return;
+        const val = (el.value || '').trim();
+        if (!val) missing.push(f);
+        el.classList.remove('field-required-empty');
+    });
+    return missing;
+}
+
+function showValidationModal(missing, onContinue) {
+    dom.valList.innerHTML = '';
+    missing.forEach(f => {
+        const item = document.createElement('div');
+        item.className = 'val-item';
+        item.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+            <div class="val-text"><strong>${f.label}</strong><br><small style="color:var(--text-faint)">${f.section}</small></div>
+            <div class="val-arrow">→</div>`;
+        item.addEventListener('click', () => { closeModal('validationModal'); goToField(f.id); });
+        dom.valList.appendChild(item);
+    });
+    const newBtn = dom.valContinue.cloneNode(true);
+    dom.valContinue.parentNode.replaceChild(newBtn, dom.valContinue);
+    dom.valContinue = newBtn;
+    newBtn.addEventListener('click', () => { closeModal('validationModal'); onContinue(); });
+    openModal('validationModal');
+}
+
+function goToField(fieldId) {
+    const el = $(fieldId);
+    if (!el) return;
+    const sec = el.closest('.section');
+    if (sec && sec.classList.contains('collapsed')) sec.classList.remove('collapsed');
+    setTimeout(() => {
+        el.scrollIntoView({ behavior:'smooth', block:'center' });
+        el.classList.add('field-required-empty');
+        setTimeout(() => { try { el.focus(); } catch (_) {} }, 400);
+        setTimeout(() => el.classList.remove('field-required-empty'), 3000);
+    }, 100);
+}
+
+function withValidation(name, action) {
+    const missing = validateBeforeExport();
+    if (missing.length === 0) { action(); return; }
+    showValidationModal(missing, () => {
+        toast('warn', 'Продолжаем без ' + missing.length + ' полей', 'Проверьте отчёт перед отправкой', 4000);
+        action();
+    });
+}
+
+/* ============================================================
+   TOASTS
+   ============================================================ */
+const ICONS = {
+    success:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    error:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    warn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>'
+};
+function toast(type, title, text = '', duration = 3500) {
+    const el = document.createElement('div');
+    el.className = `toast ${type}`;
+    el.innerHTML = `<div class="toast-icon">${ICONS[type] || ICONS.info}</div><div class="toast-content"><div class="toast-title">${esc(title)}</div>${text ? `<div class="toast-text">${esc(text)}</div>` : ''}</div>`;
+    dom.toastWrap.appendChild(el);
+    setTimeout(() => {
+        el.style.transition = 'all .3s ease';
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(30px)';
+        setTimeout(() => el.remove(), 300);
+    }, duration);
+}
+function vibrate(p = 12) {
+    if (!ENV.isTouch) return;
+    if ('vibrate' in navigator) { try { navigator.vibrate(p); } catch (_) {} }
+}
+function openModal(id) { const m = $(id); if (m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; } }
+function closeModal(id) { const m = $(id); if (m) { m.classList.remove('active'); document.body.style.overflow = ''; } }
+document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', () => closeModal(btn.dataset.close)));
+document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', (e) => { if (e.target === m) closeModal(m.id); }));
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal.active').forEach(m => closeModal(m.id));
+});
+
+/* ============================================================
+   THEME
+   ============================================================ */
+const THEME_KEY = 'uzi-theme-1130n';
+const sunIcon = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+const moonIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem(THEME_KEY, t); } catch (_) {}
+    $('themeIcon').innerHTML = t === 'dark' ? sunIcon : moonIcon;
+    const meta = document.querySelector('meta[name="theme-color"]:not([media])');
+    if (meta) meta.setAttribute('content', t === 'dark' ? '#0b0f1a' : '#f5f6fb');
+}
+let savedTheme = 'light';
+try { savedTheme = localStorage.getItem(THEME_KEY) || ''; } catch (_) {}
+if (!savedTheme) savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+applyTheme(savedTheme);
+dom.themeToggle.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+    vibrate(8);
+});
+
+/* ============================================================
+   INIT
+   ============================================================ */
+const today = new Date();
+dom.examDate.value = today.toISOString().slice(0, 10);
+dom.printDate.textContent = today.toLocaleDateString('ru-RU');
+dom.doctorName.textContent = CONFIG.doctor;
+$('examNumber').value = 'УЗИ-' + today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0') + '-' + Math.floor(Math.random() * 9000 + 1000);
+buildAnatomyGrid();
+
+/* ============================================================
+   SPEECH RECOGNITION
+   ============================================================ */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const supported = !!SR;
+let recognition = null, isRecording = false, lastCommandAt = 0, restartTimer = null, wakeLock = null;
+
+if (supported) {
+    recognition = new SR();
+    recognition.lang = CONFIG.lang;
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 1;
+    recognition.onresult = onRecognitionResult;
+    recognition.onerror = onRecognitionError;
+    recognition.onend = onRecognitionEnd;
+}
+
+function setState(state, message) {
+    dom.statusCard.dataset.state = state;
+    dom.topbarStatus.dataset.state = state;
+    const labels = { ready:'Готов к работе', recording:'Идёт запись', paused:'Пауза', stopped:'Остановлено' };
+    const short = { ready:'Готов', recording:'Запись', paused:'Пауза', stopped:'Стоп' };
+    dom.statusLabel.textContent = labels[state] || 'Статус';
+    dom.topbarStatusText.textContent = short[state] || 'Статус';
+    if (message) dom.statusMessage.textContent = message;
+    dom.startBtn.disabled = state === 'recording';
+    dom.pauseBtn.disabled = state !== 'recording';
+    dom.stopBtn.disabled = state === 'stopped' || state === 'ready';
+    if (state === 'recording') startVisualization();
+    else stopVisualization();
+}
+async function requestWakeLock() {
+    if (!('wakeLock' in navigator)) return;
+    try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        wakeLock.addEventListener('release', () => { if (isRecording) setTimeout(requestWakeLock, 1500); });
+    } catch (_) {}
+}
+function releaseWakeLock() { if (wakeLock) { try { wakeLock.release(); } catch (_) {} wakeLock = null; } }
+
+const waveBars = dom.waveform.querySelectorAll('span');
+let audioCtx = null, analyser = null, analyserData = null, micStream = null, rafId = null, demoPhase = 0;
+const useRealAudio = !ENV.isTouch && !ENV.isMobile;
+
+async function startVisualization() {
+    if (useRealAudio) {
+        try {
+            if (!micStream) {
+                micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioCtx.createAnalyser();
+                analyser.fftSize = 64;
+                analyser.smoothingTimeConstant = 0.75;
+                const src = audioCtx.createMediaStreamSource(micStream);
+                src.connect(analyser);
+                analyserData = new Uint8Array(analyser.frequencyBinCount);
+            }
+            drawRealLevels();
+            return;
+        } catch (_) {}
+    }
+    drawDemoLevels();
+}
+function drawRealLevels() {
+    if (!analyser) return drawDemoLevels();
+    analyser.getByteFrequencyData(analyserData);
+    waveBars.forEach((bar, i) => {
+        const v = analyserData[i % analyserData.length] || 0;
+        bar.style.height = Math.max(6, Math.min(30, (v/255)*32 + 4)) + 'px';
+    });
+    rafId = requestAnimationFrame(drawRealLevels);
+}
+function drawDemoLevels() {
+    demoPhase += 0.16;
+    waveBars.forEach((bar, i) => { bar.style.height = (10 + Math.abs(Math.sin(demoPhase + i*0.5))*18) + 'px'; });
+    rafId = requestAnimationFrame(drawDemoLevels);
+}
+function stopVisualization() {
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    waveBars.forEach(b => b.style.height = '6px');
+}
+
+function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function hasCommand(text, list) {
+    return list.some(cmd => {
+        const re = new RegExp(`(^|[^а-яёa-z])${escapeRegex(cmd)}([^а-яёa-z]|$)`,'i');
+        return re.test(text);
+    });
+}
+function processTranscript(finalText) {
+    const lower = finalText.toLowerCase().trim();
+    const now = Date.now();
+    if (now - lastCommandAt < COMMAND_COOLDOWN) return { action:'ADD' };
+    if (isRecording && hasCommand(lower, CONFIG.commands.PAUSE)) { lastCommandAt = now; pauseDictation(); return { action:'IGNORE' }; }
+    if (!isRecording && hasCommand(lower, CONFIG.commands.RESUME)) { lastCommandAt = now; startDictation(); return { action:'IGNORE' }; }
+    if (hasCommand(lower, CONFIG.commands.FINISH)) { lastCommandAt = now; stopDictation(true); return { action:'IGNORE' }; }
+    return { action:'ADD' };
+}
+function onRecognitionResult(event) {
+    let interim = '', final = '';
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+        const res = event.results[i];
+        if (res.isFinal) final += res[0].transcript + ' ';
+        else interim += res[0].transcript;
+    }
+    if (final) {
+        const result = processTranscript(final);
+        if (result.action === 'ADD') appendText(final);
+    }
+    if (interim) dom.statusMessage.textContent = interim;
+    else if (isRecording) dom.statusMessage.textContent = `Распознано символов: ${dom.rawText.value.length}`;
+}
+function onRecognitionError(event) {
+    const fatal = ['not-allowed','service-not-allowed','audio-capture'];
+    if (fatal.includes(event.error)) {
+        stopDictation(false);
+        toast('error', 'Нет доступа к микрофону', 'Разрешите доступ и обновите страницу.', 6000);
+        return;
+    }
+    if (event.error === 'no-speech') return;
+    if (isRecording) scheduleRestart();
+}
+function onRecognitionEnd() {
+    if (isRecording) scheduleRestart();
+    else if (dom.statusCard.dataset.state !== 'paused') setState('stopped', 'Запись завершена');
+}
+function scheduleRestart() {
+    clearTimeout(restartTimer);
+    restartTimer = setTimeout(() => {
+        if (isRecording && recognition) {
+            try { recognition.start(); } catch (_) { setTimeout(() => isRecording && recognition.start(), 800); }
+        }
+    }, RESTART_DELAY);
+}
+function startDictation() {
+    if (!supported) { toast('error', 'Браузер не поддерживает'); return; }
+    isRecording = true;
+    setState('recording', 'Говорите — текст появляется ниже');
+    vibrate(15);
+    requestWakeLock();
+    try { recognition.start(); } catch (_) {}
+}
+function pauseDictation() {
+    isRecording = false;
+    try { recognition.stop(); } catch (_) {}
+    setState('paused', 'Скажите «продолжить» или нажмите «Начать»');
+    vibrate([10,40,10]);
+    releaseWakeLock();
+}
+function stopDictation(autoParse = false) {
+    isRecording = false;
+    try { recognition.stop(); } catch (_) {}
+    setState('stopped', 'Запись завершена');
+    vibrate([15,60,15]);
+    releaseWakeLock();
+    if (autoParse) setTimeout(() => parseText(), 400);
+}
+function appendText(txt) {
+    const val = dom.rawText.value;
+    const sep = val && !val.endsWith(' ') && !val.endsWith('\n') ? ' ' : '';
+    dom.rawText.value = val + sep + txt;
+    dom.rawText.scrollTop = dom.rawText.scrollHeight;
+    updateCharCount();
+    saveState();
+}
+function updateCharCount() {
+    const n = dom.rawText.value.length;
+    dom.charCount.textContent = n === 0 ? '0 символов' : `${n.toLocaleString('ru-RU')} ${plural(n,'символ','символа','символов')}`;
+}
+function plural(n, one, few, many) {
+    const m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return one;
+    if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
+    return many;
+}
+function clearAll() {
+    if (!confirm('Очистить весь текст и все поля формы?')) return;
+    dom.rawText.value = '';
+    dom.fullDescription.value = '';
+    dom.conclusion.value = '';
+    dom.targets.forEach(el => { el.value = ''; el.classList.remove('auto-filled','field-warn'); });
+    ANATOMY_STRUCTURES.forEach(s => { anatomyState[s.id] = 'normal'; });
+    buildAnatomyGrid();
+    updateCharCount();
+    saveState();
+    vibrate(20);
+    toast('info', 'Всё очищено');
+}
+
+/* ============================================================
+   PARSER
+   ============================================================ */
+function cleanText(text) {
+    let out = text;
+    [...CONFIG.commands.PAUSE, ...CONFIG.commands.RESUME, ...CONFIG.commands.FINISH].forEach(w => {
+        out = out.replace(new RegExp(`(^|[^а-яёa-z])${escapeRegex(w)}([^а-яёa-z]|$)`,'gi'), ' ');
+    });
+    return out.replace(/\s+/g, ' ').trim();
+}
+function extractNumber(text, keywords) {
+    const lower = text.toLowerCase();
+    for (const kw of keywords) {
+        const k = kw.toLowerCase();
+        const idx = lower.indexOf(k);
+        if (idx === -1) continue;
+        const sub = lower.slice(idx + k.length, idx + k.length + 60);
+        const m = sub.match(/(\d+(?:[.,]\d+)?)/);
+        if (m) {
+            const n = parseFloat(m[1].replace(',', '.'));
+            if (!isNaN(n) && n > 0) return n;
+        }
+    }
+    return null;
+}
+function extractContext(text, keywords, maxLen = 60) {
+    for (const kw of keywords) {
+        const k = escapeRegex(kw);
+        const re = new RegExp(`(?:^|[^а-яёa-z])${k}(?:[^.!?;\\n]{1,${maxLen}})`, 'i');
+        const m = re.exec(text);
+        if (m) {
+            let s = m[0].trim();
+            s = s.replace(new RegExp('^.*?' + k + '\\s*[:\\-—]?\\s*','i'), '');
+            s = s.replace(/[.,;:!?\s]+$/, '').trim();
+            if (s.length > 1) return s.charAt(0).toUpperCase() + s.slice(1);
+        }
+    }
+    return null;
+}
+function parseText() {
+    const raw = dom.rawText.value;
+    if (!raw.trim()) { toast('warn', 'Нет текста', 'Сначала продиктуйте данные'); return false; }
+    const clean = cleanText(raw);
+    dom.fullDescription.value = clean;
+    ANATOMY_STRUCTURES.forEach(s => {
+        const kws = s.keywords.split(',').map(x => x.trim());
+        if (kws.some(k => clean.toLowerCase().includes(k.toLowerCase())) && anatomyState[s.id] === 'not-assessed') {
+            anatomyState[s.id] = 'normal';
+        }
+    });
+    buildAnatomyGrid();
+    const conclM = /(?:заключение|диагноз|вывод)\s*[:\-—]?\s*([^\n]+)/i.exec(raw);
+    if (conclM) dom.conclusion.value = conclM[1].trim().replace(/[.\s]+$/, '');
+    let filled = 0;
+    dom.targets.forEach(el => {
+        const kws = (el.dataset.keywords || '').split(',').map(s => s.trim()).filter(Boolean);
+        if (!kws.length) return;
+        const value = el.type === 'number' ? extractNumber(clean, kws) : extractContext(clean, kws);
+        if (value !== null && value !== '' && value !== 0 && !(typeof value === 'number' && isNaN(value))) {
+            el.value = value; el.classList.add('auto-filled'); filled++;
+        } else { el.value = ''; el.classList.remove('auto-filled'); }
+    });
+    const anat = getAnatomySummary();
+    if (anat.changed.length || anat.notAssessed.length) {
+        let s = '\n\nАнатомия плода: ';
+        if (anat.changed.length) s += 'выявлены изменения — ' + anat.changed.join(', ') + '. ';
+        if (anat.notAssessed.length) s += 'не удалось оценить — ' + anat.notAssessed.join(', ') + '.';
+        dom.fullDescription.value += s;
+    }
+    updateRefHints();
+    saveState();
+    vibrate(filled ? 20 : [10,30,10]);
+    toast('success', 'Разбор завершён', filled ? `Заполнено полей: ${filled}` : 'Совпадений не найдено', 3000);
+    return true;
+}
+
+/* ============================================================
+   AUTOSAVE
+   ============================================================ */
+let saveTimer = null;
+function showSaveIndicator(mode) {
+    dom.saveIndicator.classList.remove('saving','error');
+    if (mode === 'saving') { dom.saveIndicator.classList.add('saving'); dom.saveText.textContent = 'Сохранение…'; }
+    else if (mode === 'error') { dom.saveIndicator.classList.add('error'); dom.saveText.textContent = 'Ошибка'; }
+    else {
+        const t = new Date().toLocaleTimeString('ru-RU', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+        dom.saveText.textContent = 'Сохранено ' + t;
+    }
+}
+function saveState() {
+    showSaveIndicator('saving');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+        try {
+            const data = {
+                profile: dom.body.dataset.profile || 'p2',
+                raw: dom.rawText.value,
+                fullDescription: dom.fullDescription.value,
+                conclusion: dom.conclusion.value,
+                examDate: dom.examDate.value,
+                anatomy: { ...anatomyState },
+                fields: {},
+                savedAt: Date.now()
+            };
+            dom.targets.forEach(el => { if (el.value) data.fields[el.id] = el.value; });
+            const extraIds = ['examNumber','patientName','patientAge','lastMenstruation','gestAge','gestAgeFirstTrim',
+                'examType','fetusCount','sizeMatch','efwPercentile','efwPercentile3','otherBones','presentation3',
+                'heartRate3','piLeft','piRight','cervix3','doppler3','dopplerNotes3','internalOs3','visualizationReason',
+                'defectsDescription','fetalPeculiarities','placentaGrade2','placentaGrade3','amnioticFluid2','amnioticFluid3',
+                'cordInsertion','cordInsertion2','adnexa','nasalBone','tricuspid','ductusVenosus','markersComment',
+                'congenitalDefects','visualization','placentaEdge','umbilicalVessels2'];
+            extraIds.forEach(id => { const el = $(id); if (el && el.value) data.fields[id] = el.value; });
+            localStorage.setItem(CONFIG.storageKey, JSON.stringify(data));
+            showSaveIndicator('saved');
+        } catch (_) { showSaveIndicator('error'); }
+    }, 400);
+}
+function loadState() {
+    try {
+        const raw = localStorage.getItem(CONFIG.storageKey);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        if (data.profile && PROFILES[data.profile]) setProfile(data.profile);
+        if (data.raw) { dom.rawText.value = data.raw; updateCharCount(); }
+        if (data.fullDescription) dom.fullDescription.value = data.fullDescription;
+        if (data.conclusion) dom.conclusion.value = data.conclusion;
+        if (data.examDate) dom.examDate.value = data.examDate;
+        if (data.anatomy) {
+            Object.entries(data.anatomy).forEach(([id,state]) => { anatomyState[id] = state; });
+            buildAnatomyGrid();
+        }
+        if (data.fields) {
+            Object.entries(data.fields).forEach(([id,val]) => {
+                const el = $(id);
+                if (el) {
+                    el.value = val;
+                    if (el.classList.contains('auto-target')) el.classList.add('auto-filled');
+                }
+            });
+        }
+        calcGestAge();
+        updateRefHints();
+        if (data.savedAt) {
+            const t = new Date(data.savedAt).toLocaleTimeString('ru-RU', { hour:'2-digit', minute:'2-digit' });
+            dom.saveText.textContent = 'Сохранено ' + t;
+        }
+    } catch (_) {}
+}
+
+/* ============================================================
+   DOC EXPORT
+   ============================================================ */
+function v(id) { const el = $(id); return el ? (el.value || '').trim() : ''; }
+function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fieldRows(pairs) { return pairs.filter(([,val]) => val && val !== '' && val !== '0'); }
+
+function buildWordHtml() {
+    const profile = dom.body.dataset.profile || 'p2';
+    const profileText = {
+        p1:'Скрининговое УЗИ в 11–14 недель беременности (Приложение № 7)',
+        p2:'Скрининговое УЗИ в 19–21 неделю беременности (Приложение № 9)',
+        p3:'УЗИ в 30–34 недели беременности (Приложение № 3, обменная карта 113/у-20)'
+    }[profile] || '';
+
+    const fio = v('patientName') || '—';
+    const age = v('patientAge'), num = v('examNumber'), date = v('examDate');
+    const lmp = v('lastMenstruation'), gest = v('gestAge'), gestFirst = v('gestAgeFirstTrim');
+    const examType = v('examType'), fetusCount = v('fetusCount') || '1';
+    const concl = v('conclusion'), fullDesc = v('fullDescription');
+
+    const cellStyle = 'border:1px solid #000;padding:4pt 8pt;vertical-align:top;font-size:11pt';
+    const labelStyle = 'border:1px solid #000;padding:4pt 8pt;background:#f0f0f0;font-weight:bold;width:38%;font-size:11pt;vertical-align:top';
+    const sectionTitleStyle = 'background:#e6e6e6;border:1px solid #000;padding:5pt 8pt;font-weight:bold;font-size:11pt;margin-top:0';
+
+    function twoColTable(rows) {
+        if (!rows.length) return '<p style="margin:4pt 0;font-style:italic;color:#666">— нет данных —</p>';
+        return `<table style="border-collapse:collapse;width:100%;margin:2pt 0 6pt 0">${rows.map(([k,val]) =>
+            `<tr><td style="${labelStyle}">${esc(k)}</td><td style="${cellStyle}">${esc(val)}</td></tr>`).join('')}</table>`;
+    }
+
+    function anatomyPrintTable() {
+        const cellH = 'border:1px solid #000;padding:3pt 6pt;font-size:10pt';
+        const cellHC = 'border:1px solid #000;padding:3pt 6pt;font-size:10pt;text-align:center;width:50pt';
+        const cellHH = 'border:1px solid #000;padding:3pt 6pt;font-size:10pt;text-align:center;width:50pt;background:#e6e6e6;font-weight:bold';
+        const boxNormal = '<span style="display:inline-block;width:10pt;height:10pt;border:1px solid #000;background:#000;vertical-align:middle"></span>';
+        const boxChanged = '<span style="display:inline-block;width:10pt;height:10pt;border:1px solid #000;background:#c00;vertical-align:middle"></span>';
+        const boxNA = '<span style="display:inline-block;width:10pt;height:10pt;border:1px solid #000;background:#f59e0b;vertical-align:middle"></span>';
+        const boxEmpty = '<span style="display:inline-block;width:10pt;height:10pt;border:1px solid #000;background:#fff;vertical-align:middle"></span>';
+
+        let html = `<table style="border-collapse:collapse;width:100%;margin:4pt 0 6pt 0">
+            <thead><tr>
+                <th style="${cellHH};text-align:left;width:auto">Анатомическая структура</th>
+                <th style="${cellHH}">Норма</th>
+                <th style="${cellHH}">Измен.</th>
+                <th style="${cellHH}">Не оц.</th>
+            </tr></thead><tbody>`;
+
+        ANATOMY_STRUCTURES.forEach(s => {
+            const st = anatomyState[s.id] || 'normal';
+            html += `<tr>
+                <td style="${cellH}">${esc(s.label)}</td>
+                <td style="${cellHC}">${st === 'normal' ? boxNormal : boxEmpty}</td>
+                <td style="${cellHC}">${st === 'changed' ? boxChanged : boxEmpty}</td>
+                <td style="${cellHC}">${st === 'not-assessed' ? boxNA : boxEmpty}</td>
+            </tr>`;
+        });
+
+        html += '</tbody></table>';
+        return html;
+    }
+
+    const patientRows = fieldRows([
+        ['Номер исследования', num],
+        ['Дата исследования', date ? new Date(date).toLocaleDateString('ru-RU') : ''],
+        ['Ф.И.О. беременной', fio === '—' ? '' : fio],
+        ['Возраст', age ? age + ' лет' : ''],
+        ['Первый день последней менструации', lmp ? new Date(lmp).toLocaleDateString('ru-RU') : ''],
+        ['Срок беременности', gest],
+        ['Срок по УЗИ в I триместре', gestFirst],
+        ['Вид исследования', examType],
+        ['Количество плодов', fetusCount]
+    ]);
+
+    const fetoRows = fieldRows([
+        ['БПР, мм', v('bpd')],
+        ['ОГ, мм', v('hc')],
+        ['ОЖ, мм', v('ac')],
+        ['ДБ, мм', v('fl')],
+        ['Другие кости', v('otherBones')],
+        ['Соответствие сроку', v('sizeMatch')],
+        ['Предполагаемая масса, г', v('efw') || v('efw3')],
+        ['Процентиль массы', v('efwPercentile') || v('efwPercentile3')]
+    ]);
+
+    const extraRows = fieldRows(profile === 'p1' ? [
+        ['Хорион (плацента)', v('chorionLocation')],
+        ['Пуповина — сосуды', v('umbilicalVessels')],
+        ['Место прикрепления пуповины', v('cordInsertion')],
+        ['Придатки, стенки матки', v('adnexa')]
+    ] : profile === 'p2' ? [
+        ['Плацента расположена', v('placentaLocation2')],
+        ['Толщина плаценты, мм', v('placentaThickness2')],
+        ['Степень зрелости', v('placentaGrade2')],
+        ['Нижний край плаценты', v('placentaEdge')],
+        ['Околоплодные воды', v('amnioticFluid2')],
+        ['ИАЖ, мм', v('afIndex2')],
+        ['Пуповина — сосуды', v('umbilicalVessels2')],
+        ['Место прикрепления пуповины', v('cordInsertion2')]
+    ] : [
+        ['Плацента расположена', v('placentaLocation3')],
+        ['Толщина плаценты, мм', v('placentaThickness3')],
+        ['Степень зрелости', v('placentaGrade3')],
+        ['Околоплодные воды', v('amnioticFluid3')],
+        ['ИАЖ, мм', v('afIndex3')]
+    ]);
+
+    let trimesterSpecific = '';
+    if (profile === 'p1') {
+        trimesterSpecific = `<h3 style="${sectionTitleStyle}">Специфические маркеры I триместра</h3>${twoColTable(fieldRows([
+            ['КТР, мм', v('crl')], ['ТВП, мм', v('nt')],
+            ['Диаметр плодного яйца, мм', v('gestSac')],
+            ['ЧСС плода, уд/мин', v('heartRate')],
+            ['Носовая кость', v('nasalBone')],
+            ['Трикуспидальная регургитация', v('tricuspid')],
+            ['ПИ в венозном протоке', v('ductusVenosus')],
+            ['Комментарии', v('markersComment')]
+        ]))}`;
+    }
+    if (profile === 'p2') {
+        trimesterSpecific = `<h3 style="${sectionTitleStyle}">Шейка матки, маточные артерии</h3>${twoColTable(fieldRows([
+            ['Цервикометрия, мм', v('cervix')],
+            ['ПИ в маточных артериях (слева)', v('piLeft')],
+            ['ПИ в маточных артериях (справа)', v('piRight')]
+        ]))}`;
+    }
+    if (profile === 'p3') {
+        trimesterSpecific = `<h3 style="${sectionTitleStyle}">III триместр — дополнительно</h3>${twoColTable(fieldRows([
+            ['Предлежание', v('presentation3')],
+            ['Сердцебиение плода, уд/мин', v('heartRate3')],
+            ['УЗИ-цервикометрия', v('cervix3')],
+            ['Внутренний зев', v('internalOs3')],
+            ['Допплерография маточно-плацентарного кровотока', v('doppler3')],
+            ['Особенности', v('dopplerNotes3')]
+        ]))}`;
+    }
+
+    const vprRows = fieldRows([
+        ['ВПР', v('congenitalDefects')],
+        ['Описание выявленных изменений', v('defectsDescription')],
+        ['Особенности строения плода', v('fetalPeculiarities')],
+        ['Визуализация', v('visualization')],
+        ['Причина затруднения', v('visualizationReason')]
+    ]);
+
+    return `<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta charset="utf-8">
+<title>${esc(num || 'Протокол УЗИ')}</title>
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+@page { size: A4; margin: 2cm 1.5cm 2cm 2.5cm; }
+body { font-family: 'Times New Roman', Times, serif; font-size: 12pt; color: #000; line-height: 1.4; }
+h1 { font-size: 14pt; text-align: center; margin: 0 0 4pt 0; text-transform: uppercase; }
+.subtitle { text-align: center; font-size: 10pt; margin: 0 0 2pt 0; }
+.legal { text-align: center; font-size: 9pt; color: #555; margin: 0 0 14pt 0; font-style: italic; }
+.sig-block { margin-top: 24pt; page-break-inside: avoid; }
+.sig-line { border-bottom: 1px solid #000; display: inline-block; width: 220pt; height: 14pt; }
+</style>
+</head>
+<body>
+
+<h1>Протокол ультразвукового исследования</h1>
+<p class="subtitle">${esc(profileText)}</p>
+<p class="legal">к приказу Министерства здравоохранения Российской Федерации от 20 октября 2020 г. № 1130н</p>
+
+<h3 style="${sectionTitleStyle}">Данные пациентки</h3>
+${twoColTable(patientRows)}
+
+<h3 style="${sectionTitleStyle}">Фетометрия</h3>
+${twoColTable(fetoRows)}
+
+<h3 style="${sectionTitleStyle}">Анатомия плода</h3>
+${anatomyPrintTable()}
+
+${trimesterSpecific}
+
+<h3 style="${sectionTitleStyle}">Плацента, пуповина, воды</h3>
+${twoColTable(extraRows)}
+
+<h3 style="${sectionTitleStyle}">Врожденные пороки развития, визуализация</h3>
+${twoColTable(vprRows)}
+
+<h3 style="${sectionTitleStyle}">Заключение</h3>
+<p style="border:1px solid #000;padding:8pt;margin:4pt 0 10pt 0;white-space:pre-wrap">${esc(concl) || '<i style="color:#666">— не заполнено —</i>'}</p>
+
+${fullDesc ? `<h3 style="${sectionTitleStyle}">Подробное УЗ-описание</h3><p style="border:1px solid #000;padding:8pt;margin:4pt 0 10pt 0;white-space:pre-wrap;font-size:11pt">${esc(fullDesc)}</p>` : ''}
+
+<div class="sig-block">
+    <p style="margin:0 0 4pt 0">Врач ультразвуковой диагностики:</p>
+    <p style="margin:0 0 12pt 0"><span class="sig-line"></span>&nbsp;&nbsp;/ ${esc(CONFIG.doctor)} /</p>
+    <p style="margin:0">Дата выдачи: ${new Date().toLocaleDateString('ru-RU')}</p>
+</div>
+
+</body>
+</html>`;
+}
+
+function exportDoc() {
+    withValidation('doc', () => {
+        try {
+            const html = buildWordHtml();
+            const blob = new Blob(['\ufeff', html], { type:'application/msword;charset=utf-8' });
+            const num = v('examNumber') || 'protokol';
+            const date = v('examDate') || new Date().toISOString().slice(0,10);
+            const profile = { p1:'I-trimestr', p2:'II-trimestr', p3:'III-trimestr' }[dom.body.dataset.profile] || 'skrin';
+            const filename = `${num}_${profile}_${date}.doc`;
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = filename;
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 5000);
+            vibrate(20);
+            toast('success', 'DOC готов', filename + ' — откройте в Word', 4500);
+        } catch (e) {
+            console.error(e);
+            toast('error', 'Ошибка экспорта', 'Попробуйте PDF', 5000);
+        }
+    });
+}
+
+async function copyFormatted() {
+    withValidation('copy', async () => {
+        try {
+            const full = buildWordHtml();
+            const bodyMatch = full.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+            const bodyHtml = bodyMatch ? bodyMatch[1] : full;
+            const styleBlock = `
+                <style>
+                    body { font-family: 'Times New Roman', serif; font-size: 12pt; }
+                    table { border-collapse: collapse; width: 100%; }
+                    td, th { border: 1px solid #000; padding: 4pt 8pt; font-size: 11pt; }
+                    h1 { font-size: 14pt; text-align: center; }
+                    h3 { font-size: 11pt; margin: 10pt 0 4pt 0; }
+                </style>`;
+            const htmlForClipboard = `<div>${styleBlock}${bodyHtml}</div>`;
+            const plain = bodyHtml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+
+            if (navigator.clipboard && window.ClipboardItem) {
+                try {
+                    const item = new ClipboardItem({
+                        'text/html': new Blob([htmlForClipboard], { type:'text/html' }),
+                        'text/plain': new Blob([plain], { type:'text/plain' })
+                    });
+                    await navigator.clipboard.write([item]);
+                    vibrate(20);
+                    flashCopied();
+                    toast('success', 'Отчёт скопирован', 'Откройте Word и нажмите Ctrl+V', 5500);
+                    return;
+                } catch (e) { console.warn('ClipboardItem failed:', e); }
+            }
+            const temp = document.createElement('div');
+            temp.contentEditable = 'true';
+            temp.style.position = 'fixed';
+            temp.style.left = '-10000px';
+            temp.innerHTML = htmlForClipboard;
+            document.body.appendChild(temp);
+            const range = document.createRange();
+            range.selectNodeContents(temp);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            const ok = document.execCommand('copy');
+            sel.removeAllRanges();
+            document.body.removeChild(temp);
+            if (ok) {
+                vibrate(20);
+                flashCopied();
+                toast('success', 'Отчёт скопирован', 'Вставьте в Word через Ctrl+V', 5000);
+            } else throw new Error('execCommand failed');
+        } catch (e) {
+            console.error(e);
+            toast('error', 'Не удалось скопировать', 'Скачайте DOC-файл вручную', 5500);
+        }
+    });
+}
+
+function flashCopied() {
+    const btn = dom.copyBtn;
+    if (!btn) return;
+    if (btn.dataset.originalHtml === undefined) btn.dataset.originalHtml = btn.innerHTML;
+    btn.classList.add('copy-success');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Скоп.';
+    setTimeout(() => { btn.classList.remove('copy-success'); btn.innerHTML = btn.dataset.originalHtml; }, 2200);
+}
+
+/* ============================================================
+   PDF / SHARE
+   ============================================================ */
+function waitForHtml2pdf(timeout = 5000) {
+    return new Promise(resolve => {
+        if (window.html2pdf) return resolve(true);
+        const start = Date.now();
+        const check = () => {
+            if (window.html2pdf) return resolve(true);
+            if (Date.now() - start > timeout) return resolve(false);
+            setTimeout(check, 100);
+        };
+        check();
+    });
+}
+function getPdfFilename() {
+    const num = $('examNumber').value || 'protokol';
+    const date = dom.examDate.value || new Date().toISOString().slice(0,10);
+    const profile = { p1:'I-trimestr', p2:'II-trimestr', p3:'III-trimestr' }[dom.body.dataset.profile] || 'skrining';
+    return `${num}_${profile}_${date}.pdf`;
+}
+function buildReportClone() {
+    const clone = dom.reportArea.cloneNode(true);
+    clone.classList.add('pdf-export-mode');
+    clone.querySelectorAll('.section.collapsed').forEach(s => s.classList.remove('collapsed'));
+    const origInputs = dom.reportArea.querySelectorAll('input, textarea, select');
+    const clonedInputs = clone.querySelectorAll('input, textarea, select');
+    clonedInputs.forEach((el, idx) => {
+        const orig = origInputs[idx];
+        if (!orig) return;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.setAttribute('value', orig.value);
+            el.textContent = orig.value;
+            el.value = orig.value;
+        } else if (el.tagName === 'SELECT') {
+            el.value = orig.value;
+            Array.from(el.options).forEach(o => {
+                if (o.value === orig.value) o.setAttribute('selected','selected');
+                else o.removeAttribute('selected');
+            });
+        }
+    });
+    // Rebuild print grid with fresh state
+    const printBody = clone.querySelector('#anatomyPrintBody');
+    if (printBody) {
+        printBody.innerHTML = '';
+        ANATOMY_STRUCTURES.forEach(s => {
+            const st = anatomyState[s.id] || 'normal';
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${s.label}</td>
+                <td class="cell-status"><span class="box ${st === 'normal' ? 'marked' : ''}"></span></td>
+                <td class="cell-status"><span class="box ${st === 'changed' ? 'marked changed' : ''}"></span></td>
+                <td class="cell-status"><span class="box ${st === 'not-assessed' ? 'marked not-assessed' : ''}"></span></td>`;
+            printBody.appendChild(tr);
+        });
+    }
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'background:#fff;padding:20px;color:#000;width:210mm;';
+    wrap.appendChild(clone);
+    return wrap;
+}
+async function generatePdfBlob() {
+    const ready = await waitForHtml2pdf(5000);
+    if (!ready) return null;
+    const clone = buildReportClone();
+    clone.style.position = 'fixed';
+    clone.style.left = '-10000px';
+    clone.style.top = '0';
+    document.body.appendChild(clone);
+    try {
+        const opt = {
+            margin: 0,
+            filename: getPdfFilename(),
+            image: { type:'jpeg', quality:0.96 },
+            html2canvas: { scale:2, useCORS:true, backgroundColor:'#ffffff', logging:false, windowWidth: clone.offsetWidth },
+            jsPDF: { unit:'mm', format:'a4', orientation:'portrait', compress:true },
+            pagebreak: { mode:['css','legacy'], avoid:['.section','.signatures','.anatomy-print-table'] }
+        };
+        return await window.html2pdf().set(opt).from(clone).outputPdf('blob');
+    } finally {
+        document.body.removeChild(clone);
+    }
+}
+async function exportPdf() {
+    withValidation('pdf', async () => {
+        setBusy(dom.pdfBtn, true);
+        setBusy(dom.pdfBtn2, true);
+        showLoading('Готовим PDF…', 'Это может занять несколько секунд');
+        try {
+            const blob = await generatePdfBlob();
+            if (blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url; a.download = getPdfFilename();
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                setTimeout(() => URL.revokeObjectURL(url), 5000);
+                vibrate(20);
+                toast('success', 'PDF готов', a.download, 4000);
+            } else {
+                toast('info', 'Открываю диалог печати', 'Выберите «Сохранить как PDF»', 5000);
+                setTimeout(() => window.print(), 300);
+            }
+        } catch (e) {
+            console.error(e);
+            toast('error', 'Не удалось создать PDF', 'Открываю диалог печати', 5000);
+            setTimeout(() => window.print(), 500);
+        } finally {
+            hideLoading();
+            setBusy(dom.pdfBtn, false);
+            setBusy(dom.pdfBtn2, false);
+        }
+    });
+}
+function buildShareText() {
+    const name = $('patientName').value || 'Пациентка';
+    const num = $('examNumber').value || '';
+    const date = dom.examDate.value || '';
+    const profileLabel = { p1:'I триместр (11–14 нед.)', p2:'II триместр (19–21 нед.)', p3:'III триместр (30–34 нед.)' }[dom.body.dataset.profile] || '';
+    const concl = dom.conclusion.value.trim();
+    let text = `УЗИ-протокол · ${profileLabel}\nПациентка: ${name}\n`;
+    if (num) text += `№ ${num}\n`;
+    if (date) text += `Дата: ${new Date(date).toLocaleDateString('ru-RU')}\n`;
+    if (concl) text += `\nЗаключение: ${concl}\n`;
+    text += `\nВрач: ${CONFIG.doctor}`;
+    return text;
+}
+async function shareReport() {
+    withValidation('share', async () => {
+        setBusy(dom.shareBtn, true);
+        setBusy(dom.shareBtn2, true);
+        showLoading('Готовим отчёт…', 'Создаём PDF для отправки');
+        try {
+            const blob = await generatePdfBlob();
+            const filename = getPdfFilename();
+            const shareText = buildShareText();
+            if (blob && ENV.canShareFiles) {
+                const file = new File([blob], filename, { type:'application/pdf' });
+                try {
+                    await navigator.share({ files:[file], title:'УЗИ-протокол · Приказ 1130н', text:shareText });
+                    vibrate(20); hideLoading();
+                    setBusy(dom.shareBtn, false); setBusy(dom.shareBtn2, false);
+                    return;
+                } catch (err) {
+                    if (err && err.name === 'AbortError') { hideLoading(); setBusy(dom.shareBtn, false); setBusy(dom.shareBtn2, false); return; }
+                    console.warn('Share failed:', err);
+                }
+            }
+            if (blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url; a.download = filename;
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                setTimeout(() => URL.revokeObjectURL(url), 5000);
+            }
+            let copied = false;
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(shareText); copied = true;
+                }
+            } catch (_) {}
+            hideLoading();
+            vibrate(20);
+            toast(copied ? 'success' : 'info', 'PDF скачан' + (copied ? ' + текст скопирован' : ''), 'Отправьте файл вручную', 6000);
+        } catch (e) {
+            console.error(e);
+            hideLoading();
+            toast('error', 'Не удалось поделиться', 'Попробуйте скачать PDF вручную', 5000);
+        } finally {
+            setBusy(dom.shareBtn, false); setBusy(dom.shareBtn2, false);
+        }
+    });
+}
+
+/* ============================================================
+   UI HELPERS
+   ============================================================ */
+function showLoading(t, s) { dom.loadingTitle.textContent = t || 'Подождите…'; dom.loadingText.textContent = s || ''; dom.loadingOverlay.classList.add('active'); }
+function hideLoading() { dom.loadingOverlay.classList.remove('active'); }
+function setBusy(btn, busy) {
+    if (!btn) return;
+    if (busy) { btn.classList.add('busy'); btn.disabled = true; }
+    else { btn.classList.remove('busy'); btn.disabled = false; }
+}
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+dom.startBtn.addEventListener('click', startDictation);
+dom.pauseBtn.addEventListener('click', pauseDictation);
+dom.stopBtn.addEventListener('click', () => stopDictation(false));
+dom.clearBtn.addEventListener('click', clearAll);
+dom.parseBtn.addEventListener('click', parseText);
+dom.snapshotBtn.addEventListener('click', saveSnapshot);
+dom.pdfBtn.addEventListener('click', exportPdf);
+dom.pdfBtn2.addEventListener('click', exportPdf);
+dom.shareBtn.addEventListener('click', shareReport);
+dom.shareBtn2.addEventListener('click', shareReport);
+dom.docBtn.addEventListener('click', exportDoc);
+dom.docBtn2.addEventListener('click', exportDoc);
+dom.copyBtn.addEventListener('click', copyFormatted);
+dom.printBtn.addEventListener('click', () => withValidation('print', () => window.print()));
+
+dom.rawText.addEventListener('input', () => { updateCharCount(); saveState(); });
+dom.fullDescription.addEventListener('input', saveState);
+dom.conclusion.addEventListener('input', saveState);
+dom.examDate.addEventListener('input', saveState);
+dom.targets.forEach(el => {
+    el.addEventListener('input', () => { el.classList.remove('auto-filled'); saveState(); });
+    el.addEventListener('change', saveState);
+});
+dom.reportArea.addEventListener('change', saveState);
+dom.reportArea.addEventListener('input', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') saveState();
+});
+
+dom.sections.forEach(sec => {
+    const head = sec.querySelector('[data-toggle]');
+    if (!head) return;
+    head.addEventListener('click', () => sec.classList.toggle('collapsed'));
+});
+
+document.addEventListener('keydown', (e) => {
+    if (ENV.isMobile) return;
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        isRecording ? pauseDictation() : startDictation();
+    }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
+        e.preventDefault();
+        withValidation('print', () => window.print());
+    }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        exportPdf();
+    }
+});
+
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && isRecording) requestWakeLock();
+});
+window.addEventListener('beforeunload', (e) => {
+    if (isRecording) { e.preventDefault(); e.returnValue = ''; }
+});
+
+/* ============================================================
+   PWA
+   ============================================================ */
+function setupPWA() {
+    // Иконки и манифест подключены статически в <head>.
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
+}
+setupPWA();
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+if (!supported) {
+    dom.statusMessage.textContent = 'Web Speech API не поддерживается';
+    dom.topbarStatusText.textContent = 'Нет API';
+    dom.statusCard.dataset.state = 'stopped';
+    dom.topbarStatus.dataset.state = 'stopped';
+    dom.startBtn.disabled = true;
+    toast('error', 'Голосовой ввод недоступен', 'Используйте Chrome, Edge или Safari.', 8000);
+} else if (ENV.isIOS) {
+    setTimeout(() => {
+        toast('info', 'Совет для iOS', 'Если запись прервётся — нажмите «Начать» снова.', 7000);
+    }, 1200);
+}
+
+loadState();
+if (!dom.body.dataset.profile) setProfile('p2');
+updateCharCount();
+updateHistoryBadge();
+calcGestAge();
+updateRefHints();
+
+if (!localStorage.getItem(CONFIG.storageKey + ':seen')) {
+    setTimeout(() => {
+        toast('info', 'Что нового',
+            'Печатная сетка анатомии · Шаблоны · История · DOC · Copy · PWA', 7000);
+        try { localStorage.setItem(CONFIG.storageKey + ':seen', '1'); } catch (_) {}
+    }, 800);
+}
+
+window.UZI = {
+    parseText, startDictation, stopDictation, pauseDictation,
+    setProfile, exportPdf, exportDoc, copyFormatted, shareReport,
+    saveState, saveSnapshot, historyStore, calcGestAge, updateRefHints, ENV
+};
+})();
+</script>
+</body>
+</html>

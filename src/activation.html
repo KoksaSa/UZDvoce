@@ -1,0 +1,33 @@
+<!-- Модальное окно активации лицензии (вставляется сборщиком перед .toast-wrap) -->
+<div class="modal" id="licModal">
+    <div class="modal-card lic-modal-card">
+        <div class="modal-head">
+            <h3>Активация программы</h3>
+            <button class="modal-close" data-close="licModal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>
+        <div class="modal-body">
+            <div class="lic-status-badge" id="licStatusBadge">Проверка…</div>
+            <p class="lic-lead">Для получения постоянного ключа отправьте разработчику <b>ID этого устройства</b>. Ключ подходит только к вашим устройствам и работает без интернета.</p>
+
+            <div class="lic-step">1. Ваш ID устройства</div>
+            <div class="lic-device-row">
+                <div class="lic-device" id="licDeviceId">—</div>
+                <button type="button" class="lic-copy" id="licCopy" title="Скопировать ID" aria-label="Скопировать ID">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+            </div>
+            <p class="lic-note">Скопируйте этот ID и отправьте его вместе с ФИО на адрес разработчика. В ответ вы получите ключ активации.</p>
+
+            <div class="lic-divider"></div>
+
+            <div class="lic-step">2. Вставьте ключ активации</div>
+            <textarea id="licToken" placeholder="UZI1-…" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+            <div class="lic-message" id="licMessage"></div>
+        </div>
+        <div class="modal-foot">
+            <button type="button" class="btn btn-ghost" id="licDeactivate" style="display:none">Снять активацию</button>
+            <button type="button" class="btn btn-ghost" data-close="licModal">Закрыть</button>
+            <button type="button" class="btn btn-primary" id="licActivate">Активировать</button>
+        </div>
+    </div>
+</div>

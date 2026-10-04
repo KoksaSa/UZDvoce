@@ -1,0 +1,63 @@
+/* ============================================================================
+ *  Стили модуля лицензирования. Используют токены темы приложения.
+ * ========================================================================== */
+
+/* — Чип статуса в шапке — */
+.lic-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;
+    border:1px solid var(--border);background:var(--surface-2);color:var(--text-muted);
+    font-family:inherit;font-size:.72rem;font-weight:700;letter-spacing:.02em;white-space:nowrap;
+    cursor:pointer;transition:all var(--transition);min-height:36px}
+.lic-chip::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--text-faint);flex-shrink:0}
+.lic-chip.is-active{color:var(--success);border-color:rgba(16,185,129,.45)}
+.lic-chip.is-active::before{background:var(--success)}
+.lic-chip.is-trial{color:var(--warning);border-color:rgba(245,158,11,.5)}
+.lic-chip.is-trial::before{background:var(--warning);animation:pulseDot 1.6s infinite}
+.lic-chip.is-expired{color:var(--danger);border-color:rgba(239,68,68,.5)}
+.lic-chip.is-expired::before{background:var(--danger)}
+@media(hover:hover){.lic-chip:hover{border-color:var(--brand-1);color:var(--brand-1)}}
+.lic-chip:active{transform:scale(.97)}
+
+/* — Баннер снизу при истечении лицензии — */
+.lic-banner{position:fixed;left:0;right:0;bottom:0;z-index:8000;display:none;align-items:center;gap:14px;
+    justify-content:center;flex-wrap:wrap;padding:12px calc(16px + var(--safe-right)) calc(12px + var(--safe-bottom)) calc(16px + var(--safe-left));
+    background:linear-gradient(135deg,#ef4444 0%,#dc2626 100%);color:#fff;
+    box-shadow:0 -8px 24px rgba(239,68,68,.35)}
+.lic-banner.visible{display:flex}
+.lic-banner-text{font-size:.88rem;font-weight:600;text-align:center}
+.lic-banner-btn{background:#fff!important;color:#dc2626!important;box-shadow:none!important;
+    border:none;font-weight:800;min-height:38px;padding:8px 18px}
+@media(max-width:640px){.lic-banner{padding-bottom:calc(96px + var(--safe-bottom))}}
+
+/* — Модальное окно активации — */
+.lic-modal-card{max-width:560px}
+.lic-lead{font-size:.86rem;color:var(--text-muted);line-height:1.55;margin:0 0 14px}
+.lic-step{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--text-faint);margin:16px 0 7px}
+.lic-device-row{display:flex;align-items:stretch;gap:8px}
+.lic-device{flex:1;display:flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:var(--radius);
+    background:var(--surface-2);border:1.5px dashed var(--border-strong);
+    font-family:var(--font-mono);font-size:1.05rem;font-weight:700;letter-spacing:.09em;color:var(--brand-1);
+    user-select:all;-webkit-user-select:all;overflow:auto;white-space:nowrap}
+.lic-copy{min-width:44px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface-2);
+    color:var(--text-muted);cursor:pointer;display:grid;place-items:center;transition:all var(--transition)}
+.lic-copy:hover{color:var(--brand-1);border-color:var(--brand-1)}
+.lic-copy svg{width:17px;height:17px}
+#licToken{width:100%;min-height:96px;padding:12px 14px;border-radius:var(--radius);border:1.5px solid var(--border);
+    background:var(--surface-2);color:var(--text);font-family:var(--font-mono);font-size:.82rem;line-height:1.5;
+    resize:vertical;outline:none;word-break:break-all}
+#licToken:focus{border-color:var(--brand-1);background:var(--surface);box-shadow:var(--shadow-glow)}
+.lic-message{font-size:.82rem;margin:10px 0 0;min-height:18px;line-height:1.45}
+.lic-message.success{color:var(--success);font-weight:600}
+.lic-message.error{color:var(--danger);font-weight:600}
+.lic-status-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;
+    font-size:.76rem;font-weight:700;margin-bottom:14px;background:var(--surface-2);border:1px solid var(--border);
+    color:var(--text-muted)}
+.lic-status-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--text-faint)}
+.lic-status-badge.active{color:var(--success);border-color:rgba(16,185,129,.45)}
+.lic-status-badge.active::before{background:var(--success)}
+.lic-status-badge.trial{color:var(--warning);border-color:rgba(245,158,11,.5)}
+.lic-status-badge.trial::before{background:var(--warning)}
+.lic-status-badge.expired,.lic-status-badge.none{color:var(--danger);border-color:rgba(239,68,68,.5)}
+.lic-status-badge.expired::before,.lic-status-badge.none::before{background:var(--danger)}
+.lic-note{font-size:.76rem;color:var(--text-faint);margin:12px 0 0;line-height:1.5}
+.lic-divider{height:1px;background:var(--border);margin:16px 0}

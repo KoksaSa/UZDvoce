@@ -1,0 +1,11 @@
+{
+  "alg": "ECDSA",
+  "crv": "P-256",
+  "created": "2026-10-04T08:02:44.893Z",
+  "jwk": {
+    "kty": "EC",
+    "x": "21qpHVOOctac9lJ0EVIUbzKQoX3JjDkV-7774kdicGU",
+    "y": "--DqTwhjaEBwFZk2ZyrxjbJ5-YVG0CyXasGx505ofAA",
+    "crv": "P-256"
+  }
+}

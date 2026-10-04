@@ -1,0 +1,20 @@
+{
+  "name": "uzi-screening-1130n",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ГолосУЗИ (UZD Voce) — голосовой протокол скринингового УЗИ по приказу МЗ РФ № 1130н, с лицензированием",
+  "type": "module",
+  "scripts": {
+    "keys:init": "node tools/keygen.mjs init",
+    "key": "node tools/keygen.mjs issue",
+    "build": "node tools/build.mjs",
+    "build:dev": "node tools/build.mjs --dev",
+    "test": "node tools/verify.mjs",
+    "serve": "node tools/serve.mjs"
+  },
+  "devDependencies": {
+    "html-minifier-terser": "^7.2.0",
+    "javascript-obfuscator": "^4.2.2",
+    "terser": "^5.51.2"
+  }
+}
