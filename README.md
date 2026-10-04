@@ -8,6 +8,7 @@
 происходит **офлайн** — интернет нужен только чтобы получить ключ по почте.
 
 **Демо (GitHub Pages):** https://koksasa.github.io/UZDvoce/
+**Купить ключ:** kontumapro@gmail.com
 
 ---
 

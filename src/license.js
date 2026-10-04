@@ -448,13 +448,15 @@
         if (!banner) {
             banner = el('div', 'lic-banner');
             banner.innerHTML = '<div class="lic-banner-text"></div>' +
-                '<button type="button" class="btn btn-primary lic-banner-btn">Активировать</button>';
+                '<div class="lic-banner-actions">' +
+                '<a class="lic-banner-mail" href="mailto:kontumapro@gmail.com?subject=%D0%9F%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0%20%D0%BA%D0%BB%D1%8E%D1%87%D0%B0%20%D0%93%D0%BE%D0%BB%D0%BE%D1%81%D0%A3%D0%97%D0%98">kontumapro@gmail.com</a>' +
+                '<button type="button" class="btn btn-primary lic-banner-btn">Активировать</button></div>';
             banner.querySelector('.lic-banner-btn').addEventListener('click', function () { openActivation(); });
             document.body.appendChild(banner);
         }
         banner.querySelector('.lic-banner-text').textContent = status.tampered
-            ? 'Обнаружено изменение системных часов. Экспорт документов заблокирован.'
-            : 'Пробный период завершён. Экспорт и печать документов заблокированы.';
+            ? 'Обнаружено изменение системных часов. Экспорт документов заблокирован. Купить ключ:'
+            : 'Пробный период завершён. Экспорт и печать документов заблокированы. Купить ключ:';
         banner.classList.add('visible');
     }
 

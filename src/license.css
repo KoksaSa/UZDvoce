@@ -24,6 +24,10 @@
     box-shadow:0 -8px 24px rgba(239,68,68,.35)}
 .lic-banner.visible{display:flex}
 .lic-banner-text{font-size:.88rem;font-weight:600;text-align:center}
+.lic-banner-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
+.lic-banner-mail{color:#fff;font-weight:800;text-decoration:none;border-bottom:2px solid rgba(255,255,255,.6);
+    padding-bottom:1px;white-space:nowrap}
+.lic-banner-mail:hover{border-bottom-color:#fff}
 .lic-banner-btn{background:#fff!important;color:#dc2626!important;box-shadow:none!important;
     border:none;font-weight:800;min-height:38px;padding:8px 18px}
 @media(max-width:640px){.lic-banner{padding-bottom:calc(96px + var(--safe-bottom))}}
@@ -60,4 +64,6 @@
 .lic-status-badge.expired,.lic-status-badge.none{color:var(--danger);border-color:rgba(239,68,68,.5)}
 .lic-status-badge.expired::before,.lic-status-badge.none::before{background:var(--danger)}
 .lic-note{font-size:.76rem;color:var(--text-faint);margin:12px 0 0;line-height:1.5}
+.lic-mail{color:var(--accent,#6366f1);font-weight:600;text-decoration:none;white-space:nowrap}
+.lic-mail:hover{text-decoration:underline}
 .lic-divider{height:1px;background:var(--border);margin:16px 0}
